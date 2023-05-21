@@ -28,13 +28,15 @@ class RegisterStudentFinal extends StatelessWidget {
             HeaderRegisterStudentFinal(),
             Expanded(
               child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(60),
-                        topRight: Radius.circular(60))),
-                child: FormRegister(),
-              ),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(60),
+                          topRight: Radius.circular(60))),
+                  child: FormRegister(
+                    startYear: 2000,
+                    endYear: 2025,
+                  )),
             )
           ],
         ),
