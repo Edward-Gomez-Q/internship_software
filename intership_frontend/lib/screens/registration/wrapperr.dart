@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/screens/student/student_register.dart';
 
 class WrapperRegistration extends StatelessWidget {
   const WrapperRegistration({Key? key}) : super(key: key);
@@ -10,7 +11,11 @@ class WrapperRegistration extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return RegisterStudent();
+                }));
+              },
               child: Text("Estudiantes UCB"),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue.shade900,
