@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intership_frontend/screens/login/button.dart';
+import 'package:intership_frontend/screens/registration/registration_principal.dart';
+import 'package:intership_frontend/screens/registration/wrapperr.dart';
 import 'input_field.dart';
 
 class Wrapper extends StatelessWidget {
@@ -23,14 +24,30 @@ class Wrapper extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          Text(
-            "Registrate",
-            style: TextStyle(color: Colors.grey),
+          TextButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Registration();
+              }));
+            },
+            child: Text(
+              "Registrate",
+              style: TextStyle(color: Colors.grey),
+            ),
           ),
           SizedBox(
             height: 40,
           ),
-          Button()
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Iniciar sesion"),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue.shade900,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
         ],
       ),
     );
