@@ -9,7 +9,7 @@ public class Company{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_company")
-    private Long companyId;
+    private int companyId;
 
     @Column(name = "name_company", nullable = false)
     private String businessName;
@@ -44,7 +44,7 @@ public class Company{
     public Company() {
     }
 
-    public Company(Long companyId, String businessName, String tradeName, String logoUrl, String website,
+    public Company(int companyId, String businessName, String tradeName, String logoUrl, String website,
                    String taxId, Boolean status, Integer version, Date createDate, String txUser,
                    String txHost) {
         this.companyId = companyId;
@@ -61,11 +61,11 @@ public class Company{
     }
     // Getters and Setters
 
-    public Long getCompanyId() {
+    public int getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(Long companyId) {
+    public void setCompanyId(int companyId) {
         this.companyId = companyId;
     }
 

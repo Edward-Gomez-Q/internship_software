@@ -8,7 +8,7 @@ public class NotificationType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_notification_type")
-    private Long notificationTypeId;
+    private int notificationTypeId;
 
     @Column(name = "notification_type", nullable = false)
     private String notificationType;
@@ -19,17 +19,17 @@ public class NotificationType {
     public NotificationType() {
     }
 
-    public NotificationType(Long notificationTypeId, String notificationType, String coreMsg) {
+    public NotificationType(int notificationTypeId, String notificationType, String coreMsg) {
         this.notificationTypeId = notificationTypeId;
         this.notificationType = notificationType;
         this.coreMsg = coreMsg;
     }
 
-    public Long getNotificationTypeId() {
+    public int getNotificationTypeId() {
         return notificationTypeId;
     }
 
-    public void setNotificationTypeId(Long notificationTypeId) {
+    public void setNotificationTypeId(int notificationTypeId) {
         this.notificationTypeId = notificationTypeId;
     }
 

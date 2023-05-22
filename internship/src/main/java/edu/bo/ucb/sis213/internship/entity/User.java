@@ -8,7 +8,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long id;
+    private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id_person", referencedColumnName = "id_person")
@@ -23,18 +23,18 @@ public class User {
     public User() {
     }
 
-    public User(Long id, Person person, String mail, String password) {
+    public User(int id, Person person, String mail, String password) {
         this.id = id;
         this.person = person;
         this.mail = mail;
         this.password = password;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

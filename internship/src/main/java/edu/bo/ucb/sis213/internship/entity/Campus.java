@@ -8,7 +8,7 @@ public class Campus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_campus")
-    private Long campusId;
+    private int campusId;
 
     @Column(name = "campus_name", nullable = false)
     private String campusName;
@@ -16,16 +16,16 @@ public class Campus {
     public Campus() {
     }
 
-    public Campus(Long campusId, String campusName) {
+    public Campus(int campusId, String campusName) {
         this.campusId = campusId;
         this.campusName = campusName;
     }
 
-    public Long getCampusId() {
+    public int getCampusId() {
         return campusId;
     }
 
-    public void setCampusId(Long campusId) {
+    public void setCampusId(int campusId) {
         this.campusId = campusId;
     }
 

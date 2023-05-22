@@ -8,7 +8,7 @@ public class Usei {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_USEI")
-    private Long useiId;
+    private int useiId;
 
     @ManyToOne
     @JoinColumn(name = "campus_id_campus", referencedColumnName = "id_campus")
@@ -21,17 +21,17 @@ public class Usei {
     public Usei() {
     }
 
-    public Usei(Long useiId, Campus campus, Person person) {
+    public Usei(int useiId, Campus campus, Person person) {
         this.useiId = useiId;
         this.campus = campus;
         this.person = person;
     }
 
-    public Long getUseiId() {
+    public int getUseiId() {
         return useiId;
     }
 
-    public void setUseiId(Long useiId) {
+    public void setUseiId(int useiId) {
         this.useiId = useiId;
     }
 

@@ -9,7 +9,7 @@ public class DocumentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_document")
-    private Long documentId;
+    private int documentId;
 
     @Column(name = "type_of_document", nullable = false)
     private String typeOfDocument;
@@ -17,16 +17,16 @@ public class DocumentType {
     public DocumentType() {
     }
 
-    public DocumentType(Long documentId, String typeOfDocument) {
+    public DocumentType(int documentId, String typeOfDocument) {
         this.documentId = documentId;
         this.typeOfDocument = typeOfDocument;
     }
 
-    public Long getDocumentId() {
+    public int getDocumentId() {
         return documentId;
     }
 
-    public void setDocumentId(Long documentId) {
+    public void setDocumentId(int documentId) {
         this.documentId = documentId;
     }
 

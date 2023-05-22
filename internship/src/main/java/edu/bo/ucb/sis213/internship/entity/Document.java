@@ -9,7 +9,7 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_document")
-    private Long documentId;
+    private int documentId;
 
     @ManyToOne
     @JoinColumn(name = "document_type_id_document", referencedColumnName = "id_document")
@@ -24,18 +24,18 @@ public class Document {
     public Document() {
     }
 
-    public Document(Long documentId, DocumentType documentType, String complement, String document) {
+    public Document(int documentId, DocumentType documentType, String complement, String document) {
         this.documentId = documentId;
         this.documentType = documentType;
         this.complement = complement;
         this.document = document;
     }
 
-    public Long getDocumentId() {
+    public int getDocumentId() {
         return documentId;
     }
 
-    public void setDocumentId(Long documentId) {
+    public void setDocumentId(int documentId) {
         this.documentId = documentId;
     }
 

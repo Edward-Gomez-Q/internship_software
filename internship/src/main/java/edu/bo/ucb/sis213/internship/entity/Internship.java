@@ -7,7 +7,7 @@ public class Internship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_internship")
-    private Long internshipId;
+    private int internshipId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id_company", nullable = false)
@@ -64,7 +64,7 @@ public class Internship {
     public Internship() {
     }
 
-    public Internship(Long internshipId, Company company, String title, String city, Date deadline, String days,
+    public Internship(int internshipId, Company company, String title, String city, Date deadline, String days,
                       Integer duration, Date startTime, Date endTime, String description, String descriptionUrl,
                       String syllableUrl, String knowledge, Boolean status, Integer version, Date createDate,
                       String txHost, String txUser) {
@@ -88,11 +88,11 @@ public class Internship {
         this.txUser = txUser;
     }
 
-    public Long getInternshipId() {
+    public int getInternshipId() {
         return internshipId;
     }
 
-    public void setInternshipId(Long internshipId) {
+    public void setInternshipId(int internshipId) {
         this.internshipId = internshipId;
     }
 

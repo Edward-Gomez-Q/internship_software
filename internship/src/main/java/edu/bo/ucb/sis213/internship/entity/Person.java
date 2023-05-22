@@ -9,7 +9,7 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_person")
-    private Long personId;
+    private int personId;
 
     @Column(name = "names", nullable = false)
     private String names;
@@ -23,18 +23,18 @@ public class Person {
     public Person() {
     }
 
-    public Person(Long personId, String names, String firstLastName, String secondLastName) {
+    public Person(int personId, String names, String firstLastName, String secondLastName) {
         this.personId = personId;
         this.names = names;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
     }
 
-    public Long getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 

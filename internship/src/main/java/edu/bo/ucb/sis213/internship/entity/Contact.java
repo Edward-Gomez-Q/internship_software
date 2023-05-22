@@ -10,7 +10,7 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_contact")
-    private Long contactId;
+    private int contactId;
 
     @ManyToOne
     @JoinColumn(name = "person_id_person", referencedColumnName = "id_person")
@@ -44,7 +44,7 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact(Long contactId, Person person, Company company, String mail, String phone, Boolean status,
+    public Contact(int contactId, Person person, Company company, String mail, String phone, Boolean status,
                    Integer version, Date audDate, String audHost, String audUser) {
         this.contactId = contactId;
         this.person = person;
@@ -58,11 +58,11 @@ public class Contact {
         this.audUser = audUser;
     }
 
-    public Long getContactId() {
+    public int getContactId() {
         return contactId;
     }
 
-    public void setContactId(Long contactId) {
+    public void setContactId(int contactId) {
         this.contactId = contactId;
     }
 

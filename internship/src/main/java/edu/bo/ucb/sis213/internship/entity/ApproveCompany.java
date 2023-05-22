@@ -9,7 +9,7 @@ public class ApproveCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_approve_company")
-    private Long id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "USEI_id_USEI", referencedColumnName = "id_USEI")
@@ -28,7 +28,7 @@ public class ApproveCompany {
     public ApproveCompany() {
     }
 
-    public ApproveCompany(Long id, Usei usei, Company company, Date date, Boolean approve) {
+    public ApproveCompany(int id, Usei usei, Company company, Date date, Boolean approve) {
         this.id = id;
         this.usei = usei;
         this.company = company;
@@ -36,11 +36,11 @@ public class ApproveCompany {
         this.approve = approve;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

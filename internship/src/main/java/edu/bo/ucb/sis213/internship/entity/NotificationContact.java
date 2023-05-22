@@ -9,7 +9,7 @@ public class NotificationContact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_notification")
-    private Long notificationId;
+    private int notificationId;
 
 
     @ManyToOne
@@ -32,7 +32,7 @@ public class NotificationContact {
     public NotificationContact() {
     }
 
-    public NotificationContact(Long notificationId, Contact contactId, NotificationType notificationTypeId, String message,
+    public NotificationContact(int notificationId, Contact contactId, NotificationType notificationTypeId, String message,
                                Date date, Boolean state) {
         this.notificationId = notificationId;
         this.contactId = contactId;
@@ -42,11 +42,11 @@ public class NotificationContact {
         this.state = state;
     }
 
-    public Long getNotificationId() {
+    public int getNotificationId() {
         return notificationId;
     }
 
-    public void setNotificationId(Long notificationId) {
+    public void setNotificationId(int notificationId) {
         this.notificationId = notificationId;
     }
 

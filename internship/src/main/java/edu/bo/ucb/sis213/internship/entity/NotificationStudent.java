@@ -9,7 +9,7 @@ public class NotificationStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_notification")
-    private Long notificationId;
+    private int notificationId;
 
     @ManyToOne
     @JoinColumn(name = "student_id_student", referencedColumnName = "id_student")
@@ -31,7 +31,7 @@ public class NotificationStudent {
     public NotificationStudent() {
     }
 
-    public NotificationStudent(Long notificationId, Student studentId, NotificationType notificationTypeId, String message,
+    public NotificationStudent(int notificationId, Student studentId, NotificationType notificationTypeId, String message,
                                Date date, Boolean state) {
         this.notificationId = notificationId;
         this.studentId = studentId;
@@ -41,11 +41,11 @@ public class NotificationStudent {
         this.state = state;
     }
 
-    public Long getNotificationId() {
+    public int getNotificationId() {
         return notificationId;
     }
 
-    public void setNotificationId(Long notificationId) {
+    public void setNotificationId(int notificationId) {
         this.notificationId = notificationId;
     }
 

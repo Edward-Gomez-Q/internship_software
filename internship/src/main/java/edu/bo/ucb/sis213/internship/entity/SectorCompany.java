@@ -8,7 +8,7 @@ public class SectorCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_sector_company")
-    private Long sectorCompanyId;
+    private int sectorCompanyId;
 
     @ManyToOne
     @JoinColumn(name = "sector_id_sector", referencedColumnName = "id_sector")
@@ -21,17 +21,17 @@ public class SectorCompany {
     public SectorCompany() {
     }
 
-    public SectorCompany(Long sectorCompanyId, Sector sector, Company company) {
+    public SectorCompany(int sectorCompanyId, Sector sector, Company company) {
         this.sectorCompanyId = sectorCompanyId;
         this.sector = sector;
         this.company = company;
     }
 
-    public Long getSectorCompanyId() {
+    public int getSectorCompanyId() {
         return sectorCompanyId;
     }
 
-    public void setSectorCompanyId(Long sectorCompanyId) {
+    public void setSectorCompanyId(int sectorCompanyId) {
         this.sectorCompanyId = sectorCompanyId;
     }
 

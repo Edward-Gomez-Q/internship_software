@@ -2,12 +2,12 @@ package edu.bo.ucb.sis213.internship.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_group")
-public class UserGroup {
+@Table(name = "user_role")
+public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user_group")
+    @Column(name = "id_user_role")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -15,16 +15,16 @@ public class UserGroup {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id_group", referencedColumnName = "id_group")
-    private Group group;
+    @JoinColumn(name = "role_id_role", referencedColumnName = "id_role")
+    private Role role;
 
-    public UserGroup() {
+    public UserRole() {
     }
 
-    public UserGroup(Long id, User user, Group group) {
+    public UserRole(Long id, User user, Role role) {
         this.id = id;
         this.user = user;
-        this.group = group;
+        this.role = role;
     }
 
     public Long getId() {
@@ -43,20 +43,20 @@ public class UserGroup {
         this.user = user;
     }
 
-    public Group getGroup() {
-        return group;
+    public Role getRole() {
+        return role;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
-        return "UserGroup{" +
+        return "UserRole{" +
                 "id=" + id +
                 ", user=" + user +
-                ", group=" + group +
+                ", role=" + role +
                 '}';
     }
 }

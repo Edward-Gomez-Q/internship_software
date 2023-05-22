@@ -9,7 +9,7 @@ public class Faculty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_faculty")
-    private Long facultyId;
+    private int facultyId;
 
     @Column(name = "faculty_name", nullable = false)
     private String facultyName;
@@ -21,17 +21,17 @@ public class Faculty {
     public Faculty() {
     }
 
-    public Faculty(Long facultyId, String facultyName, Campus campus) {
+    public Faculty(int facultyId, String facultyName, Campus campus) {
         this.facultyId = facultyId;
         this.facultyName = facultyName;
         this.campus = campus;
     }
 
-    public Long getFacultyId() {
+    public int getFacultyId() {
         return facultyId;
     }
 
-    public void setFacultyId(Long facultyId) {
+    public void setFacultyId(int facultyId) {
         this.facultyId = facultyId;
     }
 

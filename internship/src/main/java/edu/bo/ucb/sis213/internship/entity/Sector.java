@@ -8,7 +8,7 @@ public class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_sector")
-    private Long sectorId;
+    private int sectorId;
 
     @Column(name = "sector_name", nullable = false)
     private String sectorName;
@@ -16,16 +16,16 @@ public class Sector {
     public Sector() {
     }
 
-    public Sector(Long sectorId, String sectorName) {
+    public Sector(int sectorId, String sectorName) {
         this.sectorId = sectorId;
         this.sectorName = sectorName;
     }
 
-    public Long getSectorId() {
+    public int getSectorId() {
         return sectorId;
     }
 
-    public void setSectorId(Long sectorId) {
+    public void setSectorId(int sectorId) {
         this.sectorId = sectorId;
     }
 

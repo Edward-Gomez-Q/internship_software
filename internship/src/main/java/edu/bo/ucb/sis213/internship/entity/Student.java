@@ -9,7 +9,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_student")
-    private Long studentId;
+    private int studentId;
 
     @ManyToOne
     @JoinColumn(name = "document_id_document", referencedColumnName = "id_document")
@@ -47,7 +47,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long studentId, Document document, Career career, Boolean graduate, String yearOfIncome,
+    public Student(int studentId, Document document, Career career, Boolean graduate, String yearOfIncome,
                    Boolean status, Integer version, Date audDate, String audHost, String audUser, Person person) {
         this.studentId = studentId;
         this.document = document;
@@ -62,11 +62,11 @@ public class Student {
         this.person = person;
     }
 
-    public Long getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Long studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 

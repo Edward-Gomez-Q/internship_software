@@ -8,7 +8,7 @@ public class CarrerInternship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_carrer_internship")
-    private Long id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "internship_id_internship", referencedColumnName = "id_internship")
@@ -21,17 +21,17 @@ public class CarrerInternship {
     public CarrerInternship() {
     }
 
-    public CarrerInternship(Long id, Internship internship, Career career) {
+    public CarrerInternship(int id, Internship internship, Career career) {
         this.id = id;
         this.internship = internship;
         this.career = career;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

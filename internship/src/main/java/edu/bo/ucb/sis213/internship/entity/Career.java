@@ -8,7 +8,7 @@ public class Career {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_carrer")
-    private Long careerId;
+    private int careerId;
 
     @Column(name = "career_name", nullable = false)
     private String careerName;
@@ -20,17 +20,17 @@ public class Career {
     public Career() {
     }
 
-    public Career(Long careerId, String careerName, Faculty faculty) {
+    public Career(int careerId, String careerName, Faculty faculty) {
         this.careerId = careerId;
         this.careerName = careerName;
         this.faculty = faculty;
     }
 
-    public Long getCareerId() {
+    public int getCareerId() {
         return careerId;
     }
 
-    public void setCareerId(Long careerId) {
+    public void setCareerId(int careerId) {
         this.careerId = careerId;
     }
 
