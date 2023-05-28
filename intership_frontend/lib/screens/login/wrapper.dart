@@ -31,7 +31,7 @@ class Wrapper extends StatelessWidget {
               }));
             },
             child: Text(
-              "Registrate",
+              "Regístrate",
               style: TextStyle(color: Colors.grey),
             ),
           ),

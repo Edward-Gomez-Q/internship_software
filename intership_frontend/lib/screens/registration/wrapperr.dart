@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/screens/company/company_register.dart';
 import 'package:intership_frontend/screens/student/student_register.dart';
 
 class WrapperRegistration extends StatelessWidget {
@@ -30,7 +31,11 @@ class WrapperRegistration extends StatelessWidget {
           ),
           Expanded(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return RegisterCompany();
+                }));
+              },
               child: Text("Empresa"),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue.shade900,

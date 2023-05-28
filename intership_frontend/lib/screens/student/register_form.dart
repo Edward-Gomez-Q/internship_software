@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class FormRegister extends StatelessWidget {
@@ -108,7 +106,7 @@ class FormRegister extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Text(
-                    "Validacion con la UCB: ",
+                    "Validación con la UCB: ",
                     style: TextStyle(fontSize: 16),
                   ),
                   Expanded(

@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
         children: <Widget>[
           Center(
             child: Text(
-              "Portal de pasantias UCB",
+              "Portal de pasantías UCB",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,

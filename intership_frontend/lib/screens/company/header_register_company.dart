@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HeaderRegistration extends StatelessWidget {
+class HeaderRegisterCompany extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +22,7 @@ class HeaderRegistration extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "Registro de usuario",
+              "Registro de nuevos usuarios",
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
@@ -31,7 +31,7 @@ class HeaderRegistration extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "Que tipos de cuenta desea registrar?",
+              "Registro de empresas",
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           )

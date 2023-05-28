@@ -27,7 +27,7 @@ class WrapperRegisterStudent extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {},
-          child: Text("Solictar codigo"),
+          child: Text("Solictar código"),
           style: ElevatedButton.styleFrom(
             primary: Colors.blue.shade900,
             shape: RoundedRectangleBorder(
@@ -40,7 +40,7 @@ class WrapperRegisterStudent extends StatelessWidget {
         ),
         TextFormField(
           decoration: InputDecoration(
-            hintText: 'Ingrese su codigo de verificacion',
+            hintText: 'Ingrese su código de verificación',
             hintStyle: TextStyle(color: Colors.grey),
             icon: Icon(Icons.remove_red_eye),
             border: OutlineInputBorder(
