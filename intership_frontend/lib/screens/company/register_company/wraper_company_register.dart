@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/screens/company/company_register.dart';
+import 'package:intership_frontend/screens/company/message.dart';
 
 class WraperCompanyRegister2 extends StatelessWidget {
   const WraperCompanyRegister2({Key? key}) : super(key: key);
@@ -104,7 +105,10 @@ class WraperCompanyRegister2 extends StatelessWidget {
                   width: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Message()));
+                  },
                   child: Text("Registrar"),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue.shade900,
