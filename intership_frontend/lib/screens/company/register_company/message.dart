@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:intership_frontend/screens/company/header_register_company.dart';
-import 'package:intership_frontend/screens/company/wraper_company_register.dart';
+/*import 'package:flutter/material.dart';
+import 'package:intership_frontend/screens/company/register_company/header_register_company.dart';
 
-class Register2Company extends StatelessWidget {
-  const Register2Company({Key? key}) : super(key: key);
+class MessageUSEI extends StatelessWidget{
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       body: Container(
         width: double.infinity, // 100%
@@ -32,7 +30,7 @@ class Register2Company extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(60),
                         topRight: Radius.circular(60))),
-                child: WraperCompanyRegister2(),
+                child: Text(""),
               ),
             )
           ],
@@ -40,4 +38,4 @@ class Register2Company extends StatelessWidget {
       ),
     );
   }
-}
+}*/

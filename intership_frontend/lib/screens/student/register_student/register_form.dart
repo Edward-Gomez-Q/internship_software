@@ -13,8 +13,7 @@ class FormRegister extends StatelessWidget {
     }
     return Padding(
       padding: EdgeInsets.all(10),
-      child: Padding(
-        padding: EdgeInsets.all(10),
+      child: SingleChildScrollView(
         child: Form(
           child: Column(
             children: [
@@ -60,6 +59,7 @@ class FormRegister extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Expanded(
+                    flex: 2,
                     child: TextFormField(
                       decoration: InputDecoration(
                         hintText: "Documento de Identidad",
@@ -75,6 +75,7 @@ class FormRegister extends StatelessWidget {
                     width: 10,
                   ),
                   Expanded(
+                    flex: 1,
                     child: DropdownButton<String>(
                       items: <String>[
                         'LP',
@@ -103,13 +104,14 @@ class FormRegister extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
+              Text(
+                "Validación con la UCB: ",
+                style: TextStyle(fontSize: 16),
+              ),
               Row(
                 children: <Widget>[
-                  Text(
-                    "Validación con la UCB: ",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  Expanded(
+                  Flexible(
+                    fit: FlexFit.tight,
                     child: RadioListTile(
                       title: Text("Estudiante"),
                       value: 1,
@@ -117,7 +119,8 @@ class FormRegister extends StatelessWidget {
                       onChanged: (value) {},
                     ),
                   ),
-                  Expanded(
+                  Flexible(
+                    fit: FlexFit.tight,
                     child: RadioListTile(
                       title: Text("Graduado"),
                       value: 2,
@@ -133,6 +136,7 @@ class FormRegister extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Expanded(
+                    flex: 1,
                     child: DropdownButton(
                       items: <String>[
                         'La Paz',
@@ -154,6 +158,7 @@ class FormRegister extends StatelessWidget {
                     width: 10,
                   ),
                   Expanded(
+                    flex: 1,
                     child: DropdownButton(
                       items: <String>[
                         'Ingenieria de Sistemas',
@@ -177,6 +182,7 @@ class FormRegister extends StatelessWidget {
                     width: 10,
                   ),
                   Expanded(
+                    flex: 1,
                     child: DropdownButton(
                       items: years.map((String value) {
                         return DropdownMenuItem<String>(

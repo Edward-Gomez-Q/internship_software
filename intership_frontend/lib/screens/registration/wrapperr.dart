@@ -6,7 +6,7 @@ class WrapperRegistration extends StatelessWidget {
   const WrapperRegistration({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: EdgeInsets.all(30),
       child: Row(
         children: <Widget>[

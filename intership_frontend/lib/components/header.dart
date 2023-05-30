@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HeaderRegisterCompany extends StatelessWidget {
+class Header extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final String subtitle2;
+
+  Header(
+      {required this.title, required this.subtitle, required this.subtitle2});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,7 +16,7 @@ class HeaderRegisterCompany extends StatelessWidget {
         children: <Widget>[
           Center(
             child: Text(
-              "Portal de pasantías UCB",
+              title,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -22,7 +28,7 @@ class HeaderRegisterCompany extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "Registro de nuevos usuarios",
+              subtitle,
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
@@ -31,7 +37,7 @@ class HeaderRegisterCompany extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "Registro de empresas",
+              subtitle2,
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           )
