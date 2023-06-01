@@ -133,70 +133,52 @@ class FormRegister extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: DropdownButton(
-                      items: <String>[
-                        'La Paz',
-                        'Cochabamba',
-                        'Santa Cruz',
-                        'Tarija'
-                      ].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      hint: Text("Sede", style: TextStyle(color: Colors.grey)),
-                      icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String? value) {},
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: DropdownButton(
-                      items: <String>[
-                        'Ingenieria de Sistemas',
-                        'Ingenieria Civil',
-                        'Ingenieria Industrial',
-                        'Ingenieria Mecatronica',
-                        'Diseño Grafico'
-                      ].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      hint:
-                          Text("Carrera", style: TextStyle(color: Colors.grey)),
-                      icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String? value) {},
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: DropdownButton(
-                      items: years.map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      hint: Text("Año de Ingreso",
-                          style: TextStyle(color: Colors.grey)),
-                      icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String? value) {},
-                    ),
-                  ),
-                ],
+              DropdownButton(
+                items: <String>['La Paz', 'Cochabamba', 'Santa Cruz', 'Tarija']
+                    .map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                hint: Text("Sede", style: TextStyle(color: Colors.grey)),
+                icon: Icon(Icons.arrow_drop_down),
+                onChanged: (String? value) {},
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              DropdownButton(
+                items: <String>[
+                  'Ingenieria de Sistemas',
+                  'Ingenieria Civil',
+                  'Ingenieria Industrial',
+                  'Ingenieria Mecatronica',
+                  'Diseño Grafico'
+                ].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                hint: Text("Carrera", style: TextStyle(color: Colors.grey)),
+                icon: Icon(Icons.arrow_drop_down),
+                onChanged: (String? value) {},
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              DropdownButton(
+                items: years.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                hint: Text("Año de Ingreso",
+                    style: TextStyle(color: Colors.grey)),
+                icon: Icon(Icons.arrow_drop_down),
+                onChanged: (String? value) {},
               ),
               SizedBox(
                 height: 10,

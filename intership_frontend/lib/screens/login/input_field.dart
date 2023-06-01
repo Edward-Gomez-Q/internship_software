@@ -10,7 +10,7 @@ class InputField extends StatelessWidget {
             padding: EdgeInsets.all(10),
             child: TextField(
               decoration: InputDecoration(
-                hintText: "Ingresa tu correo electrónico",
+                hintText: 'Ingresa tu correo electrónico',
                 hintStyle: TextStyle(color: Colors.grey),
                 icon: Icon(Icons.email),
                 border: OutlineInputBorder(
@@ -24,7 +24,7 @@ class InputField extends StatelessWidget {
             padding: EdgeInsets.all(10),
             child: TextField(
                 decoration: InputDecoration(
-              hintText: "Ingresa tu contraseña",
+              hintText: 'Ingresa tu contraseña',
               hintStyle: TextStyle(color: Colors.grey),
               icon: Icon(Icons.lock),
               border: OutlineInputBorder(

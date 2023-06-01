@@ -21,6 +21,14 @@ class HomeCompany extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
+          Text("Pasantías activas",
+              style: TextStyle(fontSize: 20, color: Colors.grey.shade600)),
+          SizedBox(
+            height: 20,
+          ),
         ],
       ),
       bottomNavigationBar: BottomBarCompany(),
