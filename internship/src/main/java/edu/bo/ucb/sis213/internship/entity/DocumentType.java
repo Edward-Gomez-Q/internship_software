@@ -8,7 +8,7 @@ public class DocumentType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_document")
+    @Column(name = "id_document_type")
     private int documentId;
 
     @Column(name = "type_of_document", nullable = false)

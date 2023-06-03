@@ -32,33 +32,29 @@ class InternshipApplicationTests {
 	public void getRoleById(){
 		System.out.println(roleBl.findById(1));
 	}
-	//Test para agregar un estudiante
+	//Test para agregar persona
 	@Test
-	public void addStudent(){
-		//Agregar un person
+	public void savePerson(){
 		Person person = new Person();
-		person.setNames("Frenkie");
-		person.setFirstLastName("De Jong");
-		person.setSecondLastName("Barcelona");
-		Person newPerson = personBl.savePerson(person);
-		//Agregar un user
-		User user = new User();
-		user.setMail("frenkie.jong@ucb.edu.bo");
-		user.setPerson(newPerson);
-		user.setPassword("12345");
-		User newUser = userBl.saveUser(user);
-		//Obtener el role estudiante
-		Role role = roleBl.findById(1);
-		//Agregar un userRole
-		UserRole userRole = new UserRole();
-		userRole.setUser(newUser);
-		userRole.setRole(role);
-		userRoleBl.saveUserRole(userRole);
-		//Agregar un student
-		Student student = new Student();
-		student.setPerson(newPerson);
-
-
+		person.setNames("Juan");
+		person.setFirstLastName("Perez");
+		person.setSecondLastName("Gomez");
+		personBl.savePerson(person);
 	}
-
+	//Test para obtener una persona por id
+	@Test
+	public void getPersonById(){
+		System.out.println(personBl.findById(1));
+	}
+	//Test para guardar un usuario
+	@Test
+	public void saveUser(){
+		User user = new User();
+		Person person = personBl.findById(1);
+		user.setPerson(person);
+		user.setMail("frenkie.deJong@ucb.edu.bo");
+		user.setPassword("123456");
+		userBl.saveUser(user);
+		System.out.println(user.toString());
+	}
 }

@@ -19,7 +19,7 @@ public class ApproveCompany {
     @JoinColumn(name = "company_id_company", referencedColumnName = "id_company")
     private Company company;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "approve_company_date", nullable = false)
     private Date date;
 
     @Column(name = "approve", nullable = false)

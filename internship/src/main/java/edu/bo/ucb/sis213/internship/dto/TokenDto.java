@@ -4,13 +4,19 @@ public class TokenDto {
     private String authToken;
     private String refreshToken;
 
-
     public TokenDto() {
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "authToken='" + authToken + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                '}';
+    }
 
     public String getAuthToken() {
-        return this.authToken;
+        return authToken;
     }
 
     public void setAuthToken(String authToken) {
@@ -18,19 +24,10 @@ public class TokenDto {
     }
 
     public String getRefreshToken() {
-        return this.refreshToken;
+        return refreshToken;
     }
 
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
-    }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-                " authToken='" + getAuthToken() + "'" +
-                ", refreshToken='" + getRefreshToken() + "'" +
-                "}";
     }
 }

@@ -2,7 +2,7 @@ package edu.bo.ucb.sis213.internship.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Role")
+@Table(name = "ro_role")
 public class Role {
 
     @Id

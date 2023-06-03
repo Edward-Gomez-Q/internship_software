@@ -2,6 +2,9 @@ package edu.bo.ucb.sis213.internship.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "faculty")
 public class Faculty {
@@ -17,14 +20,17 @@ public class Faculty {
     @ManyToOne
     @JoinColumn(name = "campus_id_campus", referencedColumnName = "id_campus")
     private Campus campus;
-
+    @OneToMany(mappedBy = "faculty",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Career> careers;
     public Faculty() {
+        this.careers = new ArrayList<>();
     }
 
-    public Faculty(int facultyId, String facultyName, Campus campus) {
+    public Faculty(int facultyId, String facultyName, Campus campus, List<Career> carrers) {
         this.facultyId = facultyId;
         this.facultyName = facultyName;
         this.campus = campus;
+        this.careers = carrers;
     }
 
     public int getFacultyId() {
@@ -51,12 +57,21 @@ public class Faculty {
         this.campus = campus;
     }
 
+    public List<Career> getCareers() {
+        return careers;
+    }
+
+    public void setCareers(List<Career> careers) {
+        this.careers = careers;
+    }
+
     @Override
     public String toString() {
         return "Faculty{" +
                 "facultyId=" + facultyId +
                 ", facultyName='" + facultyName + '\'' +
                 ", campus=" + campus +
+                ", careers=" + careers +
                 '}';
     }
 }

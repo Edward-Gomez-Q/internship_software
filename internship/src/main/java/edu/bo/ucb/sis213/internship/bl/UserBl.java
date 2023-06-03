@@ -1,35 +1,36 @@
 package edu.bo.ucb.sis213.internship.bl;
 
+import edu.bo.ucb.sis213.internship.dto.PersonDto;
+import edu.bo.ucb.sis213.internship.dto.RoleDto;
 import edu.bo.ucb.sis213.internship.dto.UserDto;
-import edu.bo.ucb.sis213.internship.entity.Person;
+import edu.bo.ucb.sis213.internship.entity.Role;
 import edu.bo.ucb.sis213.internship.entity.User;
-import org.springframework.stereotype.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import edu.bo.ucb.sis213.internship.dao.UserRepository;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
 
-@Service
+@Component
 public class UserBl {
-    private final UserRepository userRepository;
-    public UserBl(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
 
-    //get all users
-    public List<UserDto> getAllUsers(){
-        List<User> users = userRepository.findAll();
-        return users.stream().map(this::convertToDto).collect(Collectors.toList());
+    @Autowired
+    private UserRepository userRepository;
+    //Obtener usuario por email
+    public UserDto findByEmail(String email){
+        return new UserDto(userRepository.findByEmail(email));
     }
-    //convert user to userDto
-    private UserDto convertToDto(User user){
-        UserDto userDto = new UserDto();
-        userDto.setMail(user.getMail());
-        userDto.setPassword(user.getPassword());
-        return userDto;
+    //Obtener roles de un usuario por su id
+    public List<RoleDto> findUserRolesById(int userId){
+        List<Role> roles = userRepository.findUserRolesById(userId);
+        return roles.stream().map(this::convertToDto).collect(Collectors.toList());
     }
-    //Aggregate a user
-    public User saveUser(User user){
-        return userRepository.save(user);
+    //Convertir un role a roleDto
+    private RoleDto convertToDto(Role role){
+        RoleDto roleDto = new RoleDto();
+        roleDto.setId_role(role.getId());
+        roleDto.setName(role.getRoleName());
+        return roleDto;
     }
 }

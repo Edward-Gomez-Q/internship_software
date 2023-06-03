@@ -22,10 +22,10 @@ public class NotificationStudent {
     @Column(name = "msg", nullable = false)
     private String message;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "notification_date", nullable = false)
     private Date date;
 
-    @Column(name = "state", nullable = false)
+    @Column(name = "\"state\"", nullable = false)
     private Boolean state;
 
     public NotificationStudent() {

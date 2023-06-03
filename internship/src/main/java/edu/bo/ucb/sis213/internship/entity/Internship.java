@@ -28,10 +28,10 @@ public class Internship {
     @Column(name = "duration", nullable = false)
     private Integer duration;
 
-    @Column(name = "start_time", nullable = false)
+    @Column(name = "start_time_internship ", nullable = false)
     private Date startTime;
 
-    @Column(name = "end_time", nullable = false)
+    @Column(name = "end_time_internship ", nullable = false)
     private Date endTime;
 
     @Column(name = "description", nullable = false, length = 1000)
@@ -49,7 +49,8 @@ public class Internship {
     @Column(name = "status", nullable = false)
     private Boolean status;
 
-    @Column(name = "version", nullable = false)
+    @Version
+    @Column(name = "version_number", nullable = false)
     private Integer version;
 
     @Column(name = "aud_date", nullable = false)

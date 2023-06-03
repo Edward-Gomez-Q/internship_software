@@ -2,7 +2,7 @@ package edu.bo.ucb.sis213.internship.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "ro_user")
 public class User {
 
     @Id

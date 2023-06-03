@@ -20,7 +20,7 @@ public class ApproveInternship {
     @JoinColumn(name = "internship_id_internship", referencedColumnName = "id_internship")
     private Internship internship;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "approve_internship_date", nullable = false)
     private Date date;
 
     @Column(name = "approve", nullable = false)

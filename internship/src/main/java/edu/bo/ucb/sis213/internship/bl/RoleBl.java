@@ -3,32 +3,33 @@ package edu.bo.ucb.sis213.internship.bl;
 import edu.bo.ucb.sis213.internship.dao.RoleRepository;
 import edu.bo.ucb.sis213.internship.dto.RoleDto;
 import edu.bo.ucb.sis213.internship.entity.Role;
-import org.springframework.stereotype.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 public class RoleBl {
-    private final RoleRepository roleRepository;
-    //Constructor
-    public RoleBl(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
-    //get all roles
+
+    @Autowired
+    private RoleRepository roleRepository;
+    
+    //obtener todos los roles
     public List<RoleDto> findAllRoles(){
         List<Role> roles = roleRepository.findAll();
         return roles.stream().map(this::convertToDto).collect(Collectors.toList());
     }
-    //Convert role to roleDto
+    //Convertir un role a roleDto
     private RoleDto convertToDto(Role role){
         RoleDto roleDto = new RoleDto();
         roleDto.setId_role(role.getId());
         roleDto.setName(role.getRoleName());
         return roleDto;
     }
-    //get a role by id
-    public Role findById(int id){
-        return roleRepository.findById(id);
+    //Obtener un role por id
+    public RoleDto findById(int id){
+        return convertToDto(roleRepository.findById(id));
     }
 }

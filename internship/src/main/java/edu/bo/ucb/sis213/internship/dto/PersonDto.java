@@ -1,5 +1,7 @@
 package edu.bo.ucb.sis213.internship.dto;
 
+import edu.bo.ucb.sis213.internship.entity.Person;
+
 public class PersonDto {
     private int id_person;
     private String names;
@@ -14,8 +16,22 @@ public class PersonDto {
         this.first_last_name = first_last_name;
         this.second_last_name = second_last_name;
     }
+    public PersonDto(Person person){
+        this.id_person = person.getPersonId();
+        this.names = person.getNames();
+        this.first_last_name = person.getFirstLastName();
+        this.second_last_name = person.getSecondLastName();
+    }
+    //Funcion para convertir de PersonDto a Person
+    public Person toPerson(){
+        Person person = new Person();
+        person.setPersonId(this.id_person);
+        person.setNames(this.names);
+        person.setFirstLastName(this.first_last_name);
+        person.setSecondLastName(this.second_last_name);
+        return person;
+    }
     //Getters and Setters
-
     public int getId_person() {
         return id_person;
     }
