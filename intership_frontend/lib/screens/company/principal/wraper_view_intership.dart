@@ -3,6 +3,9 @@ import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_aplicants.dart';
 
+import '../aplicants_intership.dart';
+import '../edit_intership.dart';
+
 class WraperViewIntership extends StatelessWidget {
   final List<IntershipState> intershipState;
 
@@ -59,12 +62,18 @@ class WraperViewIntership extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => WraperViewAplicants(),
+                              builder: (context) => Aplicants(),
                             ),
                           );
                         },
                         icon: Icon(Icons.people),
                         label: Text("Aplicantes"),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue.shade900,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -75,12 +84,18 @@ class WraperViewIntership extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => WraperViewAplicants(),
+                              builder: (context) => EditIntership(),
                             ),
                           );
                         },
                         icon: Icon(Icons.edit),
                         label: Text("Editar"),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue.shade900,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
                       ),
                     ),
                   ],
