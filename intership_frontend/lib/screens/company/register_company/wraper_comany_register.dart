@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/screens/company/company_register2.dart';
 import 'package:intership_frontend/screens/company/register_company/wraper_company_register.dart';
@@ -85,7 +86,26 @@ class WrapperRegisterCompany extends StatelessWidget {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                FilePickerResult? result =
+                    await FilePicker.platform.pickFiles();
+                if (result != null) {
+                  PlatformFile file = result.files.first;
+                } else {
+                  AlertDialog(
+                    title: Text('Error'),
+                    content: Text('No se pudo cargar el archivo'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'),
+                      )
+                    ],
+                  );
+                }
+              },
               child: Text("Cargar imagen"),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue.shade900,

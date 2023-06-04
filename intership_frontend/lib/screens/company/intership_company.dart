@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/components/bottombar_company.dart';
 import 'package:intership_frontend/components/search.dart';
+import 'package:intership_frontend/screens/company/principal/wraper_view_intership.dart';
+
+import '../../bloc/states/intership_state.dart';
 
 class HomeCompany extends StatelessWidget {
   void handleSearch(String value) {
@@ -24,10 +27,64 @@ class HomeCompany extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Text("Pasantías activas",
-              style: TextStyle(fontSize: 20, color: Colors.grey.shade600)),
+          Text("Pasantías Activas",
+              style: TextStyle(fontSize: 30, color: Colors.blue.shade900)),
           SizedBox(
             height: 20,
+          ),
+          Expanded(
+            child: WraperViewIntership(
+              intershipState: [
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+                IntershipState(
+                    titulo: "Pasantía en desarrollo de software",
+                    carrera: "Ingeniería de sistemas",
+                    descripcion:
+                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
+                    fechaLimite: DateTime.now()),
+              ],
+            ),
           ),
         ],
       ),
