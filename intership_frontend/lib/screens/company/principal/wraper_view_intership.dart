@@ -50,19 +50,42 @@ class WraperViewIntership extends StatelessWidget {
                     color: Colors.grey.shade600,
                   ),
                 ),
+                Row(
+                  children: [
+                    Container(
+                      width: 130, // Ancho del primer botón
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => WraperViewAplicants(),
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.people),
+                        label: Text("Aplicantes"),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Container(
+                      width: 130, // Ancho del segundo botón
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => WraperViewAplicants(),
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.edit),
+                        label: Text("Editar"),
+                      ),
+                    ),
+                  ],
+                ),
               ],
-            ),
-            trailing: ElevatedButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => WraperViewAplicants(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.people),
-              label: Text("Ver Aplicantes"),
             ),
           ),
         );
