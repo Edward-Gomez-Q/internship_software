@@ -19,6 +19,7 @@ class Aplicants extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: SearchBar(
+              hinttext: 'Buscar por nombre',
               onSearch: handleSearch,
             ),
           ),

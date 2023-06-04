@@ -46,6 +46,9 @@ class WraperViewAplicants extends StatelessWidget {
                   color: Colors.grey.shade600,
                 ),
               ),
+              SizedBox(
+                height: 8,
+              ),
               Row(
                 children: [
                   Container(
@@ -69,8 +72,8 @@ class WraperViewAplicants extends StatelessWidget {
                     width: 140, // Ancho del primer botón
                     child: ElevatedButton.icon(
                       onPressed: () {},
-                      icon: Icon(Icons.add),
-                      label: Text("Información"),
+                      icon: Icon(Icons.download),
+                      label: Text("Descargar CV"),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.blue.shade900,
                         shape: RoundedRectangleBorder(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intership_frontend/components/calendar_button.dart';
 import 'package:intership_frontend/components/list_week.dart';
 import 'package:intership_frontend/screens/company/post_intership.dart';
+import 'package:intership_frontend/services/globals.dart';
 
 import '../post2_intership_company.dart';
 
@@ -27,17 +28,7 @@ class WraperPostIntership extends StatelessWidget {
               height: 20,
             ),
             DropdownButton(
-              items: <String>[
-                'La Paz',
-                'Cochabamba',
-                'Santa Cruz',
-                'Tarija',
-                'Potosí',
-                'Oruro',
-                'Beni',
-                'Pando',
-                'Chuquisaca'
-              ].map((String value) {
+              items: departments.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),

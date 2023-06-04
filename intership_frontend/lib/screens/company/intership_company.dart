@@ -20,6 +20,7 @@ class HomeCompany extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SearchBar(
+                hinttext: 'Buscar por nombre',
                 onSearch: handleSearch,
               ),
             ),
@@ -35,42 +36,6 @@ class HomeCompany extends StatelessWidget {
           Expanded(
             child: WraperViewIntership(
               intershipState: [
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carrera: "Ingeniería de sistemas",
-                    descripcion:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carrera: "Ingeniería de sistemas",
-                    descripcion:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carrera: "Ingeniería de sistemas",
-                    descripcion:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carrera: "Ingeniería de sistemas",
-                    descripcion:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carrera: "Ingeniería de sistemas",
-                    descripcion:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carrera: "Ingeniería de sistemas",
-                    descripcion:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
                 IntershipState(
                     titulo: "Pasantía en desarrollo de software",
                     carrera: "Ingeniería de sistemas",
