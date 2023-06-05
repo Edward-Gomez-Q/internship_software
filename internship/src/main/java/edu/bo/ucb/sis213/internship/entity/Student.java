@@ -1,97 +1,105 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.bo.ucb.sis213.internship.entity;
-
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author HP
+ */
 @Entity
 @Table(name = "student")
-public class Student {
+@NamedQueries({
+    @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
+    @NamedQuery(name = "Student.findByIdStudent", query = "SELECT s FROM Student s WHERE s.idStudent = :idStudent"),
+    @NamedQuery(name = "Student.findByGraduate", query = "SELECT s FROM Student s WHERE s.graduate = :graduate"),
+    @NamedQuery(name = "Student.findByYearOfIncome", query = "SELECT s FROM Student s WHERE s.yearOfIncome = :yearOfIncome"),
+    @NamedQuery(name = "Student.findByStatus", query = "SELECT s FROM Student s WHERE s.status = :status"),
+    @NamedQuery(name = "Student.findByVersionNumber", query = "SELECT s FROM Student s WHERE s.versionNumber = :versionNumber"),
+    @NamedQuery(name = "Student.findByAudDate", query = "SELECT s FROM Student s WHERE s.audDate = :audDate"),
+    @NamedQuery(name = "Student.findByAudHost", query = "SELECT s FROM Student s WHERE s.audHost = :audHost"),
+    @NamedQuery(name = "Student.findByAudUser", query = "SELECT s FROM Student s WHERE s.audUser = :audUser")})
+public class Student implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_student")
-    private int studentId;
-
-    @ManyToOne
-    @JoinColumn(name = "document_id_document", referencedColumnName = "id_document")
-    private Document document;
-
-    @ManyToOne
-    @JoinColumn(name = "career_id_carrer", referencedColumnName = "id_carrer")
-    private Career career;
-
-    @Column(name = "graduate", nullable = false)
-    private Boolean graduate;
-
-    @Column(name = "year_of_income", nullable = false)
+    private Integer idStudent;
+    @Basic(optional = false)
+    @Column(name = "graduate")
+    private boolean graduate;
+    @Basic(optional = false)
+    @Column(name = "year_of_income")
     private String yearOfIncome;
+    @Basic(optional = false)
+    @Column(name = "status")
+    private boolean status;
 
-    @Column(name = "status", nullable = false)
-    private Boolean status;
-
+    @Basic(optional = false)
+    @Column(name = "version_number")
     @Version
-    @Column(name = "version_number", nullable = false)
-    private Integer version;
-
-    @Column(name = "aud_date", nullable = false)
+    private int versionNumber;
+    @Basic(optional = false)
+    @Column(name = "aud_date")
+    @Temporal(TemporalType.DATE)
     private Date audDate;
-
-    @Column(name = "aud_host", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "aud_host")
     private String audHost;
-
-    @Column(name = "aud_user", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "aud_user")
     private String audUser;
-
-    @ManyToOne
+    @JoinColumn(name = "career_id_carrer", referencedColumnName = "id_carrer")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Career careerIdCarrer;
     @JoinColumn(name = "person_id_person", referencedColumnName = "id_person")
-    private Person person;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Person personIdPerson;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentIdStudent", fetch = FetchType.LAZY)
+    private List<Postulation> postulationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentIdStudent", fetch = FetchType.LAZY)
+    private List<NotificationStudent> notificationStudentList;
 
     public Student() {
     }
 
-    public Student(int studentId, Document document, Career career, Boolean graduate, String yearOfIncome,
-                   Boolean status, Integer version, Date audDate, String audHost, String audUser, Person person) {
-        this.studentId = studentId;
-        this.document = document;
-        this.career = career;
+    public Student(Integer idStudent) {
+        this.idStudent = idStudent;
+    }
+
+    public Student(Integer idStudent, boolean graduate, String yearOfIncome, boolean status, int versionNumber, Date audDate, String audHost, String audUser) {
+        this.idStudent = idStudent;
         this.graduate = graduate;
         this.yearOfIncome = yearOfIncome;
         this.status = status;
-        this.version = version;
+        this.versionNumber = versionNumber;
         this.audDate = audDate;
         this.audHost = audHost;
         this.audUser = audUser;
-        this.person = person;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public Integer getIdStudent() {
+        return idStudent;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setIdStudent(Integer idStudent) {
+        this.idStudent = idStudent;
     }
 
-    public Document getDocument() {
-        return document;
-    }
-
-    public void setDocument(Document document) {
-        this.document = document;
-    }
-
-    public Career getCareer() {
-        return career;
-    }
-
-    public void setCareer(Career career) {
-        this.career = career;
-    }
-
-    public Boolean getGraduate() {
+    public boolean getGraduate() {
         return graduate;
     }
 
-    public void setGraduate(Boolean graduate) {
+    public void setGraduate(boolean graduate) {
         this.graduate = graduate;
     }
 
@@ -103,20 +111,20 @@ public class Student {
         this.yearOfIncome = yearOfIncome;
     }
 
-    public Boolean getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public Integer getVersion() {
-        return version;
+    public int getVersionNumber() {
+        return versionNumber;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
+    public void setVersionNumber(int versionNumber) {
+        this.versionNumber = versionNumber;
     }
 
     public Date getAudDate() {
@@ -143,28 +151,61 @@ public class Student {
         this.audUser = audUser;
     }
 
-    public Person getPerson() {
-        return person;
+    public Career getCareerIdCarrer() {
+        return careerIdCarrer;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setCareerIdCarrer(Career careerIdCarrer) {
+        this.careerIdCarrer = careerIdCarrer;
+    }
+
+    public Person getPersonIdPerson() {
+        return personIdPerson;
+    }
+
+    public void setPersonIdPerson(Person personIdPerson) {
+        this.personIdPerson = personIdPerson;
+    }
+
+    public List<Postulation> getPostulationList() {
+        return postulationList;
+    }
+
+    public void setPostulationList(List<Postulation> postulationList) {
+        this.postulationList = postulationList;
+    }
+
+    public List<NotificationStudent> getNotificationStudentList() {
+        return notificationStudentList;
+    }
+
+    public void setNotificationStudentList(List<NotificationStudent> notificationStudentList) {
+        this.notificationStudentList = notificationStudentList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idStudent != null ? idStudent.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Student)) {
+            return false;
+        }
+        Student other = (Student) object;
+        if ((this.idStudent == null && other.idStudent != null) || (this.idStudent != null && !this.idStudent.equals(other.idStudent))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId=" + studentId +
-                ", document=" + document +
-                ", career=" + career +
-                ", graduate=" + graduate +
-                ", yearOfIncome='" + yearOfIncome + '\'' +
-                ", status=" + status +
-                ", version=" + version +
-                ", audDate=" + audDate +
-                ", audHost='" + audHost + '\'' +
-                ", audUser='" + audUser + '\'' +
-                ", person=" + person +
-                '}';
+        return "bo.edu.ucb.est.entity.Student[ idStudent=" + idStudent + " ]";
     }
+    
 }

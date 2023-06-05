@@ -1,33 +1,26 @@
 package edu.bo.ucb.sis213.internship.api;
 
 
-import edu.bo.ucb.sis213.internship.bl.AuthBl;
+
 import edu.bo.ucb.sis213.internship.dto.StudentDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import edu.bo.ucb.sis213.internship.bl.StudentBl;
+import edu.bo.ucb.sis213.internship.bl.StudentRegistrationBl;
 import edu.bo.ucb.sis213.internship.dto.ResponseDto;
 
 
 @RestController
 @CrossOrigin(origins = "*")
 public class StudentApi {
-    @Autowired
-    private StudentBl studentBl;
-    /*
-    * Api para dar de alta un estudiante
-    * */
+    private final StudentRegistrationBl studentBl;
+    public StudentApi(StudentRegistrationBl studentBl){
+        this.studentBl = studentBl;
+    }
     @PostMapping("/api/v1/student")
-    public ResponseDto saveStudent(@RequestBody StudentDto studentDto, @RequestHeader("Authorization") String token){
-        ResponseDto responseDto = new ResponseDto();
-        AuthBl authBl = new AuthBl();
-        if(!authBl.validateToken(token)){
-            responseDto.setCode("401");
-            responseDto.setErrorMessage("No autorizado");
-            responseDto.setResponse(null);
-            return responseDto;
-        }
-        StudentDto studentResponse = studentBl.saveStudent(studentDto,token);
+    public ResponseDto<StudentDto> saveStudent(@RequestBody StudentDto studentDto){
+        //Desencriptar la contraseña
+
+        ResponseDto<StudentDto> responseDto = new ResponseDto<>();
+        StudentDto studentResponse = studentBl.saveStudent(studentDto);
         if(studentResponse==null){
             responseDto.setCode("400");
             responseDto.setErrorMessage("No se pudo guardar el estudiante");
@@ -36,7 +29,7 @@ public class StudentApi {
         }
         responseDto.setCode("200");
         responseDto.setErrorMessage("");
-        responseDto.setResponse("Estudiante guardado correctamente");
+        responseDto.setResponse(studentResponse);
         return responseDto;
     }
 }

@@ -2,64 +2,48 @@ package edu.bo.ucb.sis213.internship.dto;
 
 import edu.bo.ucb.sis213.internship.entity.Campus;
 
-import java.util.List;
-
 public class CampusDto {
-    private int id_campus;
-    private String campusName;
-    private List<FacultyDto> faculties;
-    //Constructor
+    private int idUniversity;
+    private String nameUniversity;
+
     public CampusDto() {
     }
-    //Constructor
-    public CampusDto(int id_campus, String campusName, List<FacultyDto> faculties) {
-        this.id_campus = id_campus;
-        this.campusName = campusName;
-        this.faculties = faculties;
-    }
-    public CampusDto(Campus campus){
-        this.id_campus = campus.getCampusId();
-        this.campusName = campus.getCampusName();
-        this.faculties = null;
-    }
-    //Getters and Setters
-    public int getId_campus() {
-        return id_campus;
+
+    public CampusDto(int idUniversity, String nameUniversity) {
+        this.idUniversity = idUniversity;
+        this.nameUniversity = nameUniversity;
     }
 
-    public void setId_campus(int id_campus) {
-        this.id_campus = id_campus;
+    public int getIdUniversity() {
+        return idUniversity;
     }
 
-    public String getCampusName() {
-        return campusName;
+    public void setIdUniversity(int idUniversity) {
+        this.idUniversity = idUniversity;
     }
 
-    public void setCampusName(String campusName) {
-        this.campusName = campusName;
+    public String getNameUniversity() {
+        return nameUniversity;
     }
 
-    public List<FacultyDto> getFaculties() {
-        return faculties;
-    }
-
-    public void setFaculties(List<FacultyDto> faculties) {
-        this.faculties = faculties;
+    public void setNameUniversity(String nameUniversity) {
+        this.nameUniversity = nameUniversity;
     }
 
     @Override
     public String toString() {
-        return "CampusDto{" +
-                "id_campus=" + id_campus +
-                ", campusName='" + campusName + '\'' +
-                ", faculties=" + faculties +
+        return "UniversityDto{" +
+                "idUniversity=" + idUniversity +
+                ", nameUniversity='" + nameUniversity + '\'' +
                 '}';
     }
-    //Funcion para convertir de CampusDto a Campus
-    public Campus toCampus(){
-        Campus campus = new Campus();
-        campus.setCampusId(this.id_campus);
-        campus.setCampusName(this.campusName);
-        return campus;
+    //Funcion para convertir de dto a entity
+    public Campus toEntity(){
+        return new Campus(this.idUniversity,this.nameUniversity);
+    }
+    //Constructor para convertir de dto a entity
+    public CampusDto(Campus campus){
+        this.idUniversity = campus.getIdCampus();
+        this.nameUniversity = campus.getCampusName();
     }
 }

@@ -1,7 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:intership_frontend/bloc/states/student_state.dart';
+import 'package:intership_frontend/models/campus_model.dart';
+import 'package:intership_frontend/models/career_model.dart';
 
 import '../../services/student_services.dart';
+import '../../services/university_services.dart';
 
 class StudentCubit extends Cubit<StudentState> {
   StudentCubit() : super(StudentState());
@@ -73,6 +76,27 @@ class StudentCubit extends Cubit<StudentState> {
       return 'Ok';
     } else {
       return response;
+    }
+  }
+  // Obtener lista de carreras
+  Future<String> getListaCarreras(String university) async{
+    int id=2;
+    if(university=='Tarija'){
+      id=1;
+    }
+    else if(university=='Cochabamba'){
+      id=3;
+    }
+    else if(university=='Santa Cruz'){
+      id=4;
+    }
+    List<CareerModel> response = await UniversityServices.getCareers(id);
+    if (response.isNotEmpty) {
+      List<String> listaCarreras = List<String>.from(response.map((e) => e.nameCareer));
+      updateListaCarreras(listaCarreras);
+      return 'Ok';
+    } else {
+      return 'Error 404';
     }
   }
 

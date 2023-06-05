@@ -5,11 +5,11 @@ import 'package:intership_frontend/bloc/states/student_state.dart';
 import 'package:intership_frontend/services/globals.dart';
 
 class FormRegister extends StatelessWidget {
+
   final int startYear;
   final int endYear;
   const FormRegister({Key? key, required this.startYear, required this.endYear})
       : super(key: key);
-  static List<String> carreras = [];
   @override
   Widget build(BuildContext context) {
     List<String> years = [];
@@ -36,7 +36,7 @@ class FormRegister extends StatelessWidget {
                       ),
                       onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateNombres(value),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
@@ -50,7 +50,7 @@ class FormRegister extends StatelessWidget {
                       ),
                       onChanged: (value) => BlocProvider.of<StudentCubit>(context).updatePrimerApellido(value),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
@@ -80,7 +80,9 @@ class FormRegister extends StatelessWidget {
                       }).toList(),
                       hint: const Text("Tipo de documento", style: TextStyle(color: Colors.grey)),
                       icon: const Icon(Icons.arrow_drop_down),
-                      onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateTipoDocumento(value??''),
+                      onChanged: (value) {
+                        BlocProvider.of<StudentCubit>(context).updateTipoDocumento(value??'');
+                      },
                     ),
                     const SizedBox(
                       height: 10,
@@ -178,23 +180,12 @@ class FormRegister extends StatelessWidget {
                       hint: Text("Sede", style: TextStyle(color: Colors.grey)),
                       icon: Icon(Icons.arrow_drop_down),
                       onChanged: (String? value) {
-                        //TODO: cambiar la lista de carreras dependiendo de la sede
-                        carreras = [];
-                        ucbCareers.forEach((element) {
-                          //Dividir el string en dos partes, el nombre de la carrera y la sedes
-                          List<String> career = element.split(":");
-                          //Dividir las sedes en un arreglo
-                          List<String> campuses = career[1].split(",");
-                          //Si la sede seleccionada esta en el arreglo de sedes de la carrera, agregarla a la lista de carreras
-                          if (campuses.contains(value)) {
-                            carreras.add(career[0]);
-                          }
-                        });
                         BlocProvider.of<StudentCubit>(context).updateSede(value??'');
-                        BlocProvider.of<StudentCubit>(context).updateListaCarreras(carreras);
+                        BlocProvider.of<StudentCubit>(context).getListaCarreras(value??'');
+                        print("Lista de carreras: "+state.listaCarreras.toString());
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     DropdownButton(
@@ -204,13 +195,13 @@ class FormRegister extends StatelessWidget {
                           child: Text(value),
                         );
                       }).toList(),
-                      hint: Text("Carrera", style: TextStyle(color: Colors.grey)),
-                      icon: Icon(Icons.arrow_drop_down),
+                      hint: const Text("Carrera", style: TextStyle(color: Colors.grey)),
+                      icon: const Icon(Icons.arrow_drop_down),
                       onChanged: (String? value) {
                         BlocProvider.of<StudentCubit>(context).updateCarrera(value??'');
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     DropdownButton(
@@ -223,7 +214,9 @@ class FormRegister extends StatelessWidget {
                       hint: Text("Año de Ingreso",
                           style: TextStyle(color: Colors.grey)),
                       icon: Icon(Icons.arrow_drop_down),
-                      onChanged: (String? value) {},
+                      onChanged: (String? value) {
+                        BlocProvider.of<StudentCubit>(context).updateAnioIngreso(value??'');
+                      },
                     ),
                     const SizedBox(
                       height: 10,
@@ -237,6 +230,7 @@ class FormRegister extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateCorreoElectronico(value),
                     ),
                     const SizedBox(
                       height: 10,
@@ -250,6 +244,7 @@ class FormRegister extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateContrasena(value),
                     ),
                     const SizedBox(
                       height: 10,
@@ -263,15 +258,22 @@ class FormRegister extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateConfirmarContrasena(value),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        //Obtener los datos del formulario
-                        print(state.toString());
-                        //TODO: Validar los datos ingresados
+                        //TODO: Validar que los campos no esten vacios
+                        if(state.areAllFieldsFilled(state)){
+                          BlocProvider.of<StudentCubit>(context).addStudent(state);
+                          print(state.toString());
+                        }
+                        else{
+                          print("No todos los campos estan llenos");
+                          print(state.toString());
+                        }
                       },
                       child: const Text("Registrate"),
                       style: ElevatedButton.styleFrom(

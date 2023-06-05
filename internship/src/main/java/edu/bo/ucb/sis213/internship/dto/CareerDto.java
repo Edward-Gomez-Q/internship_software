@@ -2,54 +2,47 @@ package edu.bo.ucb.sis213.internship.dto;
 
 import edu.bo.ucb.sis213.internship.entity.Career;
 
-import java.util.List;
-
 public class CareerDto {
-    private int id_career;
-    private String career_name;
-
-
+    private int idCareer;
+    private String nameCareer;
 
     public CareerDto() {
     }
-    //Constructor
-    public CareerDto(int id_career, String name) {
-        this.id_career = id_career;
-        this.career_name = name;
+
+    public CareerDto(int idCareer, String nameCareer, String descriptionCareer) {
+        this.idCareer = idCareer;
+        this.nameCareer = nameCareer;
+
     }
-    //Constructor
-    public CareerDto(Career career){
-        this.id_career = career.getCareerId();
-        this.career_name = career.getCareerName();
+
+    public int getIdCareer() {
+        return idCareer;
     }
-    //Funcion para convertir de CareerDto a Career
-    public Career toCareer(){
-        Career career = new Career();
-        career.setCareerId(this.id_career);
-        career.setCareerName(this.career_name);
-        return career;
+
+    public void setIdCareer(int idCareer) {
+        this.idCareer = idCareer;
     }
+
+    public String getNameCareer() {
+        return nameCareer;
+    }
+
+    public void setNameCareer(String nameCareer) {
+        this.nameCareer = nameCareer;
+    }
+
     @Override
     public String toString() {
         return "CareerDto{" +
-                "id_career=" + id_career +
-                ", career_name='" + career_name + '\'' +
+                "idCareer=" + idCareer +
+                ", nameCareer='" + nameCareer + '\'' +
                 '}';
     }
-
-    public int getId_career() {
-        return id_career;
+    public CareerDto(Career career){
+        this.idCareer = career.getIdCarrer();
+        this.nameCareer = career.getCareerName();
     }
-
-    public void setId_career(int id_career) {
-        this.id_career = id_career;
-    }
-
-    public String getCareer_name() {
-        return career_name;
-    }
-
-    public void setCareer_name(String career_name) {
-        this.career_name = career_name;
+    public Career toEntity(){
+        return new Career(this.idCareer,this.nameCareer);
     }
 }

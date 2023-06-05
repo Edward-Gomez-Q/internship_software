@@ -1,4 +1,4 @@
-const String baseUrl = 'http://localhost:8080/api/v1';
+const String baseUrl = 'http://192.168.0.4:8080/api/v1';
 //Lista de departamentos
 const List<String> departments = [
   'La Paz',

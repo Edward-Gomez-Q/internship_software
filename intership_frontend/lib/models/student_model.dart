@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class StudentState extends Equatable {
+class StudentModel {
   final String nombres;
   final String primerApellido;
   final String segundoApellido;
@@ -14,9 +12,8 @@ class StudentState extends Equatable {
   final String correoElectronico;
   final String contrasena;
   final String confirmarContrasena;
-  final List<String> listaCarreras;
 
-  StudentState({
+  StudentModel({
     this.nombres = '',
     this.primerApellido = '',
     this.segundoApellido = '',
@@ -30,9 +27,8 @@ class StudentState extends Equatable {
     this.correoElectronico = '',
     this.contrasena = '',
     this.confirmarContrasena = '',
-    this.listaCarreras = const [],
   });
-  StudentState copyWith({
+  StudentModel copyWith({
     String? nombres,
     String? primerApellido,
     String? segundoApellido,
@@ -46,9 +42,8 @@ class StudentState extends Equatable {
     String? correoElectronico,
     String? contrasena,
     String? confirmarContrasena,
-    List<String>? listaCarreras,
   }) {
-    return StudentState(
+    return StudentModel(
       nombres: nombres ?? this.nombres,
       primerApellido: primerApellido ?? this.primerApellido,
       segundoApellido: segundoApellido ?? this.segundoApellido,
@@ -62,41 +57,23 @@ class StudentState extends Equatable {
       correoElectronico: correoElectronico ?? this.correoElectronico,
       contrasena: contrasena ?? this.contrasena,
       confirmarContrasena: confirmarContrasena ?? this.confirmarContrasena,
-      listaCarreras: listaCarreras ?? this.listaCarreras,
     );
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
-        nombres,
-        primerApellido,
-        segundoApellido,
-        tipoDocumento,
-        numeroDocumento,
-        departamento,
-        validacionUCB,
-        sede,
-        carrera,
-        anioIngreso,
-        correoElectronico,
-        contrasena,
-        confirmarContrasena,
-        listaCarreras,
-      ];
-  bool areAllFieldsFilled(StudentState student) {
-    return student.nombres.isNotEmpty &&
-        student.primerApellido.isNotEmpty &&
-        student.segundoApellido.isNotEmpty &&
-        student.tipoDocumento.isNotEmpty &&
-        student.numeroDocumento.isNotEmpty &&
-        student.departamento.isNotEmpty &&
-        student.validacionUCB != 0 &&
-        student.sede.isNotEmpty &&
-        student.carrera.isNotEmpty &&
-        student.anioIngreso.isNotEmpty &&
-        student.correoElectronico.isNotEmpty &&
-        student.contrasena.isNotEmpty &&
-        student.confirmarContrasena.isNotEmpty;
-  }
+    nombres,
+    primerApellido,
+    segundoApellido,
+    tipoDocumento,
+    numeroDocumento,
+    departamento,
+    validacionUCB,
+    sede,
+    carrera,
+    anioIngreso,
+    correoElectronico,
+    contrasena,
+    confirmarContrasena,
+  ];
 }

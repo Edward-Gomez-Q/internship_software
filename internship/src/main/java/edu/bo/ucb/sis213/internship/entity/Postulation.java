@@ -1,62 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.bo.ucb.sis213.internship.entity;
-
-
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+/**
+ *
+ * @author HP
+ */
 @Entity
 @Table(name = "postulation")
-public class Postulation {
+@NamedQueries({
+    @NamedQuery(name = "Postulation.findAll", query = "SELECT p FROM Postulation p"),
+    @NamedQuery(name = "Postulation.findByIdPostulation", query = "SELECT p FROM Postulation p WHERE p.idPostulation = :idPostulation"),
+    @NamedQuery(name = "Postulation.findByPresentationDate", query = "SELECT p FROM Postulation p WHERE p.presentationDate = :presentationDate"),
+    @NamedQuery(name = "Postulation.findByUrlCv", query = "SELECT p FROM Postulation p WHERE p.urlCv = :urlCv"),
+    @NamedQuery(name = "Postulation.findByStatePostulation", query = "SELECT p FROM Postulation p WHERE p.statePostulation = :statePostulation"),
+    @NamedQuery(name = "Postulation.findByNote", query = "SELECT p FROM Postulation p WHERE p.note = :note")})
+public class Postulation implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id_postulation")
     private Integer idPostulation;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "internship_id_internship", referencedColumnName = "id_internship")
-    private Internship internship;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id_student", referencedColumnName = "id_student")
-    private Student student;
-
-    @Column(name = "presentation_date", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "presentation_date")
+    @Temporal(TemporalType.DATE)
     private Date presentationDate;
-
-    @Column(name = "url_CV", nullable = false)
-    private String urlCV;
-
-    @Column(name = "state_postulation", nullable = false)
-    private Integer statePostulation;
-
-    @Column(name = "note", nullable = false)
+    @Basic(optional = false)
+    @Column(name = "url_cv")
+    private String urlCv;
+    @Basic(optional = false)
+    @Column(name = "state_postulation")
+    private int statePostulation;
+    @Basic(optional = false)
+    @Column(name = "note")
     private String note;
+    @JoinColumn(name = "internship_id_internship", referencedColumnName = "id_internship")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Internship internshipIdInternship;
+    @JoinColumn(name = "student_id_student", referencedColumnName = "id_student")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Student studentIdStudent;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postulationIdPostulation", fetch = FetchType.LAZY)
+    private List<Interview> interviewList;
 
     public Postulation() {
     }
 
-    public Postulation(Integer idPostulation, Internship internship, Student student, Date presentationDate, String urlCV, Integer statePostulation, String note) {
+    public Postulation(Integer idPostulation) {
         this.idPostulation = idPostulation;
-        this.internship = internship;
-        this.student = student;
-        this.presentationDate = presentationDate;
-        this.urlCV = urlCV;
-        this.statePostulation = statePostulation;
-        this.note = note;
     }
 
-    @Override
-    public String toString() {
-        return "Postulation{" +
-                "idPostulation=" + idPostulation +
-                ", internship=" + internship +
-                ", student=" + student +
-                ", presentationDate=" + presentationDate +
-                ", urlCV='" + urlCV + '\'' +
-                ", statePostulation=" + statePostulation +
-                ", note='" + note + '\'' +
-                '}';
+    public Postulation(Integer idPostulation, Date presentationDate, String urlCv, int statePostulation, String note) {
+        this.idPostulation = idPostulation;
+        this.presentationDate = presentationDate;
+        this.urlCv = urlCv;
+        this.statePostulation = statePostulation;
+        this.note = note;
     }
 
     public Integer getIdPostulation() {
@@ -67,22 +76,6 @@ public class Postulation {
         this.idPostulation = idPostulation;
     }
 
-    public Internship getInternship() {
-        return internship;
-    }
-
-    public void setInternship(Internship internship) {
-        this.internship = internship;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
     public Date getPresentationDate() {
         return presentationDate;
     }
@@ -91,19 +84,19 @@ public class Postulation {
         this.presentationDate = presentationDate;
     }
 
-    public String getUrlCV() {
-        return urlCV;
+    public String getUrlCv() {
+        return urlCv;
     }
 
-    public void setUrlCV(String urlCV) {
-        this.urlCV = urlCV;
+    public void setUrlCv(String urlCv) {
+        this.urlCv = urlCv;
     }
 
-    public Integer getStatePostulation() {
+    public int getStatePostulation() {
         return statePostulation;
     }
 
-    public void setStatePostulation(Integer statePostulation) {
+    public void setStatePostulation(int statePostulation) {
         this.statePostulation = statePostulation;
     }
 
@@ -114,4 +107,54 @@ public class Postulation {
     public void setNote(String note) {
         this.note = note;
     }
+
+    public Internship getInternshipIdInternship() {
+        return internshipIdInternship;
+    }
+
+    public void setInternshipIdInternship(Internship internshipIdInternship) {
+        this.internshipIdInternship = internshipIdInternship;
+    }
+
+    public Student getStudentIdStudent() {
+        return studentIdStudent;
+    }
+
+    public void setStudentIdStudent(Student studentIdStudent) {
+        this.studentIdStudent = studentIdStudent;
+    }
+
+    public List<Interview> getInterviewList() {
+        return interviewList;
+    }
+
+    public void setInterviewList(List<Interview> interviewList) {
+        this.interviewList = interviewList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idPostulation != null ? idPostulation.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Postulation)) {
+            return false;
+        }
+        Postulation other = (Postulation) object;
+        if ((this.idPostulation == null && other.idPostulation != null) || (this.idPostulation != null && !this.idPostulation.equals(other.idPostulation))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "bo.edu.ucb.est.entity.Postulation[ idPostulation=" + idPostulation + " ]";
+    }
+    
 }

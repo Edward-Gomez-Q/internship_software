@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 public class AuthApi {
+    private final AuthBl authBl;
+    public AuthApi(AuthBl authBl){
+        this.authBl = authBl;
+    }
+
     @PostMapping("/api/v1/auth/login")
     public ResponseDto<TokenDto> login (@RequestBody LoginDto login)
     {
         ResponseDto<TokenDto> responseDto = new ResponseDto<>();
-        AuthBl authBl = new AuthBl();
         TokenDto tokenDto = authBl.login(login);
         if(tokenDto==null)
         {
