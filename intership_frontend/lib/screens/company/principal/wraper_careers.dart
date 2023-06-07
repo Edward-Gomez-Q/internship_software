@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intership_frontend/services/globals.dart';
 
 class WraperCareers extends StatelessWidget {
-  String? selectCarrera;
-  String? selectFacu;
+  List<String> carreras = [];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -19,7 +20,8 @@ class WraperCareers extends StatelessWidget {
             hint: Text("Facultad", style: TextStyle(color: Colors.grey)),
             icon: Icon(Icons.arrow_drop_down),
             onChanged: (String? value) {
-              selectFacu = value;
+              BlocProvider.of<IntershipCubit>(context)
+                  .updateFacultad(value ?? '');
             },
           ),
           SizedBox(
@@ -35,14 +37,18 @@ class WraperCareers extends StatelessWidget {
             hint: Text("Carrera", style: TextStyle(color: Colors.grey)),
             icon: Icon(Icons.arrow_drop_down),
             onChanged: (String? value) {
-              selectCarrera = value;
+              carreras.add(value ?? '');
             },
           ),
           SizedBox(
             height: 20,
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                carreras.add(BlocProvider.of<IntershipCubit>(context)
+                    .state
+                    .listaCarreras[carreras.length]);
+              },
               child: Text("Agregar"),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue.shade900,
@@ -52,6 +58,25 @@ class WraperCareers extends StatelessWidget {
               )),
           SizedBox(
             height: 20,
+          ),
+          Container(
+            child: ListView.builder(
+              itemCount: carreras.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(carreras[index]),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        carreras.removeAt(index);
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/screens/company/company_register.dart';
 import 'package:intership_frontend/screens/company/message.dart';
+
+import '../../../bloc/cubit/company_cubit.dart';
 
 class WraperCompanyRegister2 extends StatelessWidget {
   const WraperCompanyRegister2({Key? key}) : super(key: key);
@@ -28,6 +31,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                  .updateNombresContacto(value),
             ),
             SizedBox(
               height: 20,
@@ -41,6 +46,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                  .updatePrimerApellidoContacto(value),
             ),
             SizedBox(
               height: 20,
@@ -54,6 +61,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                  .updateSegundoApellidoContacto(value),
             ),
             SizedBox(
               height: 20,
@@ -67,6 +76,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                  .updateCorreoElectronicoContacto(value),
             ),
             SizedBox(
               height: 20,
@@ -80,6 +91,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                  .updateTelefonoContacto(value),
             ),
             SizedBox(
               height: 20,

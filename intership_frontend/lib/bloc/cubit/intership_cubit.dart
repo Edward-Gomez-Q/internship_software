@@ -9,6 +9,10 @@ class IntershipCubit extends Cubit<IntershipState> {
     emit(state.copyWith(titulo: titulo));
   }
 
+  void updateFacultad(String facultad) {
+    emit(state.copyWith(facultad: facultad));
+  }
+
   void updateDepartamento(String departamento) {
     emit(state.copyWith(departamento: departamento));
   }
@@ -39,5 +43,9 @@ class IntershipCubit extends Cubit<IntershipState> {
 
   void updateRequisitos(String requisitos) {
     emit(state.copyWith(requisitos: requisitos));
+  }
+
+  void updateListaCarreras(List<String> listaCarreras) {
+    emit(state.copyWith(listaCarreras: listaCarreras));
   }
 }

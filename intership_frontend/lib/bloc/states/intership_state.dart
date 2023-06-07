@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class IntershipState extends Equatable {
   final String titulo;
-  final String carrera;
   final String departamento;
   final DateTime fechaLimite;
   final TimeOfDay horaInicio;
@@ -13,10 +12,10 @@ class IntershipState extends Equatable {
   final String urlSilabo;
   final String requisitos;
   final String facultad;
+  final List<String> listaCarreras;
 
   IntershipState({
     this.titulo = '',
-    this.carrera = '',
     this.departamento = '',
     DateTime? fechaLimite,
     TimeOfDay? horaInicio,
@@ -26,6 +25,7 @@ class IntershipState extends Equatable {
     this.urlSilabo = '',
     this.requisitos = '',
     this.facultad = '',
+    this.listaCarreras = const [],
   })  : fechaLimite = fechaLimite ?? DateTime.now(),
         horaInicio = horaInicio ?? TimeOfDay.now(),
         horaFin = horaFin ?? TimeOfDay.now();
@@ -42,10 +42,10 @@ class IntershipState extends Equatable {
     String? urlSilabo,
     String? requisitos,
     String? facultad,
+    List<String>? listaCarreras,
   }) {
     return IntershipState(
       titulo: titulo ?? this.titulo,
-      carrera: carrera ?? this.carrera,
       departamento: departamento ?? this.departamento,
       fechaLimite: fechaLimite ?? this.fechaLimite,
       horaInicio: horaInicio ?? this.horaInicio,
@@ -55,13 +55,13 @@ class IntershipState extends Equatable {
       urlSilabo: urlSilabo ?? this.urlSilabo,
       requisitos: requisitos ?? this.requisitos,
       facultad: facultad ?? this.facultad,
+      listaCarreras: listaCarreras ?? this.listaCarreras,
     );
   }
 
   @override
   List<Object?> get props => [
         titulo,
-        carrera,
         departamento,
         fechaLimite,
         horaInicio,
@@ -71,5 +71,16 @@ class IntershipState extends Equatable {
         urlSilabo,
         requisitos,
         facultad,
+        listaCarreras,
       ];
+  bool areAllFieldsFilled(IntershipState state) {
+    return state.titulo.isNotEmpty &&
+        state.departamento.isNotEmpty &&
+        state.descripcion.isNotEmpty &&
+        state.urlDescripcion.isNotEmpty &&
+        state.urlSilabo.isNotEmpty &&
+        state.requisitos.isNotEmpty &&
+        state.facultad.isNotEmpty &&
+        state.listaCarreras.isNotEmpty;
+  }
 }

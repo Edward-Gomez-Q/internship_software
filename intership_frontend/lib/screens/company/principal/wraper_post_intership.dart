@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/components/calendar_button.dart';
-import 'package:intership_frontend/components/dropdown_buttom.dart';
 import 'package:intership_frontend/components/list_week.dart';
 import 'package:intership_frontend/screens/company/post_intership.dart';
 import 'package:intership_frontend/services/globals.dart';
