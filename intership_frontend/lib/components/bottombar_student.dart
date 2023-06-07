@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/screens/company/intership_company.dart';
 import 'package:intership_frontend/screens/company/post_intership.dart';
+import 'package:intership_frontend/screens/student/aplications_student.dart';
+import 'package:intership_frontend/screens/student/student_intership.dart';
 
-class BottomBarCompany extends StatelessWidget {
+class BottomBarStudent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -15,7 +17,7 @@ class BottomBarCompany extends StatelessWidget {
             IconButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeCompany()));
+                    MaterialPageRoute(builder: (context) => HomeStudent()));
               },
               icon: Icon(
                 Icons.home,
@@ -25,14 +27,16 @@ class BottomBarCompany extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PostIntership()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AplicationsStudent()));
               },
               icon: Icon(
                 Icons.post_add,
                 color: Colors.white,
               ),
-              tooltip: 'Postularse',
+              tooltip: 'Postulaciones',
             ),
           ],
         ),

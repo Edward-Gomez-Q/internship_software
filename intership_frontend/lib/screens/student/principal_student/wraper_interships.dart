@@ -9,6 +9,59 @@ class WrapperViewIntershipStudent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return ListView.builder(
+        itemCount: interships.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+                title: Text(interships[index].titulo,
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue.shade900)),
+                subtitle: Column(
+                  children: [
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      interships[index].listaCarreras.toString(),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                    Text(
+                      interships[index].descripcion,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                    Text(
+                      interships[index].fechaLimite.toString(),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                  ],
+                ),
+                trailing: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.add),
+                  label: Text('información'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue.shade900,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                )),
+          );
+        });
   }
 }

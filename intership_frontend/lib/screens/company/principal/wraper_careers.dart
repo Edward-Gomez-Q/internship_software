@@ -36,19 +36,13 @@ class WraperCareers extends StatelessWidget {
             }).toList(),
             hint: Text("Carrera", style: TextStyle(color: Colors.grey)),
             icon: Icon(Icons.arrow_drop_down),
-            onChanged: (String? value) {
-              carreras.add(value ?? '');
-            },
+            onChanged: (String? value) {},
           ),
           SizedBox(
             height: 20,
           ),
           ElevatedButton(
-              onPressed: () {
-                carreras.add(BlocProvider.of<IntershipCubit>(context)
-                    .state
-                    .listaCarreras[carreras.length]);
-              },
+              onPressed: () {},
               child: Text("Agregar"),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue.shade900,
