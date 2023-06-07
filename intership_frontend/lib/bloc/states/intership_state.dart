@@ -12,6 +12,7 @@ class IntershipState extends Equatable {
   final String urlDescripcion;
   final String urlSilabo;
   final String requisitos;
+  final String facultad;
 
   IntershipState({
     this.titulo = '',
@@ -24,6 +25,7 @@ class IntershipState extends Equatable {
     this.urlDescripcion = '',
     this.urlSilabo = '',
     this.requisitos = '',
+    this.facultad = '',
   })  : fechaLimite = fechaLimite ?? DateTime.now(),
         horaInicio = horaInicio ?? TimeOfDay.now(),
         horaFin = horaFin ?? TimeOfDay.now();
@@ -39,6 +41,7 @@ class IntershipState extends Equatable {
     String? urlDescripcion,
     String? urlSilabo,
     String? requisitos,
+    String? facultad,
   }) {
     return IntershipState(
       titulo: titulo ?? this.titulo,
@@ -51,6 +54,7 @@ class IntershipState extends Equatable {
       urlDescripcion: urlDescripcion ?? this.urlDescripcion,
       urlSilabo: urlSilabo ?? this.urlSilabo,
       requisitos: requisitos ?? this.requisitos,
+      facultad: facultad ?? this.facultad,
     );
   }
 
@@ -66,5 +70,6 @@ class IntershipState extends Equatable {
         urlDescripcion,
         urlSilabo,
         requisitos,
+        facultad,
       ];
 }

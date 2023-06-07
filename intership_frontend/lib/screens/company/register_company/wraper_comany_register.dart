@@ -1,7 +1,10 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_frontend/bloc/cubit/company_cubit.dart';
 import 'package:intership_frontend/screens/company/company_register2.dart';
 import 'package:intership_frontend/screens/company/register_company/wraper_company_register.dart';
+import 'package:intership_frontend/screens/registration/registration_principal.dart';
 import 'package:intership_frontend/screens/student/register_student/register_form.dart';
 import 'package:intership_frontend/screens/student/register_student_final.dart';
 
@@ -22,6 +25,8 @@ class WrapperRegisterCompany extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
+            onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                .updateNombreEmpresa(value),
           ),
           SizedBox(
             height: 20,
@@ -74,6 +79,8 @@ class WrapperRegisterCompany extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
+              onChanged: (value) =>
+                  BlocProvider.of<CompanyCubit>(context).updateResena(value),
             ),
           ),
           SizedBox(
@@ -81,7 +88,7 @@ class WrapperRegisterCompany extends StatelessWidget {
           ),
           Row(children: <Widget>[
             Text("Logo de la empresa",
-                style: TextStyle(fontSize: 20, color: Colors.grey)),
+                style: TextStyle(fontSize: 15, color: Colors.grey)),
             SizedBox(
               height: 20,
             ),
@@ -108,7 +115,7 @@ class WrapperRegisterCompany extends StatelessWidget {
               },
               child: Text("Cargar imagen"),
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue.shade900,
+                primary: Color.fromARGB(255, 9, 123, 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -126,6 +133,8 @@ class WrapperRegisterCompany extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
+            onChanged: (value) =>
+                BlocProvider.of<CompanyCubit>(context).updateSitioWeb(value),
           ),
           SizedBox(
             height: 20,
@@ -138,6 +147,8 @@ class WrapperRegisterCompany extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
+            onChanged: (value) =>
+                BlocProvider.of<CompanyCubit>(context).updateNit(value),
           ),
           SizedBox(
             height: 20,
@@ -146,7 +157,12 @@ class WrapperRegisterCompany extends StatelessWidget {
             children: [
               ElevatedButton(
                 child: Text("Atras"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Registration()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red.shade900,
                   shape: RoundedRectangleBorder(

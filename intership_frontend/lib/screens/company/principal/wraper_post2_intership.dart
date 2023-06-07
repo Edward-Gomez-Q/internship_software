@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:intership_frontend/screens/company/principal/wraper_careers.dart';
+import 'package:intership_frontend/screens/company/select_career.dart';
 
 class WraperPostIntership2 extends StatelessWidget {
   @override
@@ -104,7 +106,12 @@ class WraperPostIntership2 extends StatelessWidget {
                   width: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SelectCareer()));
+                  },
                   child: Text("Seleccionar"),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue.shade900,

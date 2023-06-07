@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/components/calendar_button.dart';
+import 'package:intership_frontend/components/dropdown_buttom.dart';
 import 'package:intership_frontend/components/list_week.dart';
 import 'package:intership_frontend/screens/company/post_intership.dart';
 import 'package:intership_frontend/services/globals.dart';
@@ -7,6 +8,7 @@ import 'package:intership_frontend/services/globals.dart';
 import '../post2_intership_company.dart';
 
 class WraperPostIntership extends StatelessWidget {
+  String? selectDepa;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,7 +29,7 @@ class WraperPostIntership extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            DropdownButton(
+            DropdownButtonFormField(
               items: departments.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
@@ -36,7 +38,9 @@ class WraperPostIntership extends StatelessWidget {
               }).toList(),
               hint: Text("Departamento", style: TextStyle(color: Colors.grey)),
               icon: Icon(Icons.arrow_drop_down),
-              onChanged: (String? value) {},
+              onChanged: (String? value) {
+                selectDepa = value;
+              },
             ),
             SizedBox(
               height: 20,
