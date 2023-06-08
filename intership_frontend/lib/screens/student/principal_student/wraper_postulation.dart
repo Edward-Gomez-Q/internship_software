@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class WraperEditIntership extends StatelessWidget {
+class WraperPostulation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView();

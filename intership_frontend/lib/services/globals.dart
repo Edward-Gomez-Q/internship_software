@@ -20,18 +20,27 @@ const List<String> ucbCampuses = [
 ];
 //Lista de carreras de la UCB (Falta completar)
 const List<String> ucbCareers = [
-  'Ingeniería de Software:Santa Cruz',
-  'Ingeniería Bioquimica y de Procesos:La Paz',
-  'Ingeniería de Energía:Tarija',
-  'Ingeniería en Internet de las Cosas:Cochabamba',
-  'Ingeniería de Agronegocios:Santa Cruz',
-  'Ingeniería Quimica:La Paz,Cochabamba',
-  'Ingeniería Civil:La Paz,Cochabamba,Santa Cruz,Tarija',
-  'Ingeniería de Sistemas:La Paz,Cochabamba,Santa Cruz,Tarija',
-  'Derecho: La Paz, Cochabamba,Santa Cruz,Tarija',
-  'Ciencias Políticas:La Paz,Cochabamba,Santa Cruz,Tarija',
-  'Administración de Empresas:La Paz,Cochabamba,Santa Cruz,Tarija',
-  'Contaduría Pública:La Paz,Cochabamba,Santa Cruz,Tarija',
-  'Economía:La Paz,Cochabamba,Santa Cruz,Tarija',
-  'Finanzas:La Paz,Cochabamba,Santa Cruz,Tarija',
-  ];
+  'Ingeniería de Software',
+  'Ingeniería Bioquimica y de Procesos',
+  'Ingeniería de Energía',
+  'Ingeniería en Internet de las Cosas',
+  'Ingeniería de Agronegocios',
+  'Ingeniería Quimica',
+  'Ingeniería Civil',
+  'Ingeniería de Sistemas',
+  'Derecho',
+  'Ciencias Políticas',
+  'Administración de Empresas',
+  'Contaduría Pública',
+  'Economía',
+  'Finanzas'
+];
+
+const List<String> facultad = [
+  'Facultad de Ingeniería',
+  'Facultad de Ciencias de salud',
+  'Facultad de Ciencias humanas y sociales',
+  'Facultad de Arquitectura y diseño',
+  'Facultad de Derecho y ciencias politicas',
+  'Facultad de Ciencias financieras'
+];

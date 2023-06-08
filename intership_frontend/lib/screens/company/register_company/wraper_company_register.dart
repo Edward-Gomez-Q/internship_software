@@ -5,6 +5,8 @@ import 'package:intership_frontend/bloc/states/company_state.dart';
 import 'package:intership_frontend/screens/company/company_register.dart';
 import 'package:intership_frontend/screens/company/message.dart';
 
+import '../../../bloc/cubit/company_cubit.dart';
+
 class WraperCompanyRegister2 extends StatelessWidget {
   const WraperCompanyRegister2({Key? key}) : super(key: key);
   @override
@@ -16,27 +18,14 @@ class WraperCompanyRegister2 extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Text("Registro de constacto de la empresa",
-                    style: TextStyle(
-                        color: Colors.black.withOpacity(0.4),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold)),
-                SizedBox(
-                  height: 20,
-                ),
+                Text("Registro de constacto de la empresa",style: TextStyle(color: Colors.black.withOpacity(0.4),fontSize: 20,fontWeight: FontWeight.bold)),
+                SizedBox(height: 20,),
                 TextField(
-                  decoration: InputDecoration(
-                    hintText: "Nombre de la persona de contacto",
-                    hintStyle: const TextStyle(color: Colors.grey,
-                    ),
+                  decoration: InputDecoration(hintText: "Nombre de la persona de contacto",hintStyle: const TextStyle(color: Colors.grey,),
                     icon: Icon(Icons.person),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    BlocProvider.of<CompanyCubit>(context).updateNombresContacto(value);
-                  },
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),),
+                    onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                        .updateNombresContacto(value),
                 ),
                 SizedBox(
                   height: 20,
@@ -50,9 +39,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onChanged: (value) {
-                    BlocProvider.of<CompanyCubit>(context).updatePrimerApellidoContacto(value);
-                  },
+                  onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                      .updatePrimerApellidoContacto(value),
                 ),
                 SizedBox(
                   height: 20,
@@ -66,9 +54,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onChanged: (value) {
-                    BlocProvider.of<CompanyCubit>(context).updateSegundoApellidoContacto(value);
-                  },
+                  onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                      .updateSegundoApellidoContacto(value),
                 ),
                 SizedBox(
                   height: 20,
@@ -82,9 +69,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onChanged: (value) {
-                    BlocProvider.of<CompanyCubit>(context).updateCorreoElectronicoContacto(value);
-                  },
+                  onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                      .updateCorreoElectronicoContacto(value),
                 ),
                 SizedBox(
                   height: 20,
@@ -98,9 +84,8 @@ class WraperCompanyRegister2 extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onChanged: (value) {
-                    BlocProvider.of<CompanyCubit>(context).updateTelefonoContacto(value);
-                  },
+                  onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
+                      .updateTelefonoContacto(value),
                 ),
                 SizedBox(
                   height: 20,
@@ -172,9 +157,9 @@ class WraperCompanyRegister2 extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
-              ],
-            ),
+                ),
+            ],
+          ),
           ),
         );
       },

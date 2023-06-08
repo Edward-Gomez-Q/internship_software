@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/components/bottombar_company.dart';
+import 'package:intership_frontend/components/bottombar_student.dart';
 import 'package:intership_frontend/components/search.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_view_intership.dart';
+import 'package:intership_frontend/screens/student/principal_student/wraper_interships.dart';
 
 import '../../bloc/states/intership_state.dart';
 
-class HomeCompany extends StatelessWidget {
+class HomeStudent extends StatelessWidget {
   void handleSearch(String value) {
     print(value);
   }
@@ -34,8 +36,8 @@ class HomeCompany extends StatelessWidget {
             height: 20,
           ),
           Expanded(
-            child: WraperViewIntership(
-              intershipState: [
+            child: WrapperViewIntershipStudent(
+              interships: [
                 IntershipState(
                     titulo: "Pasantía en desarrollo de software",
                     listaCarreras: [
@@ -59,7 +61,7 @@ class HomeCompany extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBarCompany(),
+      bottomNavigationBar: BottomBarStudent(),
     );
   }
 }
