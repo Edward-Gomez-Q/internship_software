@@ -275,7 +275,7 @@ class FormRegister extends StatelessWidget {
                           print(state.toString());
                         }
                       },
-                      child: const Text("Registrate"),
+                      child: Text("Registrate"),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.blue.shade900,
                         shape: RoundedRectangleBorder(

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class StudentRegistrationBl {
+public class StudentBl {
     public static final String KEY = "BarcaChampionAndMessiMasGrandeQueCR7";
     private final StudentRepository studentRepository;
     private final PersonRepository personRepository;
@@ -18,7 +18,7 @@ public class StudentRegistrationBl {
     private final GroupRepository groupRepository;
 
     //Constructor de la clase
-    public StudentRegistrationBl(StudentRepository studentRepository, PersonRepository personRepository, UserRepository userRepository, CareerRepository careerRepository, GroupUserRepository groupUserRepository, GroupRepository groupRepository) {
+    public StudentBl(StudentRepository studentRepository, PersonRepository personRepository, UserRepository userRepository, CareerRepository careerRepository, GroupUserRepository groupUserRepository, GroupRepository groupRepository) {
         this.studentRepository = studentRepository;
         this.personRepository = personRepository;
         this.userRepository = userRepository;
@@ -74,4 +74,26 @@ public class StudentRegistrationBl {
             return null;
         }
     }
+    //Buscar un estudiante por su correo
+    public StudentDto findStudentByEmail(String email){
+        try {
+            RoUser user = userRepository.findByMail(email);
+            Student student = studentRepository.findByPersonIdPerson(user.getPersonIdPerson());
+            return new StudentDto(student);
+        }catch (Exception e){
+            System.out.println("Error al buscar el estudiante: "+e.getMessage());
+            return null;
+        }
+    }
+    //Buscar un estudiante por su id
+    public StudentDto findStudentById(int id){
+        try {
+            Student student = studentRepository.findById(id);
+            return new StudentDto(student);
+        }catch (Exception e){
+            System.out.println("Error al buscar el estudiante: "+e.getMessage());
+            return null;
+        }
+    }
+
 }

@@ -2,18 +2,25 @@ package edu.bo.ucb.sis213.internship.api;
 
 
 
+import edu.bo.ucb.sis213.internship.bl.InternshipBl;
+import edu.bo.ucb.sis213.internship.dto.InternshipDto;
 import edu.bo.ucb.sis213.internship.dto.StudentDto;
 import org.springframework.web.bind.annotation.*;
-import edu.bo.ucb.sis213.internship.bl.StudentRegistrationBl;
+import edu.bo.ucb.sis213.internship.bl.StudentBl;
 import edu.bo.ucb.sis213.internship.dto.ResponseDto;
+
+import java.util.List;
 
 
 @RestController
 @CrossOrigin(origins = "*")
 public class StudentApi {
-    private final StudentRegistrationBl studentBl;
-    public StudentApi(StudentRegistrationBl studentBl){
+    private final StudentBl studentBl;
+    private final InternshipBl internshipBl;
+
+    public StudentApi(StudentBl studentBl, InternshipBl internshipBl){
         this.studentBl = studentBl;
+        this.internshipBl = internshipBl;
     }
     @PostMapping("/api/v1/student")
     public ResponseDto<StudentDto> saveStudent(@RequestBody StudentDto studentDto){
@@ -30,6 +37,53 @@ public class StudentApi {
         responseDto.setCode("200");
         responseDto.setErrorMessage("");
         responseDto.setResponse(studentResponse);
+        return responseDto;
+    }
+    @GetMapping("/api/v1/student/{id}")
+    public ResponseDto<StudentDto> getStudent(@PathVariable Integer id){
+        ResponseDto<StudentDto> responseDto = new ResponseDto<>();
+        StudentDto studentResponse = studentBl.findStudentById(id);
+        if(studentResponse==null){
+            responseDto.setCode("400");
+            responseDto.setErrorMessage("No se pudo obtener el estudiante");
+            responseDto.setResponse(null);
+            return responseDto;
+        }
+        responseDto.setCode("200");
+        responseDto.setErrorMessage("");
+        responseDto.setResponse(studentResponse);
+        return responseDto;
+    }
+    //Api para obtener todas las pasantias disponibles
+    @GetMapping("/api/v1/student/{id}/internship")
+    public ResponseDto<List<InternshipDto>> getInternships(@PathVariable Integer id){
+        ResponseDto<List<InternshipDto>> responseDto = new ResponseDto<>();
+        List<InternshipDto> internshipResponse = internshipBl.findAllInternships(true);
+        if(internshipResponse==null){
+            responseDto.setCode("400");
+            responseDto.setErrorMessage("No se pudo obtener las pasantias");
+            responseDto.setResponse(null);
+            return responseDto;
+        }
+        responseDto.setCode("200");
+        responseDto.setErrorMessage("");
+        responseDto.setResponse(internshipResponse);
+        return responseDto;
+    }
+    //Api para obtener una pasantia por su id
+    @GetMapping("/api/v1/student/{id}/internship/{idInternship}")
+    public ResponseDto<InternshipDto> getInternship(@PathVariable Integer id, @PathVariable Integer idInternship){
+        ResponseDto<InternshipDto> responseDto = new ResponseDto<>();
+        InternshipDto internshipResponse = internshipBl.findInternshipById(idInternship);
+        if(internshipResponse==null){
+            responseDto.setCode("400");
+            responseDto.setErrorMessage("No se pudo obtener la pasantia");
+            responseDto.setResponse(null);
+            return responseDto;
+        }
+        responseDto.setCode("200");
+        responseDto.setErrorMessage("");
+        responseDto.setResponse(internshipResponse);
         return responseDto;
     }
 }

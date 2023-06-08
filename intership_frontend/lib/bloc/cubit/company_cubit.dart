@@ -21,9 +21,6 @@ class CompanyCubit extends Cubit<CompanyState> {
     emit(state.copyWith(segundoApellidoContacto: segundoApellidoContacto));
   }
 
-  void updateDepartamento(String departamento) {
-    emit(state.copyWith(departamento: departamento));
-  }
 
   void updateResena(String resena) {
     emit(state.copyWith(resena: resena));
@@ -64,4 +61,5 @@ class CompanyCubit extends Cubit<CompanyState> {
   void updateListaSectores(List<String> listaSectores) {
     emit(state.copyWith(listaSectores: listaSectores));
   }
+  //Agregar
 }
