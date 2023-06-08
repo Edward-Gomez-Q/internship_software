@@ -23,6 +23,7 @@ public class CompanyApi {
     //Api para guardar una empresa
     @PostMapping("/api/v1/company")
     public ResponseDto<CompanyDto> saveCompany(@RequestBody CompanyDto company){
+        System.out.println("Nombre del contacto: "+company.getNames());
         ResponseDto<CompanyDto> responseDto = new ResponseDto<>();
         CompanyDto companyResponse = companyBl.addCompany(company);
         if(companyResponse==null){

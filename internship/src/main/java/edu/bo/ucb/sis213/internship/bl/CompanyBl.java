@@ -15,18 +15,24 @@ public class CompanyBl {
     private final GroupRepository groupRepository;
     private final UserRepository userRepository;
     private final GroupUserRepository groupUserRepository;
+    private final ApproveCompanyRepository approveCompanyRepository;
+    private final UseiRepository useiRepository;
 
-    public CompanyBl(PersonRepository personRepository, ContactRepository contactRepository, CompanyRepository companyRepository, GroupRepository groupRepository, UserRepository userRepository, GroupUserRepository groupUserRepository){
+    public CompanyBl(UseiRepository useiRepository,ApproveCompanyRepository approveCompanyRepository,PersonRepository personRepository, ContactRepository contactRepository, CompanyRepository companyRepository, GroupRepository groupRepository, UserRepository userRepository, GroupUserRepository groupUserRepository){
         this.personRepository = personRepository;
         this.contactRepository = contactRepository;
         this.companyRepository = companyRepository;
         this.groupRepository = groupRepository;
         this.userRepository = userRepository;
         this.groupUserRepository = groupUserRepository;
+        this.approveCompanyRepository = approveCompanyRepository;
+        this.useiRepository = useiRepository;
     }
 
     //Agregar Información de compania
     public CompanyDto addCompany(CompanyDto companyDto){
+        System.out.println("Ingreso al metodo addCompany");
+        System.out.println("Datos de la compania: "+companyDto.toString());
         try {
             //Agregar datos de compania
             Company company = new Company();
@@ -35,7 +41,7 @@ public class CompanyBl {
             company.setReview(companyDto.getReview());
             company.setUrlIcon(companyDto.getUrlLogo());
             company.setWebsite(companyDto.getWebSide());
-            company.setStatus(false);
+            company.setStatus(true);
             company.setAudDate(new Date());
             company.setAudUser("SYSTEM");
             company.setAudHost("localhost");
@@ -45,15 +51,17 @@ public class CompanyBl {
             person.setNames(companyDto.getNames());
             person.setFirstLastName(companyDto.getFirstLastName());
             person.setSecondLastName(companyDto.getSecondLastName());
+            person.setDocumentPerson("");
+            person.setDocumentComplemet("");
+            System.out.println("Datos de persona: "+person.toString());
             personRepository.save(person);
-
             //Agregar Contacto
             Contact contact = new Contact();
             contact.setPersonIdPerson(person);
             contact.setCompanyIdCompany(company);
             contact.setMail(companyDto.getEmail());
             contact.setPhone(companyDto.getPhone());
-            contact.setStatus(false);
+            contact.setStatus(true);
             contact.setAudDate(new Date());
             contact.setAudUser("SYSTEM");
             contact.setAudHost("localhost");
@@ -70,6 +78,14 @@ public class CompanyBl {
             groupUser.setRoUserUserId(user);
             groupUser.setRoGroupIdGroup(group);
             groupUserRepository.save(groupUser);
+            //Marcar a la compania en el grupo de espera
+            Usei usei = useiRepository.findByIdUsei(1);
+            ApproveCompany approveCompany = new ApproveCompany();
+            approveCompany.setAprprove(false);
+            approveCompany.setCompanyIdCompany(company);
+            approveCompany.setApproveCompanyDate(new Date());
+            approveCompany.setUseiIdUsei(usei);
+            approveCompanyRepository.save(approveCompany);
             return new CompanyDto(company);
         }catch (Exception ex){
             System.out.println(ex.getMessage());

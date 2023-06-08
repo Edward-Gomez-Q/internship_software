@@ -38,7 +38,7 @@ class StudentServices{
     print('Response Agregar Estudiante: ${response.body}');
     if (response.statusCode == 200) {
       Map responseMap = json.decode(response.body);
-      if (responseMap["code"] == "0000") {
+      if (responseMap["code"] == "200") {
         return 'Task added';
       } else {
         return 'Error 404';

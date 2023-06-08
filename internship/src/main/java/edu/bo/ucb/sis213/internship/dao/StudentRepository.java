@@ -6,7 +6,7 @@ public interface StudentRepository extends JpaRepository<Student,Integer>{
     //Obtener un estudiante por su id
     Student findById(int id);
     //Obtener un estudiante por su correo
-    Student findByEmail(String email);
+
     //Obtener un estudiante por persona
     Student findByPersonIdPerson(Person person);
 

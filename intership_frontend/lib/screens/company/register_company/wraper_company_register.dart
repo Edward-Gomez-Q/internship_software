@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/company_cubit.dart';
 import 'package:intership_frontend/bloc/states/company_state.dart';
+import 'package:intership_frontend/models/company_model.dart';
 import 'package:intership_frontend/screens/company/company_register.dart';
 import 'package:intership_frontend/screens/company/message.dart';
 
@@ -145,6 +146,21 @@ class WraperCompanyRegister2 extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         print(state.toString());
+                        CompanyModel company = CompanyModel(
+                          nameCompany: state.nombreEmpresa,
+                          email: state.correoElectronicoContacto,
+                          firstLastName: state.primerApellidoContacto,
+                          secondLastName: state.segundoApellidoContacto,
+                          Names: state.nombresContacto,
+                          password: state.contrasena,
+                          phone: state.telefonoContacto,
+                          review: state.resena,
+                          sectors: state.listaSectores,
+                          urlLogo: "",
+                          webSide: state.sitioWeb,
+                          nit: state.nit,
+                        );
+                        BlocProvider.of<CompanyCubit>(context).registerCompany(company);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Message()));
                       },
@@ -164,6 +180,5 @@ class WraperCompanyRegister2 extends StatelessWidget {
         );
       },
     );
-
   }
 }

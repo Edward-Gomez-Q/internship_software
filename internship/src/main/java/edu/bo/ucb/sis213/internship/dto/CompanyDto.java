@@ -28,7 +28,7 @@ public class CompanyDto {
         this.urlLogo = urlLogo;
         this.webSide = webSide;
         this.nit = nit;
-        Names = names;
+        this.Names = names;
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
         this.email = email;
@@ -39,7 +39,7 @@ public class CompanyDto {
         this.nameCompany = company.getNameCompany();
         this.review = company.getReview();
         this.urlLogo = company.getUrlIcon();
-        this.webSide = company.getWebsite()
+        this.webSide = company.getWebsite();
         this.nit = company.getNit();
     }
 
@@ -92,11 +92,11 @@ public class CompanyDto {
     }
 
     public String getNames() {
-        return Names;
+        return this.Names;
     }
 
     public void setNames(String names) {
-        Names = names;
+        this.Names = names;
     }
 
     public String getFirstLastName() {

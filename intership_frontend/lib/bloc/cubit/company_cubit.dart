@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_frontend/models/company_model.dart';
+import 'package:intership_frontend/services/company_services.dart';
 import '../states/company_state.dart';
 
 class CompanyCubit extends Cubit<CompanyState> {
@@ -61,5 +63,13 @@ class CompanyCubit extends Cubit<CompanyState> {
   void updateListaSectores(List<String> listaSectores) {
     emit(state.copyWith(listaSectores: listaSectores));
   }
-  //Agregar
+  //registerCompany
+  Future<String> registerCompany(CompanyModel company) async {
+    String response = await CompanyServices.addCompany(company);
+    if (response == 'Company added') {
+      return 'Ok';
+    } else {
+      return response;
+    }
+  }
 }
