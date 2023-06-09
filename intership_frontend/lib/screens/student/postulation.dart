@@ -4,8 +4,11 @@ import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/components/bottombar_company.dart';
 import 'package:intership_frontend/components/bottombar_student.dart';
 import 'package:intership_frontend/components/calendar_button.dart';
+import 'package:intership_frontend/main.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_post_intership.dart';
 import 'package:intership_frontend/screens/student/principal_student/wraper_postulation.dart';
+
+import '../../components/appbar.dart';
 
 class Postulation extends StatelessWidget {
   final IntershipState intership;
@@ -13,6 +16,7 @@ class Postulation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(title: "Postulación"),
       body: Column(
         children: [
           Padding(
