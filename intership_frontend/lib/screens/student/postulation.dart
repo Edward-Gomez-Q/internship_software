@@ -1,4 +1,6 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/components/bottombar_company.dart';
 import 'package:intership_frontend/components/bottombar_student.dart';
 import 'package:intership_frontend/components/calendar_button.dart';
@@ -6,6 +8,8 @@ import 'package:intership_frontend/screens/company/principal/wraper_post_intersh
 import 'package:intership_frontend/screens/student/principal_student/wraper_postulation.dart';
 
 class Postulation extends StatelessWidget {
+  final IntershipState intership;
+  Postulation({Key? key, required this.intership}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,11 +29,179 @@ class Postulation extends StatelessWidget {
             height: 20,
           ),
           Expanded(
-            child: WraperPostulation(),
-          )
+              child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Postulación: ",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade600),
+                      ),
+                      Expanded(
+                        child: Text(
+                          intership.titulo,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade600),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Carrera: ",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade600),
+                      ),
+                      Expanded(
+                        child: Text(
+                          intership.listaCarreras.toString(),
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade600),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Descripción: ",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade600),
+                      ),
+                      Expanded(
+                        child: Text(
+                          intership.descripcion,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade600),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Fecha límite: ",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade600),
+                      ),
+                      Expanded(
+                        child: Text(
+                          intership.fechaLimite.toString(),
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade600),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(children: [
+                    Text(
+                      "Requsitos: ",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade600),
+                    ),
+                    Expanded(
+                        child: Text(
+                      intership.requisitos.toString(),
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade600),
+                    )),
+                  ]),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {},
+                          child: Text("Descargar CV"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue.shade900,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          )),
+                      SizedBox(width: 20),
+                      ElevatedButton(
+                          onPressed: () async {
+                            FilePickerResult? result =
+                                await FilePicker.platform.pickFiles();
+                            if (result != null) {
+                              PlatformFile file = result.files.first;
+                            } else {
+                              AlertDialog(
+                                title: Text("Error"),
+                                content: Text("No se pudo cargar el archivo"),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Aceptar")),
+                                ],
+                              );
+                            }
+                          },
+                          child: Text("Cargar CV"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green.shade900,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          )),
+                      SizedBox(width: 20),
+                      ElevatedButton(
+                          onPressed: () {
+                            AlertDialog(
+                              title: Text("Postulación"),
+                              content: Text(
+                                  "¿Está seguro que desea postularse a esta pasantía?"),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Cancelar")),
+                                TextButton(
+                                    onPressed: () {}, child: Text("Aceptar")),
+                              ],
+                            );
+                          },
+                          child: Text("Postular"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue.shade900,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          )),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ))
         ],
       ),
-      bottomNavigationBar: BottomBarStudent(),
     );
   }
 }

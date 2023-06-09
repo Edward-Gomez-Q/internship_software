@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
+import 'package:intership_frontend/screens/student/postulation.dart';
+import 'package:intership_frontend/screens/student/principal_student/wraper_postulation.dart';
 
 class WrapperViewIntershipStudent extends StatelessWidget {
   final List<IntershipState> interships;
@@ -51,7 +53,15 @@ class WrapperViewIntershipStudent extends StatelessWidget {
                   ],
                 ),
                 trailing: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Postulation(
+                                intership: interships[index],
+                              )),
+                    );
+                  },
                   icon: Icon(Icons.add),
                   label: Text('información'),
                   style: ElevatedButton.styleFrom(
