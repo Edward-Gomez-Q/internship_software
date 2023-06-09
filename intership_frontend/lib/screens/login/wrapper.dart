@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/screens/company/intership_company.dart';
 import 'package:intership_frontend/screens/registration/registration_principal.dart';
 import 'package:intership_frontend/screens/registration/wrapperr.dart';
+import 'package:intership_frontend/screens/student/student_intership.dart';
 import 'input_field.dart';
 
 class Wrapper extends StatelessWidget {
@@ -49,6 +51,34 @@ class Wrapper extends StatelessWidget {
                 ),
               ),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HomeCompany();
+                }));
+              },
+              child: Text("Empresa"),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue.shade900,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HomeStudent();
+                }));
+              },
+              child: Text("Estudiante"),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue.shade900,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            )
           ],
         ),
       ),
