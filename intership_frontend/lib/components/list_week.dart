@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/cubit/intership_cubit.dart';
 
 class DaySelectionList extends StatefulWidget {
+  final List<String> selectedDays;
+
+  const DaySelectionList({Key? key, required this.selectedDays})
+      : super(key: key);
   @override
   _DaySelectionListState createState() => _DaySelectionListState();
 }
@@ -30,17 +37,19 @@ class _DaySelectionListState extends State<DaySelectionList> {
                     trailing:
                         selectedDays.contains(day) ? Icon(Icons.check) : null,
                     onTap: () {
-                      setState(() {
-                        if (selectedDays.contains(day)) {
-                          selectedDays.remove(day);
+                      setState() {
+                        if (widget.selectedDays.contains(day)) {
+                          widget.selectedDays.remove(day);
                         } else {
-                          selectedDays.add(day);
+                          widget.selectedDays.add(day);
                         }
-                      });
+                      }
+
+                      ;
                     })));
       }).toList(),
       hint: Text('Seleccionar dias'),
-      onChanged: (String? value) {},
+      onChanged: (value) {},
     );
   }
 }

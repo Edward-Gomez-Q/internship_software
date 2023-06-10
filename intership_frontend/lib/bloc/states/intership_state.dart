@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 class IntershipState extends Equatable {
   final String titulo;
   final String departamento;
   final DateTime fechaLimite;
-  final int dias;
+  final List<String> dias;
   final int horas;
   final DateTime horaInicio;
   final DateTime horaFin;
-  final String descripcion;
   final String urlPDF;
   final String urlwORD;
   final String requisitos;
@@ -18,11 +18,10 @@ class IntershipState extends Equatable {
     this.titulo = '',
     this.departamento = '',
     DateTime? fechaLimite,
-    this.dias = 0,
+    this.dias = const [],
     this.horas = 0,
     DateTime? horaInicio,
     DateTime? horaFin,
-    this.descripcion = '',
     this.urlPDF = '',
     this.urlwORD = '',
     this.requisitos = '',
@@ -35,7 +34,7 @@ class IntershipState extends Equatable {
     String? titulo,
     String? departamento,
     DateTime? fechaLimite,
-    int? dias,
+    List<String>? dias,
     int? horas,
     DateTime? horaInicio,
     DateTime? horaFin,
@@ -54,7 +53,6 @@ class IntershipState extends Equatable {
       horas: horas ?? this.horas,
       horaInicio: horaInicio ?? this.horaInicio,
       horaFin: horaFin ?? this.horaFin,
-      descripcion: descripcion ?? this.descripcion,
       urlPDF: urlPDF ?? this.urlPDF,
       urlwORD: urlwORD ?? this.urlwORD,
       requisitos: requisitos ?? this.requisitos,
@@ -72,7 +70,6 @@ class IntershipState extends Equatable {
         horas,
         horaInicio,
         horaFin,
-        descripcion,
         urlPDF,
         urlwORD,
         requisitos,

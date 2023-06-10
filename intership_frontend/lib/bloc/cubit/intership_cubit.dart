@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
+import 'package:intership_frontend/models/intership_model.dart';
+import 'package:intership_frontend/services/intership_services.dart';
 
 class IntershipCubit extends Cubit<IntershipState> {
   IntershipCubit() : super(IntershipState());
@@ -16,7 +18,7 @@ class IntershipCubit extends Cubit<IntershipState> {
     emit(state.copyWith(fechaLimite: fechaLimite));
   }
 
-  void updateDias(int dias) {
+  void updateDias(List<String> dias) {
     emit(state.copyWith(dias: dias));
   }
 
@@ -30,10 +32,6 @@ class IntershipCubit extends Cubit<IntershipState> {
 
   void updateHoraFin(DateTime horaFin) {
     emit(state.copyWith(horaFin: horaFin));
-  }
-
-  void updateDescripcion(String descripcion) {
-    emit(state.copyWith(descripcion: descripcion));
   }
 
   void updateUrlPDF(String urlPDF) {
@@ -54,5 +52,15 @@ class IntershipCubit extends Cubit<IntershipState> {
 
   void updateListaCarreras(List<String> listaCarreras) {
     emit(state.copyWith(listaCarreras: listaCarreras));
+  }
+
+  // registerIntership
+  Future<String> registerIntership(IntershipModel intership) async {
+    String response = await IntershipServices.addIntership(intership);
+    if (response == 'Intership added') {
+      return 'Ok';
+    } else {
+      return response;
+    }
   }
 }

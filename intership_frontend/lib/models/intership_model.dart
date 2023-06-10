@@ -2,11 +2,10 @@ class IntershipModel {
   final String titleIntership;
   final String department;
   final DateTime deadline;
-  final int days;
+  final List<String> days;
   final int durations;
   final DateTime startTime;
   final DateTime endTime;
-  final String description;
   final String urlPDF;
   final String urlWord;
   final String requirements;
@@ -17,11 +16,10 @@ class IntershipModel {
     this.titleIntership = '',
     this.department = '',
     DateTime? deadline,
-    this.days = 0,
+    this.days = const [],
     this.durations = 0,
     DateTime? startTime,
     DateTime? endTime,
-    this.description = '',
     this.urlPDF = '',
     this.urlWord = '',
     this.requirements = '',
@@ -34,7 +32,7 @@ class IntershipModel {
     String? titleIntership,
     String? department,
     DateTime? deadline,
-    int? days,
+    List<String>? days,
     int? durations,
     DateTime? startTime,
     DateTime? endTime,
@@ -53,7 +51,6 @@ class IntershipModel {
       durations: durations ?? this.durations,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
-      description: description ?? this.description,
       urlPDF: urlPDF ?? this.urlPDF,
       urlWord: urlWord ?? this.urlWord,
       requirements: requirements ?? this.requirements,
@@ -71,7 +68,6 @@ class IntershipModel {
         durations,
         startTime,
         endTime,
-        description,
         urlPDF,
         urlWord,
         requirements,

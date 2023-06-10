@@ -44,7 +44,7 @@ class HomeCompany extends StatelessWidget {
                       'Ingeniería de sistemas',
                       'Ingeniería de software'
                     ],
-                    descripcion:
+                    requisitos:
                         "Se busca estudiante de ingeniería de sistemas para desarrollar software",
                     fechaLimite: DateTime.now()),
                 IntershipState(
@@ -53,7 +53,7 @@ class HomeCompany extends StatelessWidget {
                       'Ingeniería de sistemas',
                       'Ingeniería de software'
                     ],
-                    descripcion:
+                    requisitos:
                         "Se busca estudiante de ingeniería de sistemas para desarrollar software",
                     fechaLimite: DateTime.now()),
               ],

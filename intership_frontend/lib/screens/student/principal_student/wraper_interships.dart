@@ -35,7 +35,7 @@ class WrapperViewIntershipStudent extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      interships[index].descripcion,
+                      interships[index].requisitos,
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

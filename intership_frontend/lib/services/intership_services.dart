@@ -15,7 +15,6 @@ class IntershipServices {
       'durations': intership.durations,
       'startTime': intership.startTime,
       'endTime': intership.endTime,
-      'description': intership.description,
       'urlPDF': intership.urlPDF,
       'urlWord': intership.urlWord,
       'requirements': intership.requirements,
@@ -23,7 +22,7 @@ class IntershipServices {
       'knowledge': intership.knowledge,
     };
     var body = json.encode(data);
-    var url = Uri.parse('$baseUrl/company/$intership.companyId}/intership');
+    var url = Uri.parse('$baseUrl/company/$intership.companyId/intership');
     http.Response response = await http.post(
       url,
       headers: {

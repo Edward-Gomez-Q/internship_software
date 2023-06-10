@@ -38,7 +38,7 @@ class WraperViewIntership extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  intershipState[index].descripcion,
+                  intershipState[index].requisitos,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,

@@ -22,7 +22,7 @@ class WraperPostulationStatus extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                interships[index].descripcion,
+                interships[index].requisitos,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,

@@ -44,3 +44,13 @@ const List<String> facultad = [
   'Facultad de Derecho y ciencias politicas',
   'Facultad de Ciencias financieras'
 ];
+
+const List<String> days = [
+  'Lunes',
+  'Martes',
+  'Miercoles',
+  'Jueves',
+  'Viernes',
+  'Sabado',
+  'Domingo'
+];

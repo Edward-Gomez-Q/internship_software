@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intl/intl.dart';
 import 'calendar.dart';
 
@@ -50,6 +52,11 @@ class _CalendarButtonState extends State<CalendarButton> {
                         ? DateFormat('dd/MM/yyyy').format(selectedDay!)
                         : '',
                   ),
+                  onChanged: (value) {
+                    BlocProvider.of<IntershipCubit>(context)
+                        .updateFechaLimite(selectedDay!);
+                  },
+                  readOnly: true,
                 ),
               ),
               SizedBox(

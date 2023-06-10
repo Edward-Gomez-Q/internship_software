@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/company_cubit.dart';
+import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intership_frontend/bloc/cubit/student_cubit.dart';
 import 'screens/login/login_principal.dart';
 
@@ -18,11 +19,12 @@ class MyApp extends StatelessWidget {
       //Aqui se agregan todos los blocs que se van a utilizar
       providers: [
         BlocProvider<StudentCubit>(create: (context) => StudentCubit()),
-        BlocProvider<CompanyCubit>(create: (context) => CompanyCubit())
+        BlocProvider<CompanyCubit>(create: (context) => CompanyCubit()),
+        BlocProvider<IntershipCubit>(create: (context) => IntershipCubit()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:  LoginPrincipal(),
+        home: LoginPrincipal(),
       ),
     );
   }
