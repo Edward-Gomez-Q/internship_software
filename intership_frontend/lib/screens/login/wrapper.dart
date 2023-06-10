@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/screens/admin/admin_company.dart';
 import 'package:intership_frontend/screens/company/intership_company.dart';
 import 'package:intership_frontend/screens/registration/registration_principal.dart';
 import 'package:intership_frontend/screens/registration/wrapperr.dart';
@@ -72,6 +73,20 @@ class Wrapper extends StatelessWidget {
                 }));
               },
               child: Text("Estudiante"),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue.shade900,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AdminCompany();
+                }));
+              },
+              child: Text("Admin"),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue.shade900,
                 shape: RoundedRectangleBorder(
