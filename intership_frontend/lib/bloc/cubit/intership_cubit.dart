@@ -4,13 +4,8 @@ import 'package:intership_frontend/bloc/states/intership_state.dart';
 
 class IntershipCubit extends Cubit<IntershipState> {
   IntershipCubit() : super(IntershipState());
-
-  void updateTitulo(String titulo) {
+  void updateNombrePasantia(String titulo) {
     emit(state.copyWith(titulo: titulo));
-  }
-
-  void updateFacultad(String facultad) {
-    emit(state.copyWith(facultad: facultad));
   }
 
   void updateDepartamento(String departamento) {
@@ -21,11 +16,19 @@ class IntershipCubit extends Cubit<IntershipState> {
     emit(state.copyWith(fechaLimite: fechaLimite));
   }
 
-  void updateHoraInicio(TimeOfDay horaInicio) {
+  void updateDias(int dias) {
+    emit(state.copyWith(dias: dias));
+  }
+
+  void updateHoras(int horas) {
+    emit(state.copyWith(horas: horas));
+  }
+
+  void updateHoraInicio(DateTime horaInicio) {
     emit(state.copyWith(horaInicio: horaInicio));
   }
 
-  void updateHoraFin(TimeOfDay horaFin) {
+  void updateHoraFin(DateTime horaFin) {
     emit(state.copyWith(horaFin: horaFin));
   }
 
@@ -33,16 +36,20 @@ class IntershipCubit extends Cubit<IntershipState> {
     emit(state.copyWith(descripcion: descripcion));
   }
 
-  void updateUrlDescripcion(String urlDescripcion) {
-    emit(state.copyWith(urlDescripcion: urlDescripcion));
+  void updateUrlPDF(String urlPDF) {
+    emit(state.copyWith(urlPDF: urlPDF));
   }
 
-  void updateUrlSilabo(String urlSilabo) {
-    emit(state.copyWith(urlSilabo: urlSilabo));
+  void updateUrlWORD(String urlWORD) {
+    emit(state.copyWith(urlwORD: urlWORD));
   }
 
   void updateRequisitos(String requisitos) {
     emit(state.copyWith(requisitos: requisitos));
+  }
+
+  void updateFacultad(String facultad) {
+    emit(state.copyWith(facultad: facultad));
   }
 
   void updateListaCarreras(List<String> listaCarreras) {

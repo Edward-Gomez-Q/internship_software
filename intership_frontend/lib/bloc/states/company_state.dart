@@ -16,7 +16,6 @@ class CompanyState extends Equatable {
   final String contrasena;
   final String confirmarContrasena;
 
-
   CompanyState({
     this.nombreEmpresa = '',
     this.nombresContacto = '',
@@ -52,13 +51,16 @@ class CompanyState extends Equatable {
     return CompanyState(
       nombreEmpresa: nombreEmpresa ?? this.nombreEmpresa,
       nombresContacto: nombresContacto ?? this.nombresContacto,
-      primerApellidoContacto: primerApellidoContacto ?? this.primerApellidoContacto,
-      segundoApellidoContacto: segundoApellidoContacto ?? this.segundoApellidoContacto,
+      primerApellidoContacto:
+          primerApellidoContacto ?? this.primerApellidoContacto,
+      segundoApellidoContacto:
+          segundoApellidoContacto ?? this.segundoApellidoContacto,
       resena: resena ?? this.resena,
       logo: logo ?? this.logo,
       sitioWeb: sitioWeb ?? this.sitioWeb,
       nit: nit ?? this.nit,
-      correoElectronicoContacto: correoElectronicoContacto ?? this.correoElectronicoContacto,
+      correoElectronicoContacto:
+          correoElectronicoContacto ?? this.correoElectronicoContacto,
       telefonoContacto: telefonoContacto ?? this.telefonoContacto,
       contrasena: contrasena ?? this.contrasena,
       confirmarContrasena: confirmarContrasena ?? this.confirmarContrasena,

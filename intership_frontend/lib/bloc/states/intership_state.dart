@@ -1,45 +1,47 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 class IntershipState extends Equatable {
   final String titulo;
   final String departamento;
   final DateTime fechaLimite;
-  final TimeOfDay horaInicio;
-  final TimeOfDay horaFin;
+  final int dias;
+  final int horas;
+  final DateTime horaInicio;
+  final DateTime horaFin;
   final String descripcion;
-  final String urlDescripcion;
-  final String urlSilabo;
+  final String urlPDF;
+  final String urlwORD;
   final String requisitos;
   final String facultad;
   final List<String> listaCarreras;
-
   IntershipState({
     this.titulo = '',
     this.departamento = '',
     DateTime? fechaLimite,
-    TimeOfDay? horaInicio,
-    TimeOfDay? horaFin,
+    this.dias = 0,
+    this.horas = 0,
+    DateTime? horaInicio,
+    DateTime? horaFin,
     this.descripcion = '',
-    this.urlDescripcion = '',
-    this.urlSilabo = '',
+    this.urlPDF = '',
+    this.urlwORD = '',
     this.requisitos = '',
     this.facultad = '',
     this.listaCarreras = const [],
-  })  : fechaLimite = fechaLimite ?? DateTime.now(),
-        horaInicio = horaInicio ?? TimeOfDay.now(),
-        horaFin = horaFin ?? TimeOfDay.now();
-
+  })  : this.fechaLimite = fechaLimite ?? DateTime.now(),
+        this.horaInicio = horaInicio ?? DateTime.now(),
+        this.horaFin = horaFin ?? DateTime.now();
   IntershipState copyWith({
     String? titulo,
-    String? carrera,
     String? departamento,
     DateTime? fechaLimite,
-    TimeOfDay? horaInicio,
-    TimeOfDay? horaFin,
+    int? dias,
+    int? horas,
+    DateTime? horaInicio,
+    DateTime? horaFin,
     String? descripcion,
-    String? urlDescripcion,
-    String? urlSilabo,
+    String? urlPDF,
+    String? urlwORD,
     String? requisitos,
     String? facultad,
     List<String>? listaCarreras,
@@ -48,11 +50,13 @@ class IntershipState extends Equatable {
       titulo: titulo ?? this.titulo,
       departamento: departamento ?? this.departamento,
       fechaLimite: fechaLimite ?? this.fechaLimite,
+      dias: dias ?? this.dias,
+      horas: horas ?? this.horas,
       horaInicio: horaInicio ?? this.horaInicio,
       horaFin: horaFin ?? this.horaFin,
       descripcion: descripcion ?? this.descripcion,
-      urlDescripcion: urlDescripcion ?? this.urlDescripcion,
-      urlSilabo: urlSilabo ?? this.urlSilabo,
+      urlPDF: urlPDF ?? this.urlPDF,
+      urlwORD: urlwORD ?? this.urlwORD,
       requisitos: requisitos ?? this.requisitos,
       facultad: facultad ?? this.facultad,
       listaCarreras: listaCarreras ?? this.listaCarreras,
@@ -64,23 +68,15 @@ class IntershipState extends Equatable {
         titulo,
         departamento,
         fechaLimite,
+        dias,
+        horas,
         horaInicio,
         horaFin,
         descripcion,
-        urlDescripcion,
-        urlSilabo,
+        urlPDF,
+        urlwORD,
         requisitos,
         facultad,
         listaCarreras,
       ];
-  bool areAllFieldsFilled(IntershipState state) {
-    return state.titulo.isNotEmpty &&
-        state.departamento.isNotEmpty &&
-        state.descripcion.isNotEmpty &&
-        state.urlDescripcion.isNotEmpty &&
-        state.urlSilabo.isNotEmpty &&
-        state.requisitos.isNotEmpty &&
-        state.facultad.isNotEmpty &&
-        state.listaCarreras.isNotEmpty;
-  }
 }

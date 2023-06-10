@@ -5,16 +5,17 @@ import 'package:intership_frontend/models/company_model.dart';
 import '../bloc/states/company_state.dart';
 import 'globals.dart';
 
-class CompanyServices{
+class CompanyServices {
   //Agregar una compañia
-  static Future<String> addCompany(CompanyModel company) async{
+  static Future<String> addCompany(CompanyModel company) async {
     print("entro al servicio");
     //Ver el nombre de la compañia
     print(company.Names);
     //Encripta la contraseña
     var bytes = utf8.encode(company.password); // Convierte la cadena a bytes
-    var digest = sha256.convert(bytes); // Aplica el algoritmo de hash (en este caso, SHA-256)
-    Map data= {
+    var digest = sha256
+        .convert(bytes); // Aplica el algoritmo de hash (en este caso, SHA-256)
+    Map data = {
       'nameCompany': company.nameCompany,
       'sectors': company.sectors,
       'review': company.review,
