@@ -45,7 +45,7 @@ class IntershipServices {
     }
   }
 
-  static Future<List<IntershipModel>> getInterships(int studentId) async {
+  static Future<List<IntershipModel>> getIntershipsStatus(int studentId) async {
     var url = Uri.parse('$baseUrl/student/$studentId/intership');
     http.Response response = await http.get(
       url,
@@ -59,7 +59,7 @@ class IntershipServices {
       Map responseMap = json.decode(response.body);
       List<IntershipModel> interships = [];
       for (var item in responseMap["response"]) {
-        var intership = IntershipModel.fromJson(item);
+        IntershipModel intership = IntershipModel.fromJson(item);
         if (intership.status == 'true') {
           interships.add(intership);
         }
