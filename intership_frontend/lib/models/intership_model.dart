@@ -29,22 +29,6 @@ class IntershipModel {
         this.startTime = startTime ?? DateTime.now(),
         this.endTime = endTime ?? DateTime.now();
 
-  factory IntershipModel.fromJson(Map<String, dynamic> json) {
-    return IntershipModel(
-      titleIntership: json['titleIntership'],
-      department: json['department'],
-      deadline: DateTime.parse(json['deadline']),
-      days: json['days'].cast<String>(),
-      durations: json['durations'],
-      startTime: DateTime.parse(json['startTime']),
-      endTime: DateTime.parse(json['endTime']),
-      urlPDF: json['urlPDF'],
-      urlWord: json['urlWord'],
-      requirements: json['requirements'],
-      careers: json['careers'].cast<String>(),
-      knowledge: json['knowledge'].cast<String>(),
-    );
-  }
   IntershipModel copyWith({
     String? titleIntership,
     String? department,
@@ -73,6 +57,56 @@ class IntershipModel {
       requirements: requirements ?? this.requirements,
       careers: careers ?? this.careers,
       knowledge: knowledge ?? this.knowledge,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'titleIntership': titleIntership,
+      'department': department,
+      'deadline': deadline,
+      'days': days,
+      'durations': durations,
+      'startTime': startTime,
+      'endTime': endTime,
+      'urlPDF': urlPDF,
+      'urlWord': urlWord,
+      'requirements': requirements,
+      'careers': careers,
+      'knowledge': knowledge,
+    };
+  }
+
+  factory IntershipModel.fromMap(Map<String, dynamic> map) {
+    return IntershipModel(
+      titleIntership: map['titleIntership'],
+      department: map['department'],
+      deadline: map['deadline'],
+      days: List<String>.from(map['days']),
+      durations: map['durations'],
+      startTime: map['startTime'],
+      endTime: map['endTime'],
+      urlPDF: map['urlPDF'],
+      urlWord: map['urlWord'],
+      requirements: map['requirements'],
+      careers: List<String>.from(map['careers']),
+      knowledge: List<String>.from(map['knowledge']),
+    );
+  }
+  static IntershipModel fromJson(item) {
+    return IntershipModel(
+      titleIntership: item['titleIntership'],
+      department: item['department'],
+      deadline: item['deadline'],
+      days: List<String>.from(item['days']),
+      durations: item['durations'],
+      startTime: item['startTime'],
+      endTime: item['endTime'],
+      urlPDF: item['urlPDF'],
+      urlWord: item['urlWord'],
+      requirements: item['requirements'],
+      careers: List<String>.from(item['careers']),
+      knowledge: List<String>.from(item['knowledge']),
     );
   }
 
