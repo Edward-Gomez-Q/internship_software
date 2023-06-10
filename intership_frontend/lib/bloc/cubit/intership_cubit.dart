@@ -63,4 +63,14 @@ class IntershipCubit extends Cubit<IntershipState> {
       return response;
     }
   }
+
+  // leerIntership
+  Future<String> getIntership(int id) async {
+    List<IntershipModel> response = await IntershipServices.getInterships(id);
+    if (response.isNotEmpty) {
+      return 'ok';
+    } else {
+      return 'lista vacia';
+    }
+  }
 }

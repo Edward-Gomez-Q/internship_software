@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/components/appbar.dart';
 import 'package:intership_frontend/components/bottombar_company.dart';
 import 'package:intership_frontend/components/bottombar_student.dart';
 import 'package:intership_frontend/components/search.dart';
@@ -15,6 +16,7 @@ class HomeStudent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(title: "Pasantías Activas"),
       body: Column(
         children: [
           Padding(
@@ -27,11 +29,6 @@ class HomeStudent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Text("Pasantías Activas",
-              style: TextStyle(fontSize: 30, color: Colors.blue.shade900)),
           SizedBox(
             height: 20,
           ),

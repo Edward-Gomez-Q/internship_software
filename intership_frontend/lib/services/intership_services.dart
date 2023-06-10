@@ -59,7 +59,10 @@ class IntershipServices {
       Map responseMap = json.decode(response.body);
       List<IntershipModel> interships = [];
       for (var item in responseMap["response"]) {
-        interships.add(IntershipModel.fromJson(item));
+        var intership = IntershipModel.fromJson(item);
+        if (intership.status == 'true') {
+          interships.add(intership);
+        }
       }
       return interships;
     } else {
