@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/components/appbar.dart';
 import 'package:intership_frontend/components/header_principal.dart';
 import 'package:intership_frontend/screens/company/register_company/wraper_comany_register.dart';
 import 'package:intership_frontend/screens/company/register_company/wraper_company_register.dart';

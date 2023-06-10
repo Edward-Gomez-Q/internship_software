@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/components/appbar.dart';
 import 'package:intership_frontend/components/bottombar_company.dart';
 import 'package:intership_frontend/components/calendar_button.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_careers.dart';
@@ -9,18 +10,9 @@ class SelectCareer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(title: "Carreras"),
       body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 45),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                "Carreras",
-                style: TextStyle(fontSize: 25, color: Colors.grey.shade600),
-              ),
-            ),
-          ),
           SizedBox(
             height: 20,
           ),

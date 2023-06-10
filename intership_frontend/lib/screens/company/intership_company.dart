@@ -4,6 +4,7 @@ import 'package:intership_frontend/components/search.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_view_intership.dart';
 
 import '../../bloc/states/intership_state.dart';
+import '../../components/appbar.dart';
 
 class HomeCompany extends StatelessWidget {
   void handleSearch(String value) {
@@ -13,6 +14,7 @@ class HomeCompany extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(title: "Pasantías"),
       body: Column(
         children: [
           Padding(

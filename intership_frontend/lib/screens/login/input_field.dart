@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intership_frontend/components/password.dart';
 
 class InputField extends StatelessWidget {
   @override
@@ -22,16 +23,7 @@ class InputField extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(10),
-            child: TextField(
-                decoration: InputDecoration(
-              hintText: 'Ingresa tu contraseña',
-              hintStyle: TextStyle(color: Colors.grey),
-              icon: Icon(Icons.lock),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              contentPadding: EdgeInsets.symmetric(vertical: 15),
-            )),
+            child: PasswordTextField(),
           ),
         ],
       ),

@@ -7,18 +7,11 @@ class PostIntership extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Publicar pasantía"),
+      ),
       body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 45),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                "Publicar pasantía",
-                style: TextStyle(fontSize: 25, color: Colors.grey.shade600),
-              ),
-            ),
-          ),
           SizedBox(
             height: 20,
           ),
