@@ -44,4 +44,18 @@ class IntershipServices {
       return 'Error 404';
     }
   }
+
+  static Future<List<IntershipModel>> getInterships(int studentId) async {
+    var url = Uri.parse('$baseUrl/student/$studentId/intership');
+    http.Response response = await http.get(url);
+    print('Response Obtener pasantias: ${response.body}');
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = json.decode(response.body);
+      List<IntershipModel> interships =
+          jsonResponse.map((json) => IntershipModel.fromJson(json)).toList();
+      return interships;
+    } else {
+      throw Exception('Failed to get internships');
+    }
+  }
 }

@@ -28,6 +28,23 @@ class IntershipModel {
   })  : this.deadline = deadline ?? DateTime.now(),
         this.startTime = startTime ?? DateTime.now(),
         this.endTime = endTime ?? DateTime.now();
+
+  factory IntershipModel.fromJson(Map<String, dynamic> json) {
+    return IntershipModel(
+      titleIntership: json['titleIntership'],
+      department: json['department'],
+      deadline: DateTime.parse(json['deadline']),
+      days: json['days'].cast<String>(),
+      durations: json['durations'],
+      startTime: DateTime.parse(json['startTime']),
+      endTime: DateTime.parse(json['endTime']),
+      urlPDF: json['urlPDF'],
+      urlWord: json['urlWord'],
+      requirements: json['requirements'],
+      careers: json['careers'].cast<String>(),
+      knowledge: json['knowledge'].cast<String>(),
+    );
+  }
   IntershipModel copyWith({
     String? titleIntership,
     String? department,

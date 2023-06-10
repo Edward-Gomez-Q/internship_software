@@ -15,7 +15,6 @@ class WraperPostIntership extends StatelessWidget {
   List<String> sele = [];
   @override
   Widget build(BuildContext context) {
-    DaySelectionList daySelectionList = DaySelectionList(selectedDays: sele);
     return BlocBuilder<IntershipCubit, IntershipState>(
         builder: (context, state) {
       final listaCarreras = state.listaCarreras;
@@ -67,7 +66,7 @@ class WraperPostIntership extends StatelessWidget {
                 height: 20,
               ),
               Container(
-                child: daySelectionList,
+                child: DaySelectionList(),
               ),
               SizedBox(
                 height: 20,

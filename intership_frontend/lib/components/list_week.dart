@@ -4,10 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/cubit/intership_cubit.dart';
 
 class DaySelectionList extends StatefulWidget {
-  final List<String> selectedDays;
-
-  const DaySelectionList({Key? key, required this.selectedDays})
-      : super(key: key);
   @override
   _DaySelectionListState createState() => _DaySelectionListState();
 }
@@ -37,19 +33,20 @@ class _DaySelectionListState extends State<DaySelectionList> {
                     trailing:
                         selectedDays.contains(day) ? Icon(Icons.check) : null,
                     onTap: () {
-                      setState() {
-                        if (widget.selectedDays.contains(day)) {
-                          widget.selectedDays.remove(day);
-                        } else {
-                          widget.selectedDays.add(day);
-                        }
+                      if (selectedDays.contains(day)) {
+                        selectedDays.remove(day);
+                      } else {
+                        selectedDays.add(day);
+                        print(selectedDays);
                       }
-
-                      ;
+                      BlocProvider.of<IntershipCubit>(context)
+                          .updateDias(selectedDays);
                     })));
       }).toList(),
       hint: Text('Seleccionar dias'),
-      onChanged: (value) {},
+      onChanged: (value) {
+        BlocProvider.of<IntershipCubit>(context).updateDias(selectedDays);
+      },
     );
   }
 }

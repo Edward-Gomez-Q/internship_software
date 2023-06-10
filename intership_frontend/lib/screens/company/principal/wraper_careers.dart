@@ -46,6 +46,7 @@ class WraperCareers extends StatelessWidget {
                               carreras.remove(value);
                             } else {
                               carreras.add(value);
+                              print(carreras);
                             }
                             BlocProvider.of<IntershipCubit>(context)
                                 .updateListaCarreras(carreras);
@@ -55,13 +56,22 @@ class WraperCareers extends StatelessWidget {
                 }).toList(),
                 hint: Text("Carreras", style: TextStyle(color: Colors.grey)),
                 icon: Icon(Icons.arrow_drop_down),
-                onChanged: (value) {},
+                onChanged: (value) {
+                  BlocProvider.of<IntershipCubit>(context)
+                      .updateListaCarreras(carreras);
+                },
               ),
               SizedBox(
                 height: 20,
               ),
               ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    List<String> carrerasAux = ucbCareers
+                        .where((carrera) => carreras.contains(carrera))
+                        .toList();
+                    BlocProvider.of<IntershipCubit>(context)
+                        .updateListaCarreras(carrerasAux);
+                  },
                   child: Text("Agregar"),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue.shade900,
@@ -84,6 +94,11 @@ class WraperCareers extends StatelessWidget {
                           icon: Icon(Icons.delete),
                           onPressed: () {
                             carreras.removeAt(index);
+                            List<String> carrerasAux = ucbCareers
+                                .where((carrera) => carreras.contains(carrera))
+                                .toList();
+                            BlocProvider.of<IntershipCubit>(context)
+                                .updateListaCarreras(carrerasAux);
                           },
                         ),
                       ),
