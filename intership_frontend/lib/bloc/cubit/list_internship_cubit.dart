@@ -24,7 +24,7 @@ class ListInternshipCubit extends Cubit<ListInternshipState> {
         fechaLimite: intership.deadline,
         descripcion: intership.description,
         dias: intership.days,
-        carreras: intership.careers,
+        carrera: intership.careers,
         urlwORD: intership.urlWord,
         requisitos: intership.knowledge,
         horas: intership.duration,
@@ -35,12 +35,14 @@ class ListInternshipCubit extends Cubit<ListInternshipState> {
     print(intershipState.toString());
     emit(ListInternshipState(intershipState));
   }
+
   //Limpiar la lista de pasantías
   Future<void> clearList() async {
     emit(ListInternshipState([]));
   }
+
   //Obtener todas las pasantías disponibles
-  Future<void> getAllInternshipsAvailable(String token,int id) async {
+  Future<void> getAllInternshipsAvailable(String token, int id) async {
     List<IntershipModel> internships =
         await StudentServices.getAllInternship(token, id);
     //Convertir la lista de pasantías a una lista de estados
@@ -54,7 +56,7 @@ class ListInternshipCubit extends Cubit<ListInternshipState> {
         fechaLimite: intership.deadline,
         descripcion: intership.description,
         dias: intership.days,
-        carreras: intership.careers,
+        carrera: intership.careers,
         urlwORD: intership.urlWord,
         requisitos: intership.knowledge,
         horas: intership.duration,
@@ -65,8 +67,9 @@ class ListInternshipCubit extends Cubit<ListInternshipState> {
     print(intershipState.toString());
     emit(ListInternshipState(intershipState));
   }
+
   //Obtener todas las pasantías esperando aprobación
-  Future<void> getAllInternshipsWaiting(String token,int id) async {
+  Future<void> getAllInternshipsWaiting(String token, int id) async {
     List<IntershipModel> internships =
         await AdminServices.getAllInternshipWaiting(token, id);
     //Convertir la lista de pasantías a una lista de estados

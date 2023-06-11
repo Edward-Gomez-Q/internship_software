@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/models/company_model.dart';
 import 'package:intership_frontend/services/company_services.dart';
+import '../../services/admin_services.dart';
 import '../states/company_state.dart';
 
 class CompanyCubit extends Cubit<CompanyState> {
@@ -22,7 +23,6 @@ class CompanyCubit extends Cubit<CompanyState> {
   void updateSegundoApellidoContacto(String segundoApellidoContacto) {
     emit(state.copyWith(segundoApellidoContacto: segundoApellidoContacto));
   }
-
 
   void updateResena(String resena) {
     emit(state.copyWith(resena: resena));
@@ -63,6 +63,7 @@ class CompanyCubit extends Cubit<CompanyState> {
   void updateListaSectores(List<String> listaSectores) {
     emit(state.copyWith(listaSectores: listaSectores));
   }
+
   //registerCompany
   Future<String> registerCompany(CompanyModel company) async {
     String response = await CompanyServices.addCompany(company);
@@ -72,9 +73,16 @@ class CompanyCubit extends Cubit<CompanyState> {
       return response;
     }
   }
+
   //Saber si la compañia ya esta registrada
   Future<bool> isRegistered(String token, int id) async {
     bool response = await CompanyServices.isCompanyAccepted(id, token);
+    return response;
+  }
+
+  //Saber si la compañia ya fue aceptada
+  Future<bool> isCompanyAccepted(String token, int id, int idCompany) async {
+    bool response = await AdminServices.approveCompany(token, id, idCompany);
     return response;
   }
 }
