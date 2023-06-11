@@ -87,6 +87,7 @@ public class CompanyApi {
     //Api para guardar una pasantia
     @PostMapping("/api/v1/company/{id}/internship")
     public ResponseDto<InternshipDto> saveInternship(@RequestHeader("Authorization") String token, @PathVariable Integer id, @RequestBody InternshipDto internshipDto){
+        System.out.println("Internship: "+internshipDto.toString());
         ResponseDto<InternshipDto> responseDto = new ResponseDto<>();
         if (!authBl.validateToken(token)) {
             responseDto.setCode("200");

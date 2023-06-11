@@ -33,10 +33,7 @@ class WraperPostIntership extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onChanged: (value) {
-                  BlocProvider.of<IntershipCubit>(context)
-                      .updateNombrePasantia(value);
-                },
+                onChanged: (value) => BlocProvider.of<IntershipCubit>(context).updateNombrePasantia(value),
               ),
               SizedBox(
                 height: 20,
@@ -117,7 +114,7 @@ class WraperPostIntership extends StatelessWidget {
               ),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'Requerimientos',
+                  hintText: 'Descripción',
                   icon: Icon(Icons.description),
                   hintStyle: TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
@@ -126,7 +123,7 @@ class WraperPostIntership extends StatelessWidget {
                 ),
                 onChanged: (value) {
                   BlocProvider.of<IntershipCubit>(context)
-                      .updateRequisitos(value);
+                      .updateDescripcion(value);
                 },
               ),
               SizedBox(

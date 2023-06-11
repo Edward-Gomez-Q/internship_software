@@ -51,7 +51,7 @@ class Wrapper extends StatelessWidget {
                   height: 40,
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     Future<TokenState> token=BlocProvider.of<AuthCubit>(context).login();
                     token.then((value) {
                       if(value.type==-1)
@@ -61,7 +61,7 @@ class Wrapper extends StatelessWidget {
                       }
                       else if(value.type==1)
                       {
-                        tokenState=value;
+                        BlocProvider.of<TokenCubit>(context).login(value);
                         //Login Estudiante
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return HomeStudent();
@@ -69,7 +69,7 @@ class Wrapper extends StatelessWidget {
                       }
                       else if(value.type==2)
                       {
-                        tokenState=value;
+                        BlocProvider.of<TokenCubit>(context).login(value);
                         //Login Empresa
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return HomeCompany();
@@ -77,7 +77,7 @@ class Wrapper extends StatelessWidget {
                       }
                       else
                       {
-                        tokenState=value;
+                        BlocProvider.of<TokenCubit>(context).login(value);
                         //Login Administrador
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return AdminCompany();

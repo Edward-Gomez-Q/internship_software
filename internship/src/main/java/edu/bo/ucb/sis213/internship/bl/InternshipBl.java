@@ -1,15 +1,16 @@
 package edu.bo.ucb.sis213.internship.bl;
 
 import edu.bo.ucb.sis213.internship.dao.*;
-import edu.bo.ucb.sis213.internship.dto.CompanyDto;
 import edu.bo.ucb.sis213.internship.dto.InternshipDto;
-import edu.bo.ucb.sis213.internship.dto.StudentDto;
 import edu.bo.ucb.sis213.internship.entity.Career;
 import edu.bo.ucb.sis213.internship.entity.CarrerInternship;
 import edu.bo.ucb.sis213.internship.entity.Company;
 import edu.bo.ucb.sis213.internship.entity.Internship;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +33,7 @@ public class InternshipBl {
         this.studentRepository = studentRepository;
     }
     //Agregar un nuevo internship
-    public InternshipDto addInternship(InternshipDto internshipDto, int idCompany){
+    public InternshipDto addInternship(InternshipDto internshipDto, int idCompany) {
         //Obtener la compañia por id
         Company company = companyRepository.findById(idCompany);
         Internship internship = new Internship();
@@ -101,6 +102,15 @@ public class InternshipBl {
         Internship internship = internshipRepository.findById(id);
         InternshipDto internshipDto = new InternshipDto(internship);
         return internshipDto;
+    }
+    public Date convertirStringADate(String fechaString) throws ParseException {
+        DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return formatoFecha.parse(fechaString);
+    }
+
+    public long convertirStringATimestamp(String fechaString) throws ParseException {
+        Date fecha = convertirStringADate(fechaString);
+        return fecha.getTime();
     }
 
 }

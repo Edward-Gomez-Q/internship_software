@@ -1,4 +1,6 @@
-class CompanyModel{
+import 'package:equatable/equatable.dart';
+
+class CompanyModel extends Equatable{
   final String nameCompany;
   final List<String> sectors;
   final String review;
@@ -54,5 +56,37 @@ class CompanyModel{
       phone: phone ?? this.phone,
     );
   }
+  Map<String, dynamic> toMap() {
+    return {
+      'nameCompany': nameCompany,
+      'sectors': sectors,
+      'review': review,
+      'urlLogo': urlLogo,
+      'webSide': webSide,
+      'nit': nit,
+      'Names': Names,
+      'firstLastName': firstLastName,
+      'secondLastName': secondLastName,
+      'email': email,
+      'password': password,
+      'phone': phone,
+    };
+  }
 
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    nameCompany,
+    sectors,
+    review,
+    urlLogo,
+    webSide,
+    nit,
+    Names,
+    firstLastName,
+    secondLastName,
+    email,
+    password,
+    phone,
+  ];
 }

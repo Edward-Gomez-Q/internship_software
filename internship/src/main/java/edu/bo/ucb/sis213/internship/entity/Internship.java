@@ -7,6 +7,8 @@ package edu.bo.ucb.sis213.internship.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +54,7 @@ public class Internship implements Serializable {
     @Basic(optional = false)
     @Column(name = "deadline")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deadline;
+    private Timestamp deadline;
     @Basic(optional = false)
     @Column(name = "days")
     private String days;
@@ -62,11 +64,11 @@ public class Internship implements Serializable {
     @Basic(optional = false)
     @Column(name = "start_time_internship")
     @Temporal(TemporalType.TIME)
-    private Date startTimeInternship;
+    private Time startTimeInternship;
     @Basic(optional = false)
     @Column(name = "end_time_internship")
     @Temporal(TemporalType.TIME)
-    private Date endTimeInternship;
+    private Time endTimeInternship;
     @Basic(optional = false)
     @Column(name = "description")
     private String description;
@@ -113,7 +115,7 @@ public class Internship implements Serializable {
         this.idInternship = idInternship;
     }
 
-    public Internship(Integer idInternship, String title, String city, Date deadline, String days, int duration, Date startTimeInternship, Date endTimeInternship, String description, String ulrDescription, String urlSyllable, String knowledge, boolean status, int versionNumber, Date audDate, String audHost, String andUser) {
+    public Internship(Integer idInternship, String title, String city, Timestamp deadline, String days, int duration, Time startTimeInternship, Time endTimeInternship, String description, String ulrDescription, String urlSyllable, String knowledge, boolean status, int versionNumber, Date audDate, String audHost, String andUser) {
         this.idInternship = idInternship;
         this.title = title;
         this.city = city;
@@ -157,11 +159,11 @@ public class Internship implements Serializable {
         this.city = city;
     }
 
-    public Date getDeadline() {
+    public Timestamp getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(Timestamp deadline) {
         this.deadline = deadline;
     }
 
@@ -181,19 +183,19 @@ public class Internship implements Serializable {
         this.duration = duration;
     }
 
-    public Date getStartTimeInternship() {
+    public Time getStartTimeInternship() {
         return startTimeInternship;
     }
 
-    public void setStartTimeInternship(Date startTimeInternship) {
+    public void setStartTimeInternship(Time startTimeInternship) {
         this.startTimeInternship = startTimeInternship;
     }
 
-    public Date getEndTimeInternship() {
+    public Time getEndTimeInternship() {
         return endTimeInternship;
     }
 
-    public void setEndTimeInternship(Date endTimeInternship) {
+    public void setEndTimeInternship(Time endTimeInternship) {
         this.endTimeInternship = endTimeInternship;
     }
 

@@ -54,10 +54,13 @@ class IntershipCubit extends Cubit<IntershipState> {
   void updateListaCarreras(List<String> listaCarreras) {
     emit(state.copyWith(listaCarreras: listaCarreras));
   }
+  void updateDescripcion(String descripcion) {
+    emit(state.copyWith(descripcion: descripcion));
+  }
 
   // registerIntership
-  Future<String> registerIntership(IntershipModel intership) async {
-    String response = await IntershipServices.addIntership(intership);
+  Future<String> registerIntership(String token,int id,IntershipModel intership) async {
+    String response = await IntershipServices.addIntership(token,id,intership);
     if (response == 'Intership added') {
       return 'Ok';
     } else {
@@ -65,7 +68,7 @@ class IntershipCubit extends Cubit<IntershipState> {
     }
   }
 
-  // leerIntership
+  /*// leerIntership
   Future<String> getIntership(int id) async {
     List<IntershipModel> response =
         await IntershipServices.getIntershipsStatus(id);
@@ -74,5 +77,5 @@ class IntershipCubit extends Cubit<IntershipState> {
     } else {
       return 'lista vacia';
     }
-  }
+  }*/
 }

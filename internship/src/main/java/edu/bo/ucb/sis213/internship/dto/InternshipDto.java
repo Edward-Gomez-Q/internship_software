@@ -2,18 +2,19 @@ package edu.bo.ucb.sis213.internship.dto;
 
 import edu.bo.ucb.sis213.internship.entity.Internship;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class InternshipDto {
     private String title;
     private String department;
-    private Date deadline;
+    private Timestamp deadline;
     private String days;
     private int duration;
-    private Date startDate;
-    private Date endDate;
+    private Time startDate;
+    private Time endDate;
     private String description;
     private String urlPDF;
     private String urlWORD;
@@ -24,7 +25,7 @@ public class InternshipDto {
 
     }
     //Constructor con parametros
-    public InternshipDto(String title, String department, Date deadline, String days, int duration, Date startDate, Date endDate, String description, String urlPDF, String urlWORD, List<String> careers, String knowledge) {
+    public InternshipDto(String title, String department, Timestamp deadline, String days, int duration, Time startDate, Time endDate, String description, String urlPDF, String urlWORD, List<String> careers, String knowledge) {
         this.title = title;
         this.department = department;
         this.deadline = deadline;
@@ -72,11 +73,11 @@ public class InternshipDto {
         this.department = department;
     }
 
-    public Date getDeadline() {
+    public Timestamp getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(Timestamp deadline) {
         this.deadline = deadline;
     }
 
@@ -96,19 +97,19 @@ public class InternshipDto {
         this.duration = duration;
     }
 
-    public Date getStartDate() {
+    public Time getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Time startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public Time getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(Time endDate) {
         this.endDate = endDate;
     }
 
