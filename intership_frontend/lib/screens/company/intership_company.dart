@@ -18,15 +18,17 @@ class HomeCompany extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return  BlocBuilder<TokenCubit,TokenState>(builder: (context, tokenState) {
-        BlocProvider.of<ListInternshipCubit>(context).getAllInternships(tokenState.authToken,tokenState.id);
-        return BlocBuilder<ListInternshipCubit,ListInternshipState>(builder: (context, state) {
-          return Scaffold(
-            appBar: MyAppBar(title: "Pasantías"),
-            body: Column(
-              children: [
-                Padding(
+    return BlocBuilder<TokenCubit, TokenState>(
+      builder: (context, tokenState) {
+        BlocProvider.of<ListInternshipCubit>(context)
+            .getAllInternships(tokenState.authToken, tokenState.id);
+        return BlocBuilder<ListInternshipCubit, ListInternshipState>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: MyAppBar(title: "Pasantías"),
+              body: Column(
+                children: [
+                  /*Padding(
                   padding: EdgeInsets.only(top: 40),
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),
@@ -35,23 +37,27 @@ class HomeCompany extends StatelessWidget {
                       onSearch: handleSearch,
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text("Pasantías Activas",
-                    style: TextStyle(fontSize: 30, color: Colors.blue.shade900)),
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: WraperViewIntership(intershipState: state.internships),
-                ),
-              ],
-            ),
-            bottomNavigationBar: BottomBarCompany(),
-          );
-        },);
-      },);
+                ),*/
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text("Pasantías Activas",
+                      style:
+                          TextStyle(fontSize: 30, color: Colors.blue.shade900)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    child:
+                        WraperViewIntership(intershipState: state.internships),
+                  ),
+                ],
+              ),
+              bottomNavigationBar: BottomBarCompany(),
+            );
+          },
+        );
+      },
+    );
   }
 }

@@ -204,7 +204,7 @@ class WraperPostIntership2 extends StatelessWidget {
                                       deadline: state.fechaLimite,
                                       days: state.dias.toString(),
                                       description: state.descripcion,
-                                      careers: state.listaCarreras,
+                                      careers: state.carreras,
                                       duration: 0,
                                       endDate: state.fechaLimite,
                                       knowledge: state.requisitos,

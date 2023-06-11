@@ -36,8 +36,7 @@ class WraperCareers extends StatelessWidget {
                       }
                       return null;
                     },
-                    onChanged: (String? value) {
-                    },
+                    onChanged: (String? value) {},
                   ),
                 ),
                 SizedBox(
@@ -48,24 +47,7 @@ class WraperCareers extends StatelessWidget {
                     items: ucbCareers.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: SizedBox(
-                            width: 200,
-                            child: ListTile(
-                              title: Text(value),
-                              trailing: carreras.contains(value)
-                                  ? Icon(Icons.check)
-                                  : null,
-                              onTap: () {
-                                if (carreras.contains(value)) {
-                                  carreras.remove(value);
-                                } else {
-                                  carreras.add(value);
-                                  print(carreras);
-                                }
-                                BlocProvider.of<IntershipCubit>(context)
-                                    .updateListaCarreras(carreras);
-                              },
-                            )),
+                        child: Text(value),
                       );
                     }).toList(),
                     hint:
@@ -78,14 +60,14 @@ class WraperCareers extends StatelessWidget {
                     },
                     onChanged: (value) {
                       BlocProvider.of<IntershipCubit>(context)
-                          .updateListaCarreras(carreras);
+                          .updateCarreras(value ?? '');
                     },
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
+                /*ElevatedButton(
                     onPressed: () {
                       List<String> carrerasAux = ucbCareers
                           .where((carrera) => carreras.contains(carrera))
@@ -99,11 +81,11 @@ class WraperCareers extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                    )),
+                    )),*/
                 SizedBox(
                   height: 20,
                 ),
-                Container(
+                /*Container(
                   child: ListView.builder(
                     itemCount: carreras.length,
                     shrinkWrap: true,
@@ -120,14 +102,14 @@ class WraperCareers extends StatelessWidget {
                                       (carrera) => carreras.contains(carrera))
                                   .toList();
                               BlocProvider.of<IntershipCubit>(context)
-                                  .updateListaCarreras(carrerasAux);
+                                  .updateCarreras(carrerasAux);
                             },
                           ),
                         ),
                       );
                     },
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

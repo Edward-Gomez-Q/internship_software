@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/screens/company/company_register.dart';
+import 'package:intership_frontend/screens/student/register_student_final.dart';
 import 'package:intership_frontend/screens/student/student_register.dart';
 
 class WrapperRegistration extends StatelessWidget {
@@ -14,7 +15,7 @@ class WrapperRegistration extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return RegisterStudent();
+                  return RegisterStudentFinal();
                 }));
               },
               child: Text("Estudiantes UCB"),

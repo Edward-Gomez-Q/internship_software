@@ -48,4 +48,27 @@ class CompanyServices {
       return 'Error 404';
     }
   }
+
+  static Future<List<CompanyModel>> getAllCompanyByUsei(String token) async {
+    var url = Uri.parse('$baseUrl/usei/company/approve');
+    http.Response response = await http.get(url, headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    });
+    if (response.statusCode == 200) {
+      print(response.body);
+      Map responseMap = json.decode(response.body);
+      if (responseMap["code"] != "200") {
+        return [];
+      }
+      List<CompanyModel> companies = [];
+      for (var companyMap in responseMap['response']) {
+        CompanyModel company = CompanyModel.fromMap(companyMap);
+        companies.add(company);
+      }
+      return companies;
+    } else {
+      return [];
+    }
+  }
 }

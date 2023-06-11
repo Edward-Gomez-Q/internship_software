@@ -26,7 +26,7 @@ class WraperAdminIntership extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  interships[index].listaCarreras.toString(),
+                  interships[index].carreras,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,

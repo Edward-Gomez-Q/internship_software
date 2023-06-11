@@ -14,7 +14,7 @@ class IntershipState extends Equatable {
   final String urlwORD;
   final String requisitos;
   final bool status;
-  final List<String> listaCarreras;
+  final String carreras;
   final String descripcion;
   IntershipState({
     this.idInternship = 0,
@@ -29,7 +29,7 @@ class IntershipState extends Equatable {
     this.urlwORD = '',
     this.requisitos = '',
     this.status = true,
-    this.listaCarreras = const [],
+    this.carreras = '',
     this.descripcion = '',
   })  : this.fechaLimite = fechaLimite ?? DateTime.now(),
         this.horaInicio = horaInicio ?? DateTime.now(),
@@ -48,7 +48,7 @@ class IntershipState extends Equatable {
     String? urlwORD,
     String? requisitos,
     bool? status,
-    List<String>? listaCarreras,
+    String? carreras,
   }) {
     return IntershipState(
       idInternship: idInternship ?? this.idInternship,
@@ -63,7 +63,7 @@ class IntershipState extends Equatable {
       urlwORD: urlwORD ?? this.urlwORD,
       requisitos: requisitos ?? this.requisitos,
       status: status ?? this.status,
-      listaCarreras: listaCarreras ?? this.listaCarreras,
+      carreras: carreras ?? this.carreras,
       descripcion: descripcion ?? this.descripcion,
     );
   }
@@ -82,7 +82,7 @@ class IntershipState extends Equatable {
         urlwORD,
         requisitos,
         status,
-        listaCarreras,
+        carreras,
         descripcion,
       ];
 }
