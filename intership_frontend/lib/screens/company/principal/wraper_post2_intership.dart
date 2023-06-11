@@ -4,13 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/models/intership_model.dart';
+import 'package:intership_frontend/screens/company/intership_company.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_careers.dart';
 import 'package:intership_frontend/screens/company/select_career.dart';
 
 class WraperPostIntership2 extends StatelessWidget {
   final _keyform;
-  WraperPostIntership2({Key? key,})
-      : _keyform = GlobalKey<FormState>(),
+  WraperPostIntership2({
+    Key? key,
+  })  : _keyform = GlobalKey<FormState>(),
         super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class WraperPostIntership2 extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.all(20),
           child: SingleChildScrollView(
-            child Form(
+            child: Form(
               key: _keyform,
               child: Column(
                 children: <Widget>[
@@ -179,7 +181,8 @@ class WraperPostIntership2 extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('¿Esta seguro de publicar la pasantía?'),
+                            title:
+                                Text('¿Esta seguro de publicar la pasantía?'),
                             content: Text(
                                 'Ha completado el formulario de publicación de pasantía.'),
                             actions: [
@@ -192,22 +195,27 @@ class WraperPostIntership2 extends StatelessWidget {
                               TextButton(
                                 child: Text('Publicar'),
                                 onPressed: () {
-                                  IntershipModel state2 = IntershipModel(
+                                  if (_keyform.currentState!.validate()) {
+                                    print("Validado");
+                                    IntershipModel state2 = IntershipModel(
                                       careers: state.listaCarreras,
-                                    days: state.dias,
-                                    requirements: state.requisitos,
-                                    deadline: state.fechaLimite,
-                                    department: state.departamento,
-                                    durations: 1,
-                                    endTime: state.horaFin,
-                                    startTime: state.horaInicio,
-                                    titleIntership: state.titulo,
-                                  );
-                                  BlocProvider.of<IntershipCubit>(context).registerIntership(state2);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => WraperCareers()));
+                                      days: state.dias,
+                                      requirements: state.requisitos,
+                                      deadline: state.fechaLimite,
+                                      department: state.departamento,
+                                      durations: 1,
+                                      endTime: state.horaFin,
+                                      startTime: state.horaInicio,
+                                      titleIntership: state.titulo,
+                                    );
+                                    BlocProvider.of<IntershipCubit>(context)
+                                        .registerIntership(state2);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                HomeCompany()));
+                                  }
                                 },
                               ),
                             ],

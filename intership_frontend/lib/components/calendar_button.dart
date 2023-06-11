@@ -41,7 +41,7 @@ class _CalendarButtonState extends State<CalendarButton> {
             Row(
               children: [
                 Expanded(
-                  child: TextField(
+                  child: TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Fecha',
                       icon: Icon(Icons.calendar_month),
@@ -55,10 +55,14 @@ class _CalendarButtonState extends State<CalendarButton> {
                           ? DateFormat('dd/MM/yyyy').format(selectedDay!)
                           : '',
                     ),
-
                     onChanged: (value) {
                       BlocProvider.of<IntershipCubit>(context)
                           .updateFechaLimite(selectedDay!);
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Este campo es obligatorio';
+                      }
                     },
                     readOnly: true,
                   ),
@@ -69,7 +73,9 @@ class _CalendarButtonState extends State<CalendarButton> {
                 Column(children: [
                   ElevatedButton(
                     child: Text('Fecha'),
-                    onPressed: toggleCalendar,
+                    onPressed: () {
+                      toggleCalendar();
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue.shade900,
                       onPrimary: Colors.white,

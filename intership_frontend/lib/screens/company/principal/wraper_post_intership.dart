@@ -53,26 +53,28 @@ class WraperPostIntership extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                DropdownButtonFormField(
-                  items: departments.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  hint:
-                      Text("Departamento", style: TextStyle(color: Colors.grey)),
-                  icon: Icon(Icons.arrow_drop_down),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Este campo es obligatorio';
-                    }
-                    return null;
-                  },
-                  onChanged: (value) {
-                    BlocProvider.of<IntershipCubit>(context)
-                        .updateDepartamento(value ?? '');
-                  },
+                Material(
+                  child: DropdownButtonFormField<String>(
+                    items: departments.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    hint: Text("Departamento",
+                        style: TextStyle(color: Colors.grey)),
+                    icon: Icon(Icons.arrow_drop_down),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Este campo es obligatorio';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      BlocProvider.of<IntershipCubit>(context)
+                          .updateDepartamento(value ?? '');
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -83,7 +85,7 @@ class WraperPostIntership extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
+                Card(
                   child: DaySelectionList(),
                 ),
                 SizedBox(
@@ -178,12 +180,13 @@ class WraperPostIntership extends StatelessWidget {
                   onPressed: () {
                     if (_keyform.currentState!.validate()) {
                       print("Validado");
+
+                      BlocProvider.of<IntershipCubit>(context).updateDias(sele);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PostIntership2()));
                     }
-                    BlocProvider.of<IntershipCubit>(context).updateDias(sele);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PostIntership2()));
                   },
                   child: Text("Continuar"),
                   style: ElevatedButton.styleFrom(

@@ -23,37 +23,34 @@ class _DaySelectionListState extends State<DaySelectionList> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField(
-      items: days.map((String day) {
-        return DropdownMenuItem<String>(
-            value: day,
-            child: SizedBox(
-                width: 200,
-                child: ListTile(
-                    title: Text(day),
-                    trailing:
-                        selectedDays.contains(day) ? Icon(Icons.check) : null,
-                    onTap: () {
-                      if (selectedDays.contains(day)) {
-                        selectedDays.remove(day);
-                      } else {
-                        selectedDays.add(day);
-                        print(selectedDays);
-                      }
-                      BlocProvider.of<IntershipCubit>(context)
-                          .updateDias(selectedDays);
-                    })));
-      }).toList(),
-      hint: Text('Seleccionar dias'),
-      icon: Icon(Icons.arrow_drop_down),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Este campo es obligatorio';
-        }
-      },
-      onChanged: (value) {
-        BlocProvider.of<IntershipCubit>(context).updateDias(selectedDays);
-      },
+    return Material(
+      child: DropdownButtonFormField<String>(
+        items: days.map((String day) {
+          return DropdownMenuItem<String>(
+              value: day,
+              child: SizedBox(
+                  width: 200,
+                  child: ListTile(
+                      title: Text(day),
+                      trailing:
+                          selectedDays.contains(day) ? Icon(Icons.check) : null,
+                      onTap: () {
+                        if (selectedDays.contains(day)) {
+                          selectedDays.remove(day);
+                        } else {
+                          selectedDays.add(day);
+                          print(selectedDays);
+                        }
+                        BlocProvider.of<IntershipCubit>(context)
+                            .updateDias(selectedDays);
+                      })));
+        }).toList(),
+        hint: Text('Seleccionar dias'),
+        icon: Icon(Icons.arrow_drop_down),
+        onChanged: (value) {
+          BlocProvider.of<IntershipCubit>(context).updateDias(selectedDays);
+        },
+      ),
     );
   }
 }
