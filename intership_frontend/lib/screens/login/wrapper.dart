@@ -91,21 +91,6 @@ class Wrapper extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: (() {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return HomeCompany();
-                      }));
-                    }),
-                    child: Text("Empresa"),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue.shade900,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
