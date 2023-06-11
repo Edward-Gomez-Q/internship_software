@@ -41,7 +41,7 @@ public class CompanyBl {
             company.setReview(companyDto.getReview());
             company.setUrlIcon(companyDto.getUrlLogo());
             company.setWebsite(companyDto.getWebSide());
-            company.setStatus(true);
+            company.setStatus(false);
             company.setAudDate(new Date());
             company.setAudUser("SYSTEM");
             company.setAudHost("localhost");

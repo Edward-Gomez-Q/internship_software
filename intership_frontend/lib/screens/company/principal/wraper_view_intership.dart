@@ -17,7 +17,6 @@ class WraperViewIntership extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ListView.builder(
       itemCount: intershipState.length,
       itemBuilder: (context, index) {

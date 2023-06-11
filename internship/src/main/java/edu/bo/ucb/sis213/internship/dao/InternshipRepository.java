@@ -10,4 +10,5 @@ public interface InternshipRepository extends JpaRepository<Internship,Integer> 
     Internship findById(int id);
     List<Internship> findAllByStatus(boolean status);
     List<Internship> findAllByCompanyIdCompany(Company company);
+
 }

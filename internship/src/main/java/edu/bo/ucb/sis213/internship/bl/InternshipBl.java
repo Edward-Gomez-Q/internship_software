@@ -2,10 +2,7 @@ package edu.bo.ucb.sis213.internship.bl;
 
 import edu.bo.ucb.sis213.internship.dao.*;
 import edu.bo.ucb.sis213.internship.dto.InternshipDto;
-import edu.bo.ucb.sis213.internship.entity.Career;
-import edu.bo.ucb.sis213.internship.entity.CarrerInternship;
-import edu.bo.ucb.sis213.internship.entity.Company;
-import edu.bo.ucb.sis213.internship.entity.Internship;
+import edu.bo.ucb.sis213.internship.entity.*;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -23,14 +20,17 @@ public class InternshipBl {
     private final CareerRepository careerRepository;
 
     private final StudentRepository studentRepository;
+    private final ApproveInternshipRepository approveInternshipRepository;
+    private final UseiRepository useiRepository;
 
-    InternshipBl(StudentRepository studentRepository,InternshipRepository internshipRepository, CompanyRepository companyRepository, CarrerInternshipRepository carrerInternshipRepository, CareerRepository careerRepository){
-
+    InternshipBl(ApproveInternshipRepository approveInternshipRepository ,StudentRepository studentRepository,InternshipRepository internshipRepository, CompanyRepository companyRepository, CarrerInternshipRepository carrerInternshipRepository, CareerRepository careerRepository, UseiRepository useiRepository){
+        this.approveInternshipRepository = approveInternshipRepository;
         this.internshipRepository = internshipRepository;
         this.companyRepository = companyRepository;
         this.carrerInternshipRepository = carrerInternshipRepository;
         this.careerRepository = careerRepository;
         this.studentRepository = studentRepository;
+        this.useiRepository = useiRepository;
     }
     //Agregar un nuevo internship
     public InternshipDto addInternship(InternshipDto internshipDto, int idCompany) {
@@ -54,6 +54,14 @@ public class InternshipBl {
         internship.setAndUser("SYSTEM");
         internship.setAudHost("localhost");
         internshipRepository.save(internship);
+        //Marcar pasantía en el estado de aprobación de la compañía
+        Usei usei = useiRepository.findByIdUsei(1);
+        ApproveInternship approveInternship = new ApproveInternship();
+        approveInternship.setApproveInternshipDate(new Date());
+        approveInternship.setAprprove(false);
+        approveInternship.setUseiIdUsei(usei);
+        approveInternship.setInternshipIdInternship(internship);
+        approveInternshipRepository.save(approveInternship);
         //Guardar las carreras que se relacionan con el internship
         List<String> careers = internshipDto.getCareers();
         for (int i = 0; i < internshipDto.getCareers().size(); i++) {
@@ -111,6 +119,17 @@ public class InternshipBl {
     public long convertirStringATimestamp(String fechaString) throws ParseException {
         Date fecha = convertirStringADate(fechaString);
         return fecha.getTime();
+    }
+    //Obtener todas las pasantías en espera de aprobación
+    public List<InternshipDto> findAllInternshipsByStatus(boolean status){
+        List<InternshipDto> result=new ArrayList<>();
+        List<Internship> internships = internshipRepository.findAllByStatus(status);
+        //Convertir la lista de internships a una lista de internshipsDto
+        for (int i = 0; i < internships.size(); i++) {
+            InternshipDto internshipDto = new InternshipDto(internships.get(i));
+            result.add(internshipDto);
+        }
+        return result;
     }
 
 }
