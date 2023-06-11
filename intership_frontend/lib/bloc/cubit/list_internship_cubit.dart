@@ -9,7 +9,8 @@ class ListInternshipCubit extends Cubit<ListInternshipState> {
   ListInternshipCubit() : super(ListInternshipState([]));
   //Obtener todas las pasantías
   Future<void> getAllInternships(String token, int idCompany) async {
-    List<IntershipModel> internships = await IntershipServices.getAllInternshipByIdCompany(token, idCompany);
+    List<IntershipModel> internships =
+        await IntershipServices.getAllInternshipByIdCompany(token, idCompany);
     //Convertir la lista de pasantías a una lista de estados
     List<IntershipState> intershipState = [];
     for (var intership in internships) {
@@ -21,7 +22,7 @@ class ListInternshipCubit extends Cubit<ListInternshipState> {
         fechaLimite: intership.deadline,
         descripcion: intership.description,
         dias: intership.days,
-        listaCarreras: intership.careers,
+        carreras: intership.careers,
         urlwORD: intership.urlWord,
         requisitos: intership.knowledge,
         horas: intership.duration,

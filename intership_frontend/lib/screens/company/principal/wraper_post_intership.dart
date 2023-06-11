@@ -21,7 +21,7 @@ class WraperPostIntership extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<IntershipCubit, IntershipState>(
         builder: (context, state) {
-      final listaCarreras = state.listaCarreras;
+      final listaCarreras = state.carreras;
       final listaDays = state.dias;
       return Padding(
         padding: EdgeInsets.all(20),

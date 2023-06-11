@@ -133,4 +133,21 @@ class CompanyModel extends Equatable {
         password,
         phone,
       ];
+  static CompanyModel fromMap(Map<String, dynamic> map) {
+    return CompanyModel(
+      idCompany: map['idCompany'],
+      nameCompany: map['nameCompany'],
+      sectors: List<String>.from(map['sectors']),
+      review: map['review'],
+      urlLogo: map['urlLogo'],
+      webSide: map['webSide'],
+      nit: map['nit'],
+      Names: map['Names'],
+      firstLastName: map['firstLastName'],
+      secondLastName: map['secondLastName'],
+      email: map['email'],
+      password: map['password'],
+      phone: map['phone'],
+    );
+  }
 }

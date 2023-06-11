@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
-class IntershipModel extends Equatable{
+class IntershipModel extends Equatable {
   final int idInternship;
   final String title;
   final String department;
@@ -13,7 +13,7 @@ class IntershipModel extends Equatable{
   final String description;
   final String urlPDF;
   final String urlWord;
-  final List<String> careers;
+  final String careers;
   final String knowledge;
   IntershipModel({
     this.idInternship = 0,
@@ -43,7 +43,7 @@ class IntershipModel extends Equatable{
       description: json['requirements'],
       urlPDF: json['urlPDF'],
       urlWord: json['urlWord'],
-      careers: json['careers'].cast<String>(),
+      careers: json['careers'],
       knowledge: json['knowledge'],
     );
   }
@@ -64,6 +64,7 @@ class IntershipModel extends Equatable{
       'knowledge': knowledge,
     };
   }
+
   IntershipModel copyWith({
     int? idInternship,
     String? title,
@@ -76,7 +77,7 @@ class IntershipModel extends Equatable{
     String? description,
     String? urlPDF,
     String? urlWord,
-    List<String>? careers,
+    String? careers,
     String? knowledge,
   }) {
     return IntershipModel(
@@ -99,20 +100,20 @@ class IntershipModel extends Equatable{
   @override
   // TODO: implement props
   List<Object?> get props => [
-    idInternship,
-    title,
-    department,
-    deadline,
-    days,
-    duration,
-    startDate,
-    endDate,
-    description,
-    urlPDF,
-    urlWord,
-    careers,
-    knowledge,
-  ];
+        idInternship,
+        title,
+        department,
+        deadline,
+        days,
+        duration,
+        startDate,
+        endDate,
+        description,
+        urlPDF,
+        urlWord,
+        careers,
+        knowledge,
+      ];
 
   static IntershipModel fromMap(Map<String, dynamic> map) {
     DateFormat timeFormat = DateFormat('HH:mm:ss');
@@ -126,11 +127,11 @@ class IntershipModel extends Equatable{
       days: map['days'],
       duration: map['duration'],
       startDate: startDate2,
-      endDate: startDate3 ,
+      endDate: startDate3,
       description: map['description'],
       urlPDF: map['urlPDF'],
       urlWord: map['urlWORD'],
-      careers: map['careers'].cast<String>(),
+      careers: map['careers'],
       knowledge: map['knowledge'],
     );
   }

@@ -68,7 +68,7 @@ class Postulation extends StatelessWidget {
                       ),
                       Expanded(
                         child: Text(
-                          intership.listaCarreras.toString(),
+                          intership.carreras,
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,

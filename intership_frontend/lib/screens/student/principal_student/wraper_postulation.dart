@@ -39,7 +39,7 @@ class WraperPostulation extends StatelessWidget {
                       color: Colors.grey.shade600),
                 ),
                 Text(
-                  intership.listaCarreras.toString(),
+                  intership.carreras,
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

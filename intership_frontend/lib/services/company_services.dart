@@ -56,17 +56,15 @@ class CompanyServices {
       headers: {
         "Content-Type": "application/json",
         'Authorization': 'Bearer $token'
-
       },
     );
     print('Response Compañia Aceptada: ${response.body}');
     if (response.statusCode == 200) {
       Map responseMap = json.decode(response.body);
       if (responseMap["code"] == "200") {
-        if(responseMap["response"])
-          {
-            return true;
-          }
+        if (responseMap["response"]) {
+          return true;
+        }
         return false;
       } else {
         return false;
@@ -75,4 +73,5 @@ class CompanyServices {
       return false;
     }
   }
+
 }
