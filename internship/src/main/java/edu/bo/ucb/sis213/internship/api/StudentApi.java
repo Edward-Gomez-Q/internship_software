@@ -2,6 +2,7 @@ package edu.bo.ucb.sis213.internship.api;
 
 
 
+import edu.bo.ucb.sis213.internship.bl.AuthBl;
 import edu.bo.ucb.sis213.internship.bl.InternshipBl;
 import edu.bo.ucb.sis213.internship.dto.InternshipDto;
 import edu.bo.ucb.sis213.internship.dto.StudentDto;
@@ -17,10 +18,12 @@ import java.util.List;
 public class StudentApi {
     private final StudentBl studentBl;
     private final InternshipBl internshipBl;
+    private final AuthBl authBl;
 
-    public StudentApi(StudentBl studentBl, InternshipBl internshipBl){
+    public StudentApi(StudentBl studentBl, InternshipBl internshipBl, AuthBl authBl){
         this.studentBl = studentBl;
         this.internshipBl = internshipBl;
+        this.authBl = authBl;
     }
     @PostMapping("/api/v1/student")
     public ResponseDto<StudentDto> saveStudent(@RequestBody StudentDto studentDto){
@@ -40,8 +43,14 @@ public class StudentApi {
         return responseDto;
     }
     @GetMapping("/api/v1/student/{id}")
-    public ResponseDto<StudentDto> getStudent(@PathVariable Integer id){
+    public ResponseDto<StudentDto> getStudent(@RequestHeader("Authorization") String token,@PathVariable Integer id){
         ResponseDto<StudentDto> responseDto = new ResponseDto<>();
+        if (!authBl.validateToken(token)) {
+            responseDto.setCode("200");
+            responseDto.setResponse(null);
+            responseDto.setErrorMessage("Invalid token");
+            return responseDto;
+        }
         StudentDto studentResponse = studentBl.findStudentById(id);
         if(studentResponse==null){
             responseDto.setCode("400");
@@ -56,9 +65,15 @@ public class StudentApi {
     }
     //Api para obtener todas las pasantias disponibles
     @GetMapping("/api/v1/student/{id}/internship")
-    public ResponseDto<List<InternshipDto>> getInternships(@PathVariable Integer id){
+    public ResponseDto<List<InternshipDto>> getInternships(@RequestHeader("Authorization") String token,@PathVariable Integer id){
         ResponseDto<List<InternshipDto>> responseDto = new ResponseDto<>();
-        List<InternshipDto> internshipResponse = internshipBl.findAllInternships(true);
+        if (!authBl.validateToken(token)) {
+            responseDto.setCode("200");
+            responseDto.setResponse(null);
+            responseDto.setErrorMessage("Invalid token");
+            return responseDto;
+        }
+        List<InternshipDto> internshipResponse = internshipBl.findAllInternships(true,id);
         if(internshipResponse==null){
             responseDto.setCode("400");
             responseDto.setErrorMessage("No se pudo obtener las pasantias");
@@ -72,8 +87,14 @@ public class StudentApi {
     }
     //Api para obtener una pasantia por su id
     @GetMapping("/api/v1/student/{id}/internship/{idInternship}")
-    public ResponseDto<InternshipDto> getInternship(@PathVariable Integer id, @PathVariable Integer idInternship){
+    public ResponseDto<InternshipDto> getInternship(@RequestHeader("Authorization") String token,@PathVariable Integer id, @PathVariable Integer idInternship){
         ResponseDto<InternshipDto> responseDto = new ResponseDto<>();
+        if (!authBl.validateToken(token)) {
+            responseDto.setCode("200");
+            responseDto.setResponse(null);
+            responseDto.setErrorMessage("Invalid token");
+            return responseDto;
+        }
         InternshipDto internshipResponse = internshipBl.findInternshipById(idInternship);
         if(internshipResponse==null){
             responseDto.setCode("400");

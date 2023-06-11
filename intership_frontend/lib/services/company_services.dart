@@ -8,9 +8,6 @@ import 'globals.dart';
 class CompanyServices {
   //Agregar una compañia
   static Future<String> addCompany(CompanyModel company) async {
-    print("entro al servicio");
-    //Ver el nombre de la compañia
-    print(company.Names);
     //Encripta la contraseña
     var bytes = utf8.encode(company.password); // Convierte la cadena a bytes
     var digest = sha256

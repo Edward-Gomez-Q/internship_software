@@ -1,11 +1,9 @@
 package edu.bo.ucb.sis213.internship.bl;
 
-import edu.bo.ucb.sis213.internship.dao.CareerRepository;
-import edu.bo.ucb.sis213.internship.dao.CarrerInternshipRepository;
-import edu.bo.ucb.sis213.internship.dao.CompanyRepository;
-import edu.bo.ucb.sis213.internship.dao.InternshipRepository;
+import edu.bo.ucb.sis213.internship.dao.*;
 import edu.bo.ucb.sis213.internship.dto.CompanyDto;
 import edu.bo.ucb.sis213.internship.dto.InternshipDto;
+import edu.bo.ucb.sis213.internship.dto.StudentDto;
 import edu.bo.ucb.sis213.internship.entity.Career;
 import edu.bo.ucb.sis213.internship.entity.CarrerInternship;
 import edu.bo.ucb.sis213.internship.entity.Company;
@@ -22,12 +20,16 @@ public class InternshipBl {
     private final CompanyRepository companyRepository;
     private final CarrerInternshipRepository carrerInternshipRepository;
     private final CareerRepository careerRepository;
-    InternshipBl(InternshipRepository internshipRepository, CompanyRepository companyRepository, CarrerInternshipRepository carrerInternshipRepository, CareerRepository careerRepository){
+
+    private final StudentRepository studentRepository;
+
+    InternshipBl(StudentRepository studentRepository,InternshipRepository internshipRepository, CompanyRepository companyRepository, CarrerInternshipRepository carrerInternshipRepository, CareerRepository careerRepository){
 
         this.internshipRepository = internshipRepository;
         this.companyRepository = companyRepository;
         this.carrerInternshipRepository = carrerInternshipRepository;
         this.careerRepository = careerRepository;
+        this.studentRepository = studentRepository;
     }
     //Agregar un nuevo internship
     public InternshipDto addInternship(InternshipDto internshipDto, int idCompany){
@@ -63,13 +65,22 @@ public class InternshipBl {
         return new InternshipDto(internship);
     }
     //Obtener todos los internships con status
-    public List<InternshipDto> findAllInternships(boolean status){
+    public List<InternshipDto> findAllInternships(boolean status, int idStudent){
+        Career career = studentRepository.findById(idStudent).getCareerIdCarrer();
         List<InternshipDto> result=new ArrayList<>();
         List<Internship> internships = internshipRepository.findAllByStatus(status);
         //Convertir la lista de internships a una lista de internshipsDto
         for (int i = 0; i < internships.size(); i++) {
             InternshipDto internshipDto = new InternshipDto(internships.get(i));
             result.add(internshipDto);
+        }
+        //Poner las pasantías de la carrera del estudiante en la primera posición
+        for (int i = 0; i < result.size(); i++) {
+            if(result.get(i).getCareers().contains(career)){
+                InternshipDto internshipDto = result.get(i);
+                result.remove(i);
+                result.add(0,internshipDto);
+            }
         }
         return result;
     }
@@ -91,6 +102,5 @@ public class InternshipBl {
         InternshipDto internshipDto = new InternshipDto(internship);
         return internshipDto;
     }
-
 
 }

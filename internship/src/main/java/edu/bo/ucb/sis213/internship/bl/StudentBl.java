@@ -95,5 +95,14 @@ public class StudentBl {
             return null;
         }
     }
-
+    //Buscar estudiante por su person
+    public StudentDto findStudentByPerson(Person person){
+        try {
+            Student student = studentRepository.findByPersonIdPerson(person);
+            return new StudentDto(student);
+        }catch (Exception e){
+            System.out.println("Error al buscar el estudiante: "+e.getMessage());
+            return null;
+        }
+    }
 }

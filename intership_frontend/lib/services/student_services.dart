@@ -3,13 +3,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../bloc/states/student_state.dart';
 import 'globals.dart';
-import 'package:crypto/crypto.dart';
 class StudentServices{
   //Agrega un estudiante
   static Future<String> addStudent(StudentState student) async{
-    //Encripta la contraseña
-    var bytes = utf8.encode(student.contrasena); // Convierte la cadena a bytes
-    var digest = sha256.convert(bytes); // Aplica el algoritmo de hash (en este caso, SHA-256)
     Map data= {
       'nombres': student.nombres,
       'primerApellido': student.primerApellido,
@@ -22,7 +18,7 @@ class StudentServices{
       'carrera': student.carrera,
       'anioIngreso': student.anioIngreso,
       'correoElectronico': student.correoElectronico,
-      'contrasena': digest.toString(),
+      'contrasena': student.contrasena,
       'confirmarContrasena': "",
     };
     var body = json.encode(data);

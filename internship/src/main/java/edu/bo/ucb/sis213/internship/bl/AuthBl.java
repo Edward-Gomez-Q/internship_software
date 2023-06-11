@@ -1,8 +1,7 @@
 package edu.bo.ucb.sis213.internship.bl;
 
-import edu.bo.ucb.sis213.internship.dao.UserRepository;
-import edu.bo.ucb.sis213.internship.entity.RoRole;
-import edu.bo.ucb.sis213.internship.entity.RoUser;
+import edu.bo.ucb.sis213.internship.dao.*;
+import edu.bo.ucb.sis213.internship.entity.*;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -13,6 +12,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import edu.bo.ucb.sis213.internship.dto.LoginDto;
 import edu.bo.ucb.sis213.internship.dto.TokenDto;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,26 @@ import java.util.List;
 public class AuthBl {
     public static final String KEY = "BarcaChampionAndMessiMasGrandeQueCR7";
     private final UserRepository userRepository;
+    private final GroupUserRepository groupUserRepository;
 
-    public AuthBl(UserRepository userRepository){
+    private final StudentRepository studentRepository;
+    private final UseiRepository useiRepository;
+    private final ContactRepository contactRepository;
+
+
+    public AuthBl(UserRepository userRepository, GroupUserRepository groupUserRepository, StudentRepository studentRepository,UseiRepository useiRepository ,ContactRepository contactRepository){
+        this.groupUserRepository = groupUserRepository;
         this.userRepository = userRepository;
+        this.studentRepository = studentRepository;
+        this.contactRepository = contactRepository;
+        this.useiRepository = useiRepository;
+
     }
 
     //Login de usuario
     public TokenDto login(LoginDto login){
+        System.out.println("Ingreso al metodo login");
+        System.out.println("Datos de login: "+login.toString());
         //Saber si el usuario existe
         RoUser user = userRepository.findByMail(login.getEmail());
         if(user == null){
@@ -39,8 +53,29 @@ public class AuthBl {
         userLogin.setEmail(user.getMail());
         userLogin.setPassword(user.getPassword());
         //Saber si el password es correcto
-        if(!userLogin.getPassword().equals(login.getPassword())){
+        if(login.getPassword().equals(userLogin.getPassword())){
             return null;
+        }
+        //Obtener grupo del usuario
+        GroupUser groupUser = groupUserRepository.findByRoUserUserId(user);
+        RoGroup group= groupUser.getRoGroupIdGroup();
+        System.out.println("Grupo del usuario: "+group.getGroupName());
+        int id=0;
+        //Obtener su id de su grupo
+        if(group.getIdGroup()==1)
+        {
+            //Obtener id de estudiante
+            id=studentRepository.findByPersonIdPerson(user.getPersonIdPerson()).getIdStudent();
+        }
+        else if(group.getIdGroup()==2)
+        {
+            //Obtener id de company
+            Contact contact = contactRepository.findByPersonIdPerson(user.getPersonIdPerson());
+            id=contact.getCompanyIdCompany().getIdCompany();
+        }
+        else {
+            //Obtener id de admin
+            id=useiRepository.findByPersonIdPerson(user.getPersonIdPerson()).getIdUsei();
         }
         //Obtener roles del usuario
         List<RoRole> roles = userRepository.findUserRolesById(user.getUserId());
@@ -54,6 +89,8 @@ public class AuthBl {
         TokenDto tokenDto = new TokenDto();
         tokenDto.setAuthToken(generateToken(userLogin, "auth",rolesString, 30));
         tokenDto.setRefreshToken(generateToken(userLogin, "refresh",rolesString, 60*2));
+        tokenDto.setId(id);
+        tokenDto.setType(group.getIdGroup());
         return tokenDto;
     }
     //Generar un token
@@ -143,5 +180,9 @@ public class AuthBl {
             System.err.print("Token invalido: " + exception.getMessage());
             return null;
         }
+    }
+    // Función para comparar si dos hashes corresponden
+    public boolean checkPassword(String password, String hashedPassword) {
+        return BCrypt.checkpw(password, hashedPassword);
     }
 }

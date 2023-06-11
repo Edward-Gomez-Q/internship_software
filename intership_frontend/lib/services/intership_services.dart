@@ -32,7 +32,6 @@ class IntershipServices {
       body: body,
     );
     print('Response Agregar pasantia: ${response.body}');
-
     if (response.statusCode == 200) {
       Map responseMap = json.decode(response.body);
       if (responseMap["code"] == "200") {

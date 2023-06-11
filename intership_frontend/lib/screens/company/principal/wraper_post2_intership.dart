@@ -3,6 +3,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
+import 'package:intership_frontend/models/intership_model.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_careers.dart';
 import 'package:intership_frontend/screens/company/select_career.dart';
 
@@ -179,7 +180,24 @@ class WraperPostIntership2 extends StatelessWidget {
                             ),
                             TextButton(
                               child: Text('Publicar'),
-                              onPressed: () {},
+                              onPressed: () {
+                                IntershipModel state2 = IntershipModel(
+                                    careers: state.listaCarreras,
+                                  days: state.dias,
+                                  requirements: state.requisitos,
+                                  deadline: state.fechaLimite,
+                                  department: state.departamento,
+                                  durations: 1,
+                                  endTime: state.horaFin,
+                                  startTime: state.horaInicio,
+                                  titleIntership: state.titulo,
+                                );
+                                BlocProvider.of<IntershipCubit>(context).registerIntership(state2);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => WraperCareers()));
+                              },
                             ),
                           ],
                         );
