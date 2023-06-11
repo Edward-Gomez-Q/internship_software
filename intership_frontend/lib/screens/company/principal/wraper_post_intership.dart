@@ -43,12 +43,20 @@ class WraperPostIntership extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return 'Este campo es obligatorio';
                     }
-                    return null;
+                    if (value.length >= 30) {
+                      return 'Este campo no puede tener mas de 30 caracteres';
+                    }
                   },
                   onChanged: (value) {
                     BlocProvider.of<IntershipCubit>(context)
                         .updateNombrePasantia(value);
                   },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: CalendarButton(),
                 ),
                 SizedBox(
                   height: 20,
@@ -76,7 +84,15 @@ class WraperPostIntership extends StatelessWidget {
                     },
                   ),
                 ),
-
+                SizedBox(
+                  height: 20,
+                ),
+                Material(
+                  child: DaySelectionList(),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: "Duración (Horas)",
@@ -98,7 +114,6 @@ class WraperPostIntership extends StatelessWidget {
                     BlocProvider.of<IntershipCubit>(context).updateHoras(horas);
                   },
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
@@ -142,7 +157,7 @@ class WraperPostIntership extends StatelessWidget {
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                    hintText: 'Requerimientos',
+                    hintText: 'Descripción',
                     icon: Icon(Icons.description),
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
@@ -153,7 +168,9 @@ class WraperPostIntership extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return 'Este campo es obligatorio';
                     }
-                    return null;
+                    if (value.length >= 1000) {
+                      return 'Este campo no puede tener mas de 1000 caracteres';
+                    }
                   },
                   onChanged: (value) {
                     BlocProvider.of<IntershipCubit>(context)

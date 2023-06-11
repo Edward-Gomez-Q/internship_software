@@ -68,12 +68,59 @@ class Wrapper extends StatelessWidget {
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return HomeStudent();
                         }));
-                      }
-                      else if(value.type==2)
-                      {
-                        BlocProvider.of<TokenCubit>(context).login(value);
-                        //Login Empresa
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      },
+                      child: Text(
+                        "Regístrate",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        Future<TokenState> token =
+                            BlocProvider.of<AuthCubit>(context).login();
+                        token.then((value) {
+                          if (value.type == -1) {
+                            //Login Fallido
+
+                          } else if (value.type == 1) {
+                            BlocProvider.of<TokenCubit>(context).login(value);
+                            //Login Estudiante
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return HomeStudent();
+                            }));
+                          } else if (value.type == 2) {
+                            BlocProvider.of<TokenCubit>(context).login(value);
+                            //Login Empresa
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return HomeCompany();
+                            }));
+                          } else {
+                            BlocProvider.of<TokenCubit>(context).login(value);
+                            //Login Administrador
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return AdminCompany();
+                            }));
+                          }
+                        });
+                      },
+                      child: Text("Iniciar sesion"),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue.shade900,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
                           return HomeCompany();
                         }));
                       }

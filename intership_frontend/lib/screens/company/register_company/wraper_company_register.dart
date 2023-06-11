@@ -46,6 +46,9 @@ class WraperCompanyRegister2 extends StatelessWidget {
                       if (value!.isEmpty) {
                         return "Este campo es obligatorio";
                       }
+                      if (value.length >= 100) {
+                        return "El nombre debe tener menos de 100 caracteres";
+                      }
                     },
                     onChanged: (value) => BlocProvider.of<CompanyCubit>(context)
                         .updateNombresContacto(value),
