@@ -5,12 +5,18 @@ import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/bloc/states/token_state.dart';
 import 'package:intership_frontend/models/intership_model.dart';
+import 'package:intership_frontend/screens/company/intership_company.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_careers.dart';
 import 'package:intership_frontend/screens/company/select_career.dart';
 
 import '../../../bloc/cubit/token_cubit.dart';
 
 class WraperPostIntership2 extends StatelessWidget {
+  final _keyform;
+  WraperPostIntership2({
+    Key? key,
+  })  : _keyform = GlobalKey<FormState>(),
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<IntershipCubit, IntershipState>(
@@ -158,6 +164,11 @@ class WraperPostIntership2 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Por favor ingrese los requisitos';
+                      }
+                    },
                     onChanged: (value) {
                       BlocProvider.of<IntershipCubit>(context)
                           .updateRequisitos(value);
@@ -172,7 +183,8 @@ class WraperPostIntership2 extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('¿Esta seguro de publicar la pasantía?'),
+                            title:
+                                Text('¿Esta seguro de publicar la pasantía?'),
                             content: Text(
                                 'Ha completado el formulario de publicación de pasantía.'),
                             actions: [
@@ -185,22 +197,24 @@ class WraperPostIntership2 extends StatelessWidget {
                               TextButton(
                                 child: Text('Publicar'),
                                 onPressed: () {
-                                  IntershipModel intership = IntershipModel(
-                                    department: state.departamento,
-                                    deadline: state.fechaLimite,
-                                    days: state.dias.toString(),
-                                    description: state.descripcion,
-                                    careers: state.listaCarreras,
-                                    duration: 0,
-                                    endDate: state.fechaLimite,
-                                    knowledge: state.requisitos,
-                                    startDate: state.horaInicio,
-                                    title: state.titulo,
-                                    urlPDF: state.urlPDF,
-                                    urlWord: state.urlwORD,
-                                  );
-                                  BlocProvider.of<IntershipCubit>(context).registerIntership(tokenState.authToken,tokenState.id,intership);
-
+                                  if (_keyform.currentState!.validate()) {
+                                    print("Validado");
+                                    IntershipModel intership = IntershipModel(
+                                      department: state.departamento,
+                                      deadline: state.fechaLimite,
+                                      days: state.dias.toString(),
+                                      description: state.descripcion,
+                                      careers: state.listaCarreras,
+                                      duration: 0,
+                                      endDate: state.fechaLimite,
+                                      knowledge: state.requisitos,
+                                      startDate: state.horaInicio,
+                                      title: state.titulo,
+                                      urlPDF: state.urlPDF,
+                                      urlWord: state.urlwORD,
+                                    );
+                                    BlocProvider.of<IntershipCubit>(context).registerIntership(tokenState.authToken,tokenState.id,intership);
+                                  }
                                 },
                               ),
                             ],

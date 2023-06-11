@@ -12,27 +12,32 @@ import '../../bloc/states/auth_state.dart';
 import 'input_field.dart';
 
 class Wrapper extends StatelessWidget {
-  const Wrapper({Key? key}) : super(key: key);
+  Wrapper({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(builder: (context, state){
-
-      return BlocBuilder<TokenCubit,TokenState>(builder: (context, tokenState) {
-        return Padding(
-          padding: EdgeInsets.all(30),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+    return BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+      return BlocBuilder<TokenCubit, TokenState>(
+        builder: (context, tokenState) {
+          return Padding(
+            padding: EdgeInsets.all(30),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 40,
                   ),
-                  child: InputField(),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return Registration();
+                      }));
+                },
+                child: Text(
+                  "Regístrate",
+                  style: TextStyle(color: Colors.grey),
                 ),
+              ),
                 SizedBox(
                   height: 40,
                 ),
@@ -92,12 +97,14 @@ class Wrapper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                )
-              ],
+
+              ),
+                ],
+              ),
             ),
-          ),
-        );
-      },);
+          );
+        },
+      );
     });
   }
 }
