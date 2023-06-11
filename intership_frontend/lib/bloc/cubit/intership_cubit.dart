@@ -47,12 +47,16 @@ class IntershipCubit extends Cubit<IntershipState> {
     emit(state.copyWith(requisitos: requisitos));
   }
 
-  void updateCarreras(String carreras) {
-    emit(state.copyWith(carreras: carreras));
+  void updateCarreras(List<String> listacarreras) {
+    emit(state.copyWith(listacarreras: listacarreras));
   }
 
   void updateDescripcion(String descripcion) {
     emit(state.copyWith(descripcion: descripcion));
+  }
+
+  void updateCarrera(String carrera) {
+    emit(state.copyWith(carrera: carrera));
   }
 
   // registerIntership

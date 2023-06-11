@@ -5,7 +5,6 @@ import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/services/globals.dart';
 
 class WraperCareers extends StatelessWidget {
-  List<String> carreras = [];
   final _keyform;
   WraperCareers({Key? key})
       : _keyform = GlobalKey<FormState>(),
@@ -14,6 +13,7 @@ class WraperCareers extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<IntershipCubit, IntershipState>(
       builder: (context, state) {
+        final listaDeCarreras = state.listacarreras;
         return SingleChildScrollView(
           child: Form(
             key: _keyform,
@@ -43,24 +43,23 @@ class WraperCareers extends StatelessWidget {
                   height: 20,
                 ),
                 Card(
-                  child: DropdownButtonFormField<String>(
-                    items: ucbCareers.map((String value) {
+                  child: DropdownButtonFormField(
+                    items: listaDeCarreras.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
                     }).toList(),
-                    hint:
-                        Text("Carreras", style: TextStyle(color: Colors.grey)),
+                    hint: Text("Carrera", style: TextStyle(color: Colors.grey)),
                     icon: Icon(Icons.arrow_drop_down),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Este campo es obligatorio';
+                        return "Este campo es obligatorio";
                       }
                     },
                     onChanged: (value) {
                       BlocProvider.of<IntershipCubit>(context)
-                          .updateCarreras(value ?? '');
+                          .updateCarrera(value ?? '');
                     },
                   ),
                 ),

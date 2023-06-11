@@ -80,7 +80,7 @@ class ListInternshipCubit extends Cubit<ListInternshipState> {
         fechaLimite: intership.deadline,
         descripcion: intership.description,
         dias: intership.days,
-        carreras: intership.careers,
+        carrera: intership.careers,
         urlwORD: intership.urlWord,
         requisitos: intership.knowledge,
         horas: intership.duration,

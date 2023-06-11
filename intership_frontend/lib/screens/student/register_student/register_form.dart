@@ -190,7 +190,9 @@ class FormRegister extends StatelessWidget {
                       child: RadioListTile(
                         title: Text("Estudiante"),
                         value: 1,
-                        groupValue: 1,
+                        groupValue: BlocProvider.of<StudentCubit>(context)
+                            .state
+                            .validacionUCB,
                         onChanged: (value) {
                           BlocProvider.of<StudentCubit>(context)
                               .updateValidacionUCB(value ?? 1);
@@ -202,10 +204,12 @@ class FormRegister extends StatelessWidget {
                       child: RadioListTile(
                         title: Text("Graduado"),
                         value: 2,
-                        groupValue: 1,
+                        groupValue: BlocProvider.of<StudentCubit>(context)
+                            .state
+                            .validacionUCB,
                         onChanged: (value) {
                           BlocProvider.of<StudentCubit>(context)
-                              .updateValidacionUCB(value ?? 1);
+                              .updateValidacionUCB(value ?? 2);
                         },
                       ),
                     ),
@@ -243,7 +247,7 @@ class FormRegister extends StatelessWidget {
                   width: 10,
                 ),
                 DropdownButtonFormField(
-                  items: ucbCareers.map((String value) {
+                  items: listaDeCarreras.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
