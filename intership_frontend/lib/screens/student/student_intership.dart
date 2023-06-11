@@ -37,13 +37,13 @@ class HomeStudent extends StatelessWidget {
               interships: [
                 IntershipState(
                     titulo: "Pasantía en desarrollo de software",
-                    carreras: 'Ingeniería de sistemas',
+                    carrera: 'Ingeniería de sistemas',
                     requisitos:
                         "Se busca estudiante de ingeniería de sistemas para desarrollar software",
                     fechaLimite: DateTime.now()),
                 IntershipState(
                     titulo: "Pasantía en desarrollo de software",
-                    carreras: 'Ingeniería de sistemas',
+                    carrera: 'Ingeniería de sistemas',
                     requisitos:
                         "Se busca estudiante de ingeniería de sistemas para desarrollar software",
                     fechaLimite: DateTime.now()),

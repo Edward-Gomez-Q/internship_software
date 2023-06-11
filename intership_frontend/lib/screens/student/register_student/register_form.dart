@@ -247,7 +247,7 @@ class FormRegister extends StatelessWidget {
                   width: 10,
                 ),
                 DropdownButtonFormField(
-                  items: ucbCareers.map((String value) {
+                  items: listaDeCarreras.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
