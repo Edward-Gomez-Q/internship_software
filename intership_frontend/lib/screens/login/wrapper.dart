@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/auth_cubit.dart';
 import 'package:intership_frontend/bloc/cubit/token_cubit.dart';
 import 'package:intership_frontend/bloc/states/token_state.dart';
+import 'package:intership_frontend/screens/admin/admin_company.dart';
 import 'package:intership_frontend/screens/company/intership_company.dart';
 import 'package:intership_frontend/screens/registration/registration_principal.dart';
 import 'package:intership_frontend/screens/student/student_intership.dart';
@@ -77,7 +79,9 @@ class Wrapper extends StatelessWidget {
                       {
                         tokenState=value;
                         //Login Administrador
-
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return AdminCompany();
+                        }));
                       }
                     });
                   },

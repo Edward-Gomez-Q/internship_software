@@ -10,6 +10,7 @@ class IntershipModel {
   final String urlWord;
   final String requirements;
   final List<String> careers;
+  final bool status;
   final List<String> knowledge;
 
   IntershipModel({
@@ -24,6 +25,7 @@ class IntershipModel {
     this.urlWord = '',
     this.requirements = '',
     this.careers = const [],
+    this.status = true,
     this.knowledge = const [],
   })  : this.deadline = deadline ?? DateTime.now(),
         this.startTime = startTime ?? DateTime.now(),
@@ -42,6 +44,7 @@ class IntershipModel {
     String? urlWord,
     String? requirements,
     List<String>? careers,
+    bool? status,
     List<String>? knowledge,
   }) {
     return IntershipModel(
@@ -56,6 +59,7 @@ class IntershipModel {
       urlWord: urlWord ?? this.urlWord,
       requirements: requirements ?? this.requirements,
       careers: careers ?? this.careers,
+      status: status ?? this.status,
       knowledge: knowledge ?? this.knowledge,
     );
   }
@@ -73,6 +77,7 @@ class IntershipModel {
       'urlWord': urlWord,
       'requirements': requirements,
       'careers': careers,
+      'status': status,
       'knowledge': knowledge,
     };
   }
@@ -90,6 +95,7 @@ class IntershipModel {
       urlWord: map['urlWord'],
       requirements: map['requirements'],
       careers: List<String>.from(map['careers']),
+      status: map['status'],
       knowledge: List<String>.from(map['knowledge']),
     );
   }
@@ -106,6 +112,7 @@ class IntershipModel {
       urlWord: item['urlWord'],
       requirements: item['requirements'],
       careers: List<String>.from(item['careers']),
+      status: item['status'],
       knowledge: List<String>.from(item['knowledge']),
     );
   }
@@ -123,6 +130,7 @@ class IntershipModel {
         urlWord,
         requirements,
         careers,
+        status,
         knowledge,
       ];
 }

@@ -6,6 +6,7 @@ import 'package:intership_frontend/services/intership_services.dart';
 
 class IntershipCubit extends Cubit<IntershipState> {
   IntershipCubit() : super(IntershipState());
+
   void updateNombrePasantia(String titulo) {
     emit(state.copyWith(titulo: titulo));
   }
@@ -61,6 +62,17 @@ class IntershipCubit extends Cubit<IntershipState> {
       return 'Ok';
     } else {
       return response;
+    }
+  }
+
+  // leerIntership
+  Future<String> getIntership(int id) async {
+    List<IntershipModel> response =
+        await IntershipServices.getIntershipsStatus(id);
+    if (response.isNotEmpty) {
+      return 'ok';
+    } else {
+      return 'lista vacia';
     }
   }
 }
