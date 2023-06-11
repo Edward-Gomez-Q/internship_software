@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_frontend/bloc/cubit/list_internship_cubit.dart';
+import 'package:intership_frontend/bloc/cubit/token_cubit.dart';
+import 'package:intership_frontend/bloc/states/list_internship_state.dart';
+import 'package:intership_frontend/bloc/states/token_state.dart';
 import 'package:intership_frontend/components/appbar.dart';
 import 'package:intership_frontend/components/bottombar_company.dart';
 import 'package:intership_frontend/components/bottombar_student.dart';
@@ -15,11 +20,17 @@ class HomeStudent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(title: "Pasantías Activas"),
-      body: Column(
-        children: [
-          /*Padding(
+    return BlocBuilder<TokenCubit,TokenState>(builder: (context, tokenState) {
+      //Borrar todos los internships
+      BlocProvider.of<ListInternshipCubit>(context).clearList();
+      //Obtener todos los internships
+      BlocProvider.of<ListInternshipCubit>(context).getAllInternshipsAvailable(tokenState.authToken, tokenState.id);
+      return BlocBuilder<ListInternshipCubit,ListInternshipState>(builder: (context, state) {
+        return Scaffold(
+          appBar: MyAppBar(title: "Pasantías Activas"),
+          body: Column(
+            children: [
+              /*Padding(
             padding: EdgeInsets.only(top: 40),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -29,30 +40,19 @@ class HomeStudent extends StatelessWidget {
               ),
             ),
           ),*/
-          SizedBox(
-            height: 20,
+              SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: WrapperViewIntershipStudent(
+                  interships:state.internships,
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: WrapperViewIntershipStudent(
-              interships: [
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carreras: 'Ingeniería de sistemas',
-                    requisitos:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
-                IntershipState(
-                    titulo: "Pasantía en desarrollo de software",
-                    carreras: 'Ingeniería de sistemas',
-                    requisitos:
-                        "Se busca estudiante de ingeniería de sistemas para desarrollar software",
-                    fechaLimite: DateTime.now()),
-              ],
-            ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomBarStudent(),
-    );
+          bottomNavigationBar: BottomBarStudent(),
+        );
+      },);
+    },);
   }
 }

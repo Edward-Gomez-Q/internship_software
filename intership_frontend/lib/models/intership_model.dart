@@ -131,7 +131,7 @@ class IntershipModel extends Equatable {
       description: map['description'],
       urlPDF: map['urlPDF'],
       urlWord: map['urlWORD'],
-      careers: map['careers'],
+      careers: map['careers'].toString(),
       knowledge: map['knowledge'],
     );
   }

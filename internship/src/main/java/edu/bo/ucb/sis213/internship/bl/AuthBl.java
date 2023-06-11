@@ -46,6 +46,7 @@ public class AuthBl {
         //Saber si el usuario existe
         RoUser user = userRepository.findByMail(login.getEmail());
         if(user == null){
+            System.out.println("Usuario no existe");
             return null;
         }
         //Crear LoginDto
@@ -53,7 +54,8 @@ public class AuthBl {
         userLogin.setEmail(user.getMail());
         userLogin.setPassword(user.getPassword());
         //Saber si el password es correcto
-        if(login.getPassword().equals(userLogin.getPassword())){
+        if(!login.getPassword().equals(userLogin.getPassword())){
+            System.out.println("Password incorrecto");
             return null;
         }
         //Obtener grupo del usuario

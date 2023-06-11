@@ -150,4 +150,21 @@ class CompanyModel extends Equatable {
       phone: map['phone'],
     );
   }
+  static CompanyModel fromMapBudle(Map<String, dynamic> map){
+    return CompanyModel(
+      idCompany: map['idCompany'],
+      nameCompany: map['nameCompany'],
+      sectors: [],
+      review: map['review'],
+      urlLogo: map['urlLogo'],
+      webSide: map['webSide'],
+      nit: map['nit'],
+      Names: "",
+      firstLastName: "",
+      secondLastName: "",
+      email: "",
+      password: "",
+      phone: "",
+    );
+  }
 }

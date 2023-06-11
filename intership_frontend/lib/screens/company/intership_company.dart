@@ -20,6 +20,7 @@ class HomeCompany extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TokenCubit, TokenState>(
       builder: (context, tokenState) {
+        BlocProvider.of<ListInternshipCubit>(context).clearList();
         BlocProvider.of<ListInternshipCubit>(context)
             .getAllInternships(tokenState.authToken, tokenState.id);
         return BlocBuilder<ListInternshipCubit, ListInternshipState>(
@@ -28,16 +29,6 @@ class HomeCompany extends StatelessWidget {
               appBar: MyAppBar(title: "Pasantías"),
               body: Column(
                 children: [
-                  /*Padding(
-                  padding: EdgeInsets.only(top: 40),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SearchBar(
-                      hinttext: 'Buscar por nombre',
-                      onSearch: handleSearch,
-                    ),
-                  ),
-                ),*/
                   SizedBox(
                     height: 20,
                   ),

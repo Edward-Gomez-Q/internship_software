@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/models/intership_model.dart';
-import 'package:intership_frontend/services/intership_services.dart';
+import 'package:intership_frontend/services/company_services.dart';
 
 class IntershipCubit extends Cubit<IntershipState> {
   IntershipCubit() : super(IntershipState());
@@ -59,7 +59,7 @@ class IntershipCubit extends Cubit<IntershipState> {
   Future<String> registerIntership(
       String token, int id, IntershipModel intership) async {
     String response =
-        await IntershipServices.addIntership(token, id, intership);
+        await CompanyServices.addIntership(token, id, intership);
     if (response == 'Intership added') {
       return 'Ok';
     } else {
