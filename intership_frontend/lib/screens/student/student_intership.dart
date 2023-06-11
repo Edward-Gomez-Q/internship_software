@@ -19,7 +19,7 @@ class HomeStudent extends StatelessWidget {
       appBar: MyAppBar(title: "Pasantías Activas"),
       body: Column(
         children: [
-          Padding(
+          /*Padding(
             padding: EdgeInsets.only(top: 40),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -28,7 +28,7 @@ class HomeStudent extends StatelessWidget {
                 onSearch: handleSearch,
               ),
             ),
-          ),
+          ),*/
           SizedBox(
             height: 20,
           ),

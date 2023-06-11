@@ -10,8 +10,8 @@ class FormRegister extends StatelessWidget {
   final _keyform;
 
   FormRegister({Key? key, required this.startYear, required this.endYear})
-      : _keyform = GlobalKey<FormState>(), 
-      super(key: key);
+      : _keyform = GlobalKey<FormState>(),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +29,27 @@ class FormRegister extends StatelessWidget {
             child: Column(
               children: [
                 TextFormField(
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
                   decoration: InputDecoration(
-                    hintText: "Nombres", 
-                    hintStyle: TextStyle(color: Colors.grey), 
-                    icon: Icon(Icons.person), 
+                    hintText: "Nombres",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    icon: Icon(Icons.person),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),),), 
-                    onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateNombres(value),),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onChanged: (value) => BlocProvider.of<StudentCubit>(context)
+                      .updateNombres(value),
+                ),
                 const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
-                    decoration: InputDecoration(
+                  decoration: InputDecoration(
                     hintText: "Primer Apellido",
                     hintStyle: TextStyle(color: Colors.grey),
                     icon: Icon(Icons.person),
@@ -53,8 +57,8 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
@@ -73,8 +77,8 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
@@ -98,8 +102,8 @@ class FormRegister extends StatelessWidget {
                   hint: const Text("Tipo de documento",
                       style: TextStyle(color: Colors.grey)),
                   icon: const Icon(Icons.arrow_drop_down),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
@@ -124,8 +128,8 @@ class FormRegister extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        validator: (value){
-                          if(value == null || value.isEmpty){
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
                             return "Este campo es obligatorio";
                           }
                         },
@@ -160,8 +164,8 @@ class FormRegister extends StatelessWidget {
                         hint: const Text("DPT",
                             style: TextStyle(color: Colors.grey)),
                         icon: const Icon(Icons.arrow_drop_down),
-                        validator: (value){
-                          if(value == null || value.isEmpty){
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
                             return "Este campo es obligatorio";
                           }
                         },
@@ -193,52 +197,53 @@ class FormRegister extends StatelessWidget {
                         },
                       ),
                     ),
-                  Flexible(
-                    fit: FlexFit.tight,
-                    child: RadioListTile(
-                      title: Text("Graduado"),
-                      value: 2,
-                      groupValue: 1,
-                      onChanged: (value) {
-                        BlocProvider.of<StudentCubit>(context)
-                            .updateValidacionUCB(value ?? 1);
-                      },
-
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: RadioListTile(
+                        title: Text("Graduado"),
+                        value: 2,
+                        groupValue: 1,
+                        onChanged: (value) {
+                          BlocProvider.of<StudentCubit>(context)
+                              .updateValidacionUCB(value ?? 1);
+                        },
+                      ),
                     ),
-                  ),
                   ],
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                DropdownButtonFormField(
-                  items: ucbCampuses.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  hint: Text("Sede", style: TextStyle(color: Colors.grey)),
-                  icon: Icon(Icons.arrow_drop_down),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
-                      return "Este campo es obligatorio";
-                    }
-                  },
-                  onChanged: (String? value) {
-                    BlocProvider.of<StudentCubit>(context)
-                        .updateSede(value ?? '');
-                    BlocProvider.of<StudentCubit>(context)
-                        .getListaCarreras(value ?? '');
-                    print(
-                        "Lista de carreras: " + state.listaCarreras.toString());
-                  },
+                Card(
+                  child: DropdownButtonFormField<String>(
+                    items: ucbCampuses.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    hint: Text("Sede", style: TextStyle(color: Colors.grey)),
+                    icon: Icon(Icons.arrow_drop_down),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Este campo es obligatorio";
+                      }
+                    },
+                    onChanged: (String? value) {
+                      BlocProvider.of<StudentCubit>(context)
+                          .updateSede(value ?? '');
+                      BlocProvider.of<StudentCubit>(context)
+                          .getListaCarreras(value ?? '');
+                      print("Lista de carreras: " +
+                          state.listaCarreras.toString());
+                    },
+                  ),
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 DropdownButtonFormField(
-                  items: listaDeCarreras.map((String value) {
+                  items: ucbCareers.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -246,8 +251,8 @@ class FormRegister extends StatelessWidget {
                   }).toList(),
                   hint: Text("Carrera", style: TextStyle(color: Colors.grey)),
                   icon: Icon(Icons.arrow_drop_down),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
@@ -269,8 +274,8 @@ class FormRegister extends StatelessWidget {
                   hint: Text("Año de Ingreso",
                       style: TextStyle(color: Colors.grey)),
                   icon: Icon(Icons.arrow_drop_down),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
@@ -291,8 +296,8 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
@@ -311,11 +316,11 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
-                    if(value.length <=6){
+                    if (value.length <= 6) {
                       return "Contraseña muy corta";
                     }
                   },
@@ -334,8 +339,8 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  validator: (value){
-                    if(value == null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Este campo es obligatorio";
                     }
                   },
@@ -347,10 +352,10 @@ class FormRegister extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if(_keyform.currentState!.validate()){
+                    if (_keyform.currentState!.validate()) {
                       print("Validado");
                     }
-                    //TODO: Validar que los campos no esten vacios        
+                    //TODO: Validar que los campos no esten vacios
                     if (state.areAllFieldsFilled(state)) {
                       BlocProvider.of<StudentCubit>(context).addStudent(state);
                       print(state.toString());
