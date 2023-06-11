@@ -73,7 +73,7 @@ public class StudentApi {
             responseDto.setErrorMessage("Invalid token");
             return responseDto;
         }
-        List<InternshipDto> internshipResponse = internshipBl.findAllInternships(true,id);
+        List<InternshipDto> internshipResponse = internshipBl.findAllInternshipsAvailable(id);
         if(internshipResponse==null){
             responseDto.setCode("400");
             responseDto.setErrorMessage("No se pudo obtener las pasantias");
@@ -99,6 +99,28 @@ public class StudentApi {
         if(internshipResponse==null){
             responseDto.setCode("400");
             responseDto.setErrorMessage("No se pudo obtener la pasantia");
+            responseDto.setResponse(null);
+            return responseDto;
+        }
+        responseDto.setCode("200");
+        responseDto.setErrorMessage("");
+        responseDto.setResponse(internshipResponse);
+        return responseDto;
+    }
+    //Api para postularse a una pasantia
+    @PostMapping("/api/v1/student/{id}/internship/{idInternship}")
+    public ResponseDto<String> applyInternship(@RequestHeader("Authorization") String token,@PathVariable Integer id, @PathVariable Integer idInternship){
+        ResponseDto<String> responseDto = new ResponseDto<>();
+        if (!authBl.validateToken(token)) {
+            responseDto.setCode("200");
+            responseDto.setResponse(null);
+            responseDto.setErrorMessage("Invalid token");
+            return responseDto;
+        }
+        String internshipResponse = studentBl.applyInternship(id,idInternship);
+        if(internshipResponse==null){
+            responseDto.setCode("400");
+            responseDto.setErrorMessage("No se pudo aplicar a la pasantia");
             responseDto.setResponse(null);
             return responseDto;
         }

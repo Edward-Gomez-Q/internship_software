@@ -78,6 +78,15 @@ class StudentCubit extends Cubit<StudentState> {
       return response;
     }
   }
+  //Postularse a una pasantía
+  Future<String> postularsePasantia(String token,int idStudent, int idInternship) async{
+    String response = await StudentServices.postulationToInternship(token,idStudent, idInternship);
+    if (response == 'Postulation added') {
+      return 'Ok';
+    } else {
+      return response;
+    }
+  }
   // Obtener lista de carreras
   Future<String> getListaCarreras(String university) async{
     int id=2;
@@ -99,5 +108,6 @@ class StudentCubit extends Cubit<StudentState> {
       return 'Error 404';
     }
   }
+
 
 }

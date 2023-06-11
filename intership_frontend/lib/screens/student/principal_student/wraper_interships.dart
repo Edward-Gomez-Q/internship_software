@@ -57,9 +57,7 @@ class WrapperViewIntershipStudent extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Postulation(
-                                intership: interships[index],
-                              )),
+                          builder: (context) => Postulation(intership: interships[index],)),
                     );
                   },
                   icon: Icon(Icons.add),
