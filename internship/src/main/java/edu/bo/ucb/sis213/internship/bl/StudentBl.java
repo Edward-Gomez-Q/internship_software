@@ -5,6 +5,7 @@ import edu.bo.ucb.sis213.internship.dto.StudentDto;
 import edu.bo.ucb.sis213.internship.entity.*;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Service
@@ -16,15 +17,21 @@ public class StudentBl {
     private final CareerRepository careerRepository;
     private final GroupUserRepository groupUserRepository;
     private final GroupRepository groupRepository;
+    private final PostulationRepository studentPostulation;
+    private final InterviewRepository studentInterview;
+    private final InternshipRepository internshipRepository;
 
     //Constructor de la clase
-    public StudentBl(StudentRepository studentRepository, PersonRepository personRepository, UserRepository userRepository, CareerRepository careerRepository, GroupUserRepository groupUserRepository, GroupRepository groupRepository) {
+    public StudentBl(InternshipRepository internshipRepository,StudentRepository studentRepository, PersonRepository personRepository, UserRepository userRepository, CareerRepository careerRepository, GroupUserRepository groupUserRepository, GroupRepository groupRepository, PostulationRepository studentPostulation, InterviewRepository studentInterview) {
         this.studentRepository = studentRepository;
         this.personRepository = personRepository;
         this.userRepository = userRepository;
         this.careerRepository = careerRepository;
         this.groupUserRepository = groupUserRepository;
         this.groupRepository = groupRepository;
+        this.studentPostulation = studentPostulation;
+        this.studentInterview = studentInterview;
+        this.internshipRepository = internshipRepository;
     }
 
     //Agregrar un estudiante
@@ -103,6 +110,35 @@ public class StudentBl {
         }catch (Exception e){
             System.out.println("Error al buscar el estudiante: "+e.getMessage());
             return null;
+        }
+    }
+    //Postular a una pasantia
+    public String applyInternship(int idStudent, int idInternship){
+        try {
+            Postulation postulation = new Postulation();
+            postulation.setStudentIdStudent(studentRepository.findById(idStudent));
+            postulation.setInternshipIdInternship(internshipRepository.findById(idInternship));
+            postulation.setPresentationDate(new Date());
+            postulation.setUrlCv("");
+            postulation.setNote("");
+            //En espera = 1
+            postulation.setStatePostulation(1);
+            Interview interview = new Interview();
+            interview.setInterviewDate(new Date());
+            interview.setPostulationIdPostulation(postulation);
+            interview.setType(true);
+            interview.setStartTime(new Date());
+            interview.setEndTime(new Date());
+            interview.setLocation("");
+            interview.setLatitude(new BigDecimal(0));
+            interview.setLongitude(new BigDecimal(0));
+            studentPostulation.save(postulation);
+            studentInterview.save(interview);
+
+            return "Postulacion exitosa";
+        }catch (Exception e){
+            System.out.println("Error al postular a la pasantia: "+e.getMessage());
+            return "Error al postular a la pasantia: "+e.getMessage();
         }
     }
 }

@@ -93,6 +93,29 @@ public class InternshipBl {
         }
         return result;
     }
+    //Obtener todas las pasantías disponibles a las que se puede aplicar
+    public List<InternshipDto> findAllInternshipsAvailable(int idStudent){
+        Career career = studentRepository.findById(idStudent).getCareerIdCarrer();
+        List<Internship> internships = internshipRepository.findInternshipsWithoutPostulationByStudentId(idStudent);
+        List<InternshipDto> result=new ArrayList<>();
+        //Convertir la lista de internships a una lista de internshipsDto
+        for (int i = 0; i < internships.size(); i++) {
+            InternshipDto internshipDto = new InternshipDto(internships.get(i));
+            if(internships.get(i).getStatus())
+            {
+                result.add(internshipDto);
+            }
+        }
+        //Poner las pasantías de la carrera del estudiante en la primera posición
+        for (int i = 0; i < result.size(); i++) {
+            if(result.get(i).getCareers().contains(career)){
+                InternshipDto internshipDto = result.get(i);
+                result.remove(i);
+                result.add(0,internshipDto);
+            }
+        }
+        return result;
+    }
     //Obtener todas las pasantías por compañia
     public List<InternshipDto> findAllInternshipsByCompany(int idCompany){
         List<InternshipDto> result=new ArrayList<>();

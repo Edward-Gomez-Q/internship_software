@@ -75,4 +75,25 @@ class StudentServices{
       return [];
     }
   }
+  //Postular a una pasantia
+  static Future<String> postulationToInternship(String token,int idStudent, int idInternship)  async {
+    var url = Uri.parse('$baseUrl/student/$idStudent/internship/$idInternship');
+    http.Response response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer $token',
+        }
+    );
+    if (response.statusCode == 200) {
+      Map responseMap = json.decode(response.body);
+      if (responseMap["code"] == "200") {
+        return 'Postulation added';
+      } else {
+        return 'Error 404';
+      }
+    } else {
+      return 'Error 404';
+    }
+  }
 }
