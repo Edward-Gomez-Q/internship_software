@@ -8,6 +8,10 @@ import 'package:intership_frontend/screens/company/principal/wraper_careers.dart
 import 'package:intership_frontend/screens/company/select_career.dart';
 
 class WraperPostIntership2 extends StatelessWidget {
+  final _keyform;
+  WraperPostIntership2({Key? key,})
+      : _keyform = GlobalKey<FormState>(),
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<IntershipCubit, IntershipState>(
@@ -15,205 +19,213 @@ class WraperPostIntership2 extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.all(20),
           child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: [
-                    Text('Descripción detallada',
-                        style: TextStyle(
-                            fontSize: 20, color: Colors.grey.shade600),
-                        textAlign: TextAlign.left),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        FilePickerResult? result =
-                            await FilePicker.platform.pickFiles();
-                        if (result != null) {
-                          PlatformFile file = result.files.first;
-                          String url = file.path.toString();
-                          BlocProvider.of<IntershipCubit>(context)
-                              .updateUrlPDF(url);
-                        } else {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Error'),
-                                content: Text('No se pudo cargar el archivo'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('Ok'),
-                                  )
-                                ],
-                              );
-                            },
-                          );
-                        }
-                      },
-                      child: Text('Cargar PDF'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 9, 123, 16),
-                        onPrimary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+            child Form(
+              key: _keyform,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: [
+                      Text('Descripción detallada',
+                          style: TextStyle(
+                              fontSize: 20, color: Colors.grey.shade600),
+                          textAlign: TextAlign.left),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            PlatformFile file = result.files.first;
+                            String url = file.path.toString();
+                            BlocProvider.of<IntershipCubit>(context)
+                                .updateUrlPDF(url);
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Error'),
+                                  content: Text('No se pudo cargar el archivo'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Ok'),
+                                    )
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        },
+                        child: Text('Cargar PDF'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 9, 123, 16),
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text('Silabo de hoja de vida',
+                          style: TextStyle(
+                              fontSize: 20, color: Colors.grey.shade600),
+                          textAlign: TextAlign.left),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            PlatformFile file = result.files.first;
+                            String url = file.path.toString();
+                            BlocProvider.of<IntershipCubit>(context)
+                                .updateUrlWORD(url);
+                          } else {
+                            AlertDialog(
+                              title: Text('Error'),
+                              content: Text('No se pudo cargar el archivo'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('Ok'),
+                                )
+                              ],
+                            );
+                          }
+                        },
+                        child: Text('Cargar WORD'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 9, 123, 16),
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text('Formación del pasante',
+                          style: TextStyle(
+                              fontSize: 20, color: Colors.grey.shade600),
+                          textAlign: TextAlign.left),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SelectCareer()));
+                        },
+                        child: Text("Seleccionar"),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue.shade900,
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Requisitos",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Text('Silabo de hoja de vida',
-                        style: TextStyle(
-                            fontSize: 20, color: Colors.grey.shade600),
-                        textAlign: TextAlign.left),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        FilePickerResult? result =
-                            await FilePicker.platform.pickFiles();
-                        if (result != null) {
-                          PlatformFile file = result.files.first;
-                          String url = file.path.toString();
-                          BlocProvider.of<IntershipCubit>(context)
-                              .updateUrlWORD(url);
-                        } else {
-                          AlertDialog(
-                            title: Text('Error'),
-                            content: Text('No se pudo cargar el archivo'),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Por favor ingrese los requisitos';
+                      }
+                    },
+                    onChanged: (value) {
+                      BlocProvider.of<IntershipCubit>(context)
+                          .updateRequisitos(value);
+                    },
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('¿Esta seguro de publicar la pasantía?'),
+                            content: Text(
+                                'Ha completado el formulario de publicación de pasantía.'),
                             actions: [
                               TextButton(
+                                child: Text('Cancelar'),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text('Ok'),
-                              )
+                              ),
+                              TextButton(
+                                child: Text('Publicar'),
+                                onPressed: () {
+                                  IntershipModel state2 = IntershipModel(
+                                      careers: state.listaCarreras,
+                                    days: state.dias,
+                                    requirements: state.requisitos,
+                                    deadline: state.fechaLimite,
+                                    department: state.departamento,
+                                    durations: 1,
+                                    endTime: state.horaFin,
+                                    startTime: state.horaInicio,
+                                    titleIntership: state.titulo,
+                                  );
+                                  BlocProvider.of<IntershipCubit>(context).registerIntership(state2);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => WraperCareers()));
+                                },
+                              ),
                             ],
                           );
-                        }
-                      },
-                      child: Text('Cargar WORD'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 9, 123, 16),
-                        onPrimary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                        },
+                      );
+                    },
+                    child: Text("Publicar"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue.shade900,
+                      onPrimary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Text('Formación del pasante',
-                        style: TextStyle(
-                            fontSize: 20, color: Colors.grey.shade600),
-                        textAlign: TextAlign.left),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SelectCareer()));
-                      },
-                      child: Text("Seleccionar"),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue.shade900,
-                        onPrimary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Requisitos",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
-                  onChanged: (value) {
-                    BlocProvider.of<IntershipCubit>(context)
-                        .updateRequisitos(value);
-                  },
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('¿Esta seguro de publicar la pasantía?'),
-                          content: Text(
-                              'Ha completado el formulario de publicación de pasantía.'),
-                          actions: [
-                            TextButton(
-                              child: Text('Cancelar'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            TextButton(
-                              child: Text('Publicar'),
-                              onPressed: () {
-                                IntershipModel state2 = IntershipModel(
-                                    careers: state.listaCarreras,
-                                  days: state.dias,
-                                  requirements: state.requisitos,
-                                  deadline: state.fechaLimite,
-                                  department: state.departamento,
-                                  durations: 1,
-                                  endTime: state.horaFin,
-                                  startTime: state.horaInicio,
-                                  titleIntership: state.titulo,
-                                );
-                                BlocProvider.of<IntershipCubit>(context).registerIntership(state2);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => WraperCareers()));
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  child: Text("Publicar"),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue.shade900,
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

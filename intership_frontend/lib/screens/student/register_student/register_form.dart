@@ -7,9 +7,11 @@ import 'package:intership_frontend/services/globals.dart';
 class FormRegister extends StatelessWidget {
   final int startYear;
   final int endYear;
+  final _keyform;
 
-  const FormRegister({Key? key, required this.startYear, required this.endYear})
-      : super(key: key);
+  FormRegister({Key? key, required this.startYear, required this.endYear})
+      : _keyform = GlobalKey<FormState>(), 
+      super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +25,27 @@ class FormRegister extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: Form(
+            key: _keyform,
             child: Column(
               children: [
-                TextFormField(decoration: InputDecoration(hintText: "Nombres", hintStyle: TextStyle(color: Colors.grey), icon: Icon(Icons.person), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),), onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateNombres(value),),
+                TextFormField(
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
+                  decoration: InputDecoration(
+                    hintText: "Nombres", 
+                    hintStyle: TextStyle(color: Colors.grey), 
+                    icon: Icon(Icons.person), 
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),),), 
+                    onChanged: (value) => BlocProvider.of<StudentCubit>(context).updateNombres(value),),
                 const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                    decoration: InputDecoration(
                     hintText: "Primer Apellido",
                     hintStyle: TextStyle(color: Colors.grey),
                     icon: Icon(Icons.person),
@@ -38,6 +53,11 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (value) => BlocProvider.of<StudentCubit>(context)
                       .updatePrimerApellido(value),
                 ),
@@ -53,6 +73,11 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (value) => BlocProvider.of<StudentCubit>(context)
                       .updateSegundoApellido(value),
                 ),
@@ -73,6 +98,11 @@ class FormRegister extends StatelessWidget {
                   hint: const Text("Tipo de documento",
                       style: TextStyle(color: Colors.grey)),
                   icon: const Icon(Icons.arrow_drop_down),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (value) {
                     BlocProvider.of<StudentCubit>(context)
                         .updateTipoDocumento(value ?? '');
@@ -94,6 +124,11 @@ class FormRegister extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        validator: (value){
+                          if(value == null || value.isEmpty){
+                            return "Este campo es obligatorio";
+                          }
+                        },
                         onChanged: (value) =>
                             BlocProvider.of<StudentCubit>(context)
                                 .updateNumeroDocumento(value),
@@ -125,6 +160,11 @@ class FormRegister extends StatelessWidget {
                         hint: const Text("DPT",
                             style: TextStyle(color: Colors.grey)),
                         icon: const Icon(Icons.arrow_drop_down),
+                        validator: (value){
+                          if(value == null || value.isEmpty){
+                            return "Este campo es obligatorio";
+                          }
+                        },
                         onChanged: (value) =>
                             BlocProvider.of<StudentCubit>(context)
                                 .updateDepartamento(value ?? ''),
@@ -180,6 +220,11 @@ class FormRegister extends StatelessWidget {
                   }).toList(),
                   hint: Text("Sede", style: TextStyle(color: Colors.grey)),
                   icon: Icon(Icons.arrow_drop_down),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (String? value) {
                     BlocProvider.of<StudentCubit>(context)
                         .updateSede(value ?? '');
@@ -201,6 +246,11 @@ class FormRegister extends StatelessWidget {
                   }).toList(),
                   hint: Text("Carrera", style: TextStyle(color: Colors.grey)),
                   icon: Icon(Icons.arrow_drop_down),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (String? value) {
                     BlocProvider.of<StudentCubit>(context)
                         .updateCarrera(value ?? '');
@@ -219,6 +269,11 @@ class FormRegister extends StatelessWidget {
                   hint: Text("Año de Ingreso",
                       style: TextStyle(color: Colors.grey)),
                   icon: Icon(Icons.arrow_drop_down),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (String? value) {
                     BlocProvider.of<StudentCubit>(context)
                         .updateAnioIngreso(value ?? '');
@@ -236,6 +291,11 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (value) => BlocProvider.of<StudentCubit>(context)
                       .updateCorreoElectronico(value),
                 ),
@@ -251,6 +311,14 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                    if(value.length <=6){
+                      return "Contraseña muy corta";
+                    }
+                  },
                   onChanged: (value) => BlocProvider.of<StudentCubit>(context)
                       .updateContrasena(value),
                 ),
@@ -266,6 +334,11 @@ class FormRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  validator: (value){
+                    if(value == null || value.isEmpty){
+                      return "Este campo es obligatorio";
+                    }
+                  },
                   onChanged: (value) => BlocProvider.of<StudentCubit>(context)
                       .updateConfirmarContrasena(value),
                 ),
@@ -274,7 +347,10 @@ class FormRegister extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    //TODO: Validar que los campos no esten vacios
+                    if(_keyform.currentState!.validate()){
+                      print("Validado");
+                    }
+                    //TODO: Validar que los campos no esten vacios        
                     if (state.areAllFieldsFilled(state)) {
                       BlocProvider.of<StudentCubit>(context).addStudent(state);
                       print(state.toString());

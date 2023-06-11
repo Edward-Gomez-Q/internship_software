@@ -19,6 +19,7 @@ class _DaySelectionListState extends State<DaySelectionList> {
     'Domingo'
   ];
   List<String> selectedDays = [];
+  final _keyform = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,12 @@ class _DaySelectionListState extends State<DaySelectionList> {
                     })));
       }).toList(),
       hint: Text('Seleccionar dias'),
+      icon: Icon(Icons.arrow_drop_down),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Este campo es obligatorio';
+        }
+      },
       onChanged: (value) {
         BlocProvider.of<IntershipCubit>(context).updateDias(selectedDays);
       },

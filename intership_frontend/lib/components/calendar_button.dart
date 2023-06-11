@@ -12,6 +12,7 @@ class CalendarButton extends StatefulWidget {
 class _CalendarButtonState extends State<CalendarButton> {
   bool _showCalendar = false;
   DateTime? selectedDay;
+  final _keyform = GlobalKey<FormState>();
 
   void toggleCalendar() async {
     final selected = await showDatePicker(
@@ -32,65 +33,69 @@ class _CalendarButtonState extends State<CalendarButton> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Fecha',
-                    icon: Icon(Icons.calendar_month),
-                    hintStyle: TextStyle(color: Colors.grey.shade600),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+      child: Form(
+        key: _keyform,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Fecha',
+                      icon: Icon(Icons.calendar_month),
+                      hintStyle: TextStyle(color: Colors.grey.shade600),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  ),
-                  controller: TextEditingController(
-                    text: selectedDay != null
-                        ? DateFormat('dd/MM/yyyy').format(selectedDay!)
-                        : '',
-                  ),
-                  onChanged: (value) {
-                    BlocProvider.of<IntershipCubit>(context)
-                        .updateFechaLimite(selectedDay!);
-                  },
-                  readOnly: true,
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Column(children: [
-                ElevatedButton(
-                  child: Text('Fecha'),
-                  onPressed: toggleCalendar,
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue.shade900,
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    controller: TextEditingController(
+                      text: selectedDay != null
+                          ? DateFormat('dd/MM/yyyy').format(selectedDay!)
+                          : '',
                     ),
+
+                    onChanged: (value) {
+                      BlocProvider.of<IntershipCubit>(context)
+                          .updateFechaLimite(selectedDay!);
+                    },
+                    readOnly: true,
                   ),
                 ),
-                Visibility(
-                  visible: _showCalendar,
-                  child: SizedBox(
-                    width: 300,
-                    height: 300,
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: [
-                        CalendarPicker(),
-                      ],
+                SizedBox(
+                  width: 20,
+                ),
+                Column(children: [
+                  ElevatedButton(
+                    child: Text('Fecha'),
+                    onPressed: toggleCalendar,
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue.shade900,
+                      onPrimary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
-                ),
-              ]),
-            ],
-          ),
-        ],
+                  Visibility(
+                    visible: _showCalendar,
+                    child: SizedBox(
+                      width: 300,
+                      height: 300,
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: [
+                          CalendarPicker(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
