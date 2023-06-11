@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 class IntershipModel extends Equatable{
+  final int idInternship;
   final String title;
   final String department;
   final DateTime deadline;
@@ -14,6 +16,7 @@ class IntershipModel extends Equatable{
   final List<String> careers;
   final String knowledge;
   IntershipModel({
+    this.idInternship = 0,
     required this.title,
     required this.department,
     required this.deadline,
@@ -29,6 +32,7 @@ class IntershipModel extends Equatable{
   });
   factory IntershipModel.fromJson(Map<String, dynamic> json) {
     return IntershipModel(
+      idInternship: json['idInternship'],
       title: json['titleIntership'],
       department: json['department'],
       deadline: DateTime.parse(json['deadline']),
@@ -45,6 +49,7 @@ class IntershipModel extends Equatable{
   }
   Map<String, dynamic> toJson() {
     return {
+      'idInternship': idInternship,
       'titleIntership': title,
       'department': department,
       'deadline': deadline.toString(),
@@ -60,6 +65,7 @@ class IntershipModel extends Equatable{
     };
   }
   IntershipModel copyWith({
+    int? idInternship,
     String? title,
     String? department,
     DateTime? deadline,
@@ -74,6 +80,7 @@ class IntershipModel extends Equatable{
     String? knowledge,
   }) {
     return IntershipModel(
+      idInternship: idInternship ?? this.idInternship,
       title: title ?? this.title,
       department: department ?? this.department,
       deadline: deadline ?? this.deadline,
@@ -92,6 +99,7 @@ class IntershipModel extends Equatable{
   @override
   // TODO: implement props
   List<Object?> get props => [
+    idInternship,
     title,
     department,
     deadline,
@@ -105,4 +113,25 @@ class IntershipModel extends Equatable{
     careers,
     knowledge,
   ];
+
+  static IntershipModel fromMap(Map<String, dynamic> map) {
+    DateFormat timeFormat = DateFormat('HH:mm:ss');
+    DateTime startDate2 = timeFormat.parse(map['startDate']);
+    DateTime startDate3 = timeFormat.parse(map['endDate']);
+    return IntershipModel(
+      idInternship: map['idInternship'],
+      title: map['title'],
+      department: map['department'],
+      deadline: DateTime.parse(map['deadline']),
+      days: map['days'],
+      duration: map['duration'],
+      startDate: startDate2,
+      endDate: startDate3 ,
+      description: map['description'],
+      urlPDF: map['urlPDF'],
+      urlWord: map['urlWORD'],
+      careers: map['careers'].cast<String>(),
+      knowledge: map['knowledge'],
+    );
+  }
 }

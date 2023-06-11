@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CompanyModel extends Equatable{
+  final int idCompany;
   final String nameCompany;
   final List<String> sectors;
   final String review;
@@ -14,6 +15,7 @@ class CompanyModel extends Equatable{
   final String password;
   final String phone;
   CompanyModel({
+    this.idCompany = 0,
     this.nameCompany = '',
     this.sectors = const [],
     this.review = '',
@@ -28,6 +30,7 @@ class CompanyModel extends Equatable{
     this.phone = '',
   });
   CompanyModel copyWith({
+    int? idCompany,
     String? nameCompany,
     List<String>? sectors,
     String? review,
@@ -42,6 +45,7 @@ class CompanyModel extends Equatable{
     String? phone,
   }) {
     return CompanyModel(
+      idCompany: idCompany ?? this.idCompany,
       nameCompany: nameCompany ?? this.nameCompany,
       sectors: sectors ?? this.sectors,
       review: review ?? this.review,
@@ -58,6 +62,7 @@ class CompanyModel extends Equatable{
   }
   Map<String, dynamic> toMap() {
     return {
+      'idCompany': idCompany,
       'nameCompany': nameCompany,
       'sectors': sectors,
       'review': review,
@@ -76,6 +81,7 @@ class CompanyModel extends Equatable{
   @override
   // TODO: implement props
   List<Object?> get props => [
+    idCompany,
     nameCompany,
     sectors,
     review,

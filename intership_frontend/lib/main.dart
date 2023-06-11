@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/auth_cubit.dart';
 import 'package:intership_frontend/bloc/cubit/company_cubit.dart';
 import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
+import 'package:intership_frontend/bloc/cubit/list_internship_cubit.dart';
 import 'package:intership_frontend/bloc/cubit/student_cubit.dart';
 import 'package:intership_frontend/bloc/cubit/token_cubit.dart';
 import 'screens/login/login_principal.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<IntershipCubit>(create: (context) => IntershipCubit()),
         BlocProvider<AuthCubit>(create: (context) => AuthCubit()),
         BlocProvider<TokenCubit>(create: (context) => TokenCubit()),
+        BlocProvider<ListInternshipCubit>(create: (context) => ListInternshipCubit())
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

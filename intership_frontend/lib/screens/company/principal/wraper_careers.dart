@@ -37,8 +37,6 @@ class WraperCareers extends StatelessWidget {
                       return null;
                     },
                     onChanged: (String? value) {
-                      BlocProvider.of<IntershipCubit>(context)
-                          .updateFacultad(value ?? '');
                     },
                   ),
                 ),

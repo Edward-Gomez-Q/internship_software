@@ -197,7 +197,7 @@ class WraperPostIntership2 extends StatelessWidget {
                               TextButton(
                                 child: Text('Publicar'),
                                 onPressed: () {
-                                  if (_keyform.currentState!.validate()) {
+
                                     print("Validado");
                                     IntershipModel intership = IntershipModel(
                                       department: state.departamento,
@@ -214,7 +214,6 @@ class WraperPostIntership2 extends StatelessWidget {
                                       urlWord: state.urlwORD,
                                     );
                                     BlocProvider.of<IntershipCubit>(context).registerIntership(tokenState.authToken,tokenState.id,intership);
-                                  }
                                 },
                               ),
                             ],

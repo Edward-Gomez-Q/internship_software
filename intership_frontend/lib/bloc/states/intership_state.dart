@@ -2,32 +2,32 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 class IntershipState extends Equatable {
+  final int idInternship;
   final String titulo;
   final String departamento;
   final DateTime fechaLimite;
-  final List<String> dias;
+  final String dias;
   final int horas;
   final DateTime horaInicio;
   final DateTime horaFin;
   final String urlPDF;
   final String urlwORD;
   final String requisitos;
-  final String facultad;
   final bool status;
   final List<String> listaCarreras;
   final String descripcion;
   IntershipState({
+    this.idInternship = 0,
     this.titulo = '',
     this.departamento = '',
     DateTime? fechaLimite,
-    this.dias = const [],
+    this.dias = '',
     this.horas = 0,
     DateTime? horaInicio,
     DateTime? horaFin,
     this.urlPDF = '',
     this.urlwORD = '',
     this.requisitos = '',
-    this.facultad = '',
     this.status = true,
     this.listaCarreras = const [],
     this.descripcion = '',
@@ -35,10 +35,11 @@ class IntershipState extends Equatable {
         this.horaInicio = horaInicio ?? DateTime.now(),
         this.horaFin = horaFin ?? DateTime.now();
   IntershipState copyWith({
+    int? idInternship,
     String? titulo,
     String? departamento,
     DateTime? fechaLimite,
-    List<String>? dias,
+    String? dias,
     int? horas,
     DateTime? horaInicio,
     DateTime? horaFin,
@@ -46,11 +47,11 @@ class IntershipState extends Equatable {
     String? urlPDF,
     String? urlwORD,
     String? requisitos,
-    String? facultad,
     bool? status,
     List<String>? listaCarreras,
   }) {
     return IntershipState(
+      idInternship: idInternship ?? this.idInternship,
       titulo: titulo ?? this.titulo,
       departamento: departamento ?? this.departamento,
       fechaLimite: fechaLimite ?? this.fechaLimite,
@@ -61,7 +62,6 @@ class IntershipState extends Equatable {
       urlPDF: urlPDF ?? this.urlPDF,
       urlwORD: urlwORD ?? this.urlwORD,
       requisitos: requisitos ?? this.requisitos,
-      facultad: facultad ?? this.facultad,
       status: status ?? this.status,
       listaCarreras: listaCarreras ?? this.listaCarreras,
       descripcion: descripcion ?? this.descripcion,
@@ -70,6 +70,7 @@ class IntershipState extends Equatable {
 
   @override
   List<Object?> get props => [
+        idInternship,
         titulo,
         departamento,
         fechaLimite,
@@ -80,7 +81,6 @@ class IntershipState extends Equatable {
         urlPDF,
         urlwORD,
         requisitos,
-        facultad,
         status,
         listaCarreras,
         descripcion,

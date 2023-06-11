@@ -1,4 +1,5 @@
 class StudentModel {
+  final int idStudent;
   final String nombres;
   final String primerApellido;
   final String segundoApellido;
@@ -14,6 +15,7 @@ class StudentModel {
   final String confirmarContrasena;
 
   StudentModel({
+    this.idStudent = 0,
     this.nombres = '',
     this.primerApellido = '',
     this.segundoApellido = '',
@@ -29,6 +31,7 @@ class StudentModel {
     this.confirmarContrasena = '',
   });
   StudentModel copyWith({
+    int? idStudent,
     String? nombres,
     String? primerApellido,
     String? segundoApellido,
@@ -44,6 +47,7 @@ class StudentModel {
     String? confirmarContrasena,
   }) {
     return StudentModel(
+      idStudent: idStudent ?? this.idStudent,
       nombres: nombres ?? this.nombres,
       primerApellido: primerApellido ?? this.primerApellido,
       segundoApellido: segundoApellido ?? this.segundoApellido,
@@ -62,6 +66,7 @@ class StudentModel {
 
   @override
   List<Object?> get props => [
+    idStudent,
     nombres,
     primerApellido,
     segundoApellido,

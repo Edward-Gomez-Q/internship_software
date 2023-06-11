@@ -48,29 +48,36 @@ class IntershipServices {
       return 'Error 404';
     }
   }
-
-  /*static Future<List<IntershipModel>> getIntershipsStatus(int studentId) async {
-    var url = Uri.parse('$baseUrl/student/$studentId/intership');
+  //Obtener todas las pasantias por compañia
+  static Future<List<IntershipModel>> getAllInternshipByIdCompany(String token,int idCompany) async{
+    var url = Uri.parse('$baseUrl/company/$idCompany/internship');
     http.Response response = await http.get(
       url,
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-    );
-    print('Response Obtener pasantias: ${response.body}');
-    if (response.statusCode == 200) {
-      Map responseMap = json.decode(response.body);
-      List<IntershipModel> interships = [];
-      for (var item in responseMap["response"]) {
-        IntershipModel intership = IntershipModel.fromJson(item);
-        if (intership.status == 'true') {
-          interships.add(intership);
-        }
+        'Authorization': 'Bearer $token'
       }
-      return interships;
-    } else {
-      return [];
-    }
-  }*/
+    );
+    if(response.statusCode==200)
+      {
+        print(response.body);
+        Map responseMap = json.decode(response.body);
+        if(responseMap["code"]!="200")
+          {
+            return [];
+          }
+        List<IntershipModel> interships = [];
+        for(var intershipMap in responseMap['response'])
+          {
+            IntershipModel intership = IntershipModel.fromMap(intershipMap);
+            interships.add(intership);
+          }
+        return interships;
+      }
+else
+      {
+        return [];
+      }
+
+  }
 }

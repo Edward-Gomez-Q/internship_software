@@ -3,6 +3,7 @@ package edu.bo.ucb.sis213.internship.dto;
 import edu.bo.ucb.sis213.internship.entity.Student;
 
 public class StudentDto {
+    private int idStudent;
     private String nombres;
     private String primerApellido;
     private String segundoApellido;
@@ -20,7 +21,8 @@ public class StudentDto {
     public StudentDto() {
     }
 
-    public StudentDto(String nombres, String primerApellido, String segundoApellido, String tipoDocumento, String numeroDocumento, String departamento, boolean validacionUCB, String sede, String carrera, String anioIngreso, String correoElectronico, String contrasena, String confirmarContrasena) {
+    public StudentDto(int idStudent,String nombres, String primerApellido, String segundoApellido, String tipoDocumento, String numeroDocumento, String departamento, boolean validacionUCB, String sede, String carrera, String anioIngreso, String correoElectronico, String contrasena, String confirmarContrasena) {
+        this.idStudent = idStudent;
         this.nombres = nombres;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -36,6 +38,7 @@ public class StudentDto {
     }
 
     public StudentDto(Student student) {
+        this.idStudent = student.getIdStudent();
         this.nombres = student.getPersonIdPerson().getNames();
         this.primerApellido = student.getPersonIdPerson().getFirstLastName();
         this.segundoApellido = "";
@@ -155,10 +158,19 @@ public class StudentDto {
         this.confirmarContrasena = confirmarContrasena;
     }
 
+    public int getIdStudent() {
+        return idStudent;
+    }
+
+    public void setIdStudent(int idStudent) {
+        this.idStudent = idStudent;
+    }
+
     @Override
     public String toString() {
         return "StudentDto{" +
-                "nombres='" + nombres + '\'' +
+                "idStudent=" + idStudent +
+                ", nombres='" + nombres + '\'' +
                 ", primerApellido='" + primerApellido + '\'' +
                 ", segundoApellido='" + segundoApellido + '\'' +
                 ", tipoDocumento='" + tipoDocumento + '\'' +

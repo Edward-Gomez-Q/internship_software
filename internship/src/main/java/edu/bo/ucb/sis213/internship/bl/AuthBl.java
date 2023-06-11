@@ -163,24 +163,6 @@ public class AuthBl {
             return null;
         }
     }
-    //Obtener los roles de un token
-    public List<String> getRolesFromToken(String token){
-        if(token != null && token.startsWith("Bearer ")) {
-            token = token.substring(7);
-        }
-        DecodedJWT decodedJWT;
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(KEY);
-            JWTVerifier verifier = JWT.require(algorithm)
-                .withIssuer("www.ucb.edu.bo")
-                .build();
-            decodedJWT = verifier.verify(token);
-            return decodedJWT.getClaim("role").asList(String.class);
-        } catch (JWTVerificationException exception){
-            System.err.print("Token invalido: " + exception.getMessage());
-            return null;
-        }
-    }
     // Función para comparar si dos hashes corresponden
     public boolean checkPassword(String password, String hashedPassword) {
         return BCrypt.checkpw(password, hashedPassword);

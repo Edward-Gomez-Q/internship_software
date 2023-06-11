@@ -8,6 +8,7 @@ import 'package:intership_frontend/screens/admin/admin_company.dart';
 import 'package:intership_frontend/screens/company/intership_company.dart';
 import 'package:intership_frontend/screens/registration/registration_principal.dart';
 import 'package:intership_frontend/screens/student/student_intership.dart';
+import '../../bloc/cubit/list_internship_cubit.dart';
 import '../../bloc/states/auth_state.dart';
 import 'input_field.dart';
 
@@ -23,22 +24,18 @@ class Wrapper extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  SizedBox(
+
+                  const SizedBox(
                     height: 40,
                   ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                        return Registration();
-                      }));
-                },
-                child: Text(
-                  "Regístrate",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-                SizedBox(
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: InputField(),
+                  ),
+                const SizedBox(
                   height: 40,
                 ),
                 TextButton(
@@ -97,7 +94,6 @@ class Wrapper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-
               ),
                 ],
               ),

@@ -20,7 +20,7 @@ class IntershipCubit extends Cubit<IntershipState> {
   }
 
   void updateDias(List<String> dias) {
-    emit(state.copyWith(dias: dias));
+    emit(state.copyWith(dias: ""));
   }
 
   void updateHoras(int horas) {
@@ -45,10 +45,6 @@ class IntershipCubit extends Cubit<IntershipState> {
 
   void updateRequisitos(String requisitos) {
     emit(state.copyWith(requisitos: requisitos));
-  }
-
-  void updateFacultad(String facultad) {
-    emit(state.copyWith(facultad: facultad));
   }
 
   void updateListaCarreras(List<String> listaCarreras) {

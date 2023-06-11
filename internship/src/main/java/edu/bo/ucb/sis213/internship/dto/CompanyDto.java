@@ -5,6 +5,7 @@ import edu.bo.ucb.sis213.internship.entity.Company;
 import java.util.List;
 
 public class CompanyDto {
+    private int idCompany;
     private String nameCompany;
     private List<String> sectors;
     private String review;
@@ -21,7 +22,8 @@ public class CompanyDto {
     public CompanyDto(){
 
     }
-    public CompanyDto(String nameCompany, List<String> sectors, String review, String urlLogo, String webSide, String nit, String names, String firstLastName, String secondLastName, String email, String password, String phone) {
+    public CompanyDto(int idCompany,String nameCompany, List<String> sectors, String review, String urlLogo, String webSide, String nit, String names, String firstLastName, String secondLastName, String email, String password, String phone) {
+        this.idCompany = idCompany;
         this.nameCompany = nameCompany;
         this.sectors = sectors;
         this.review = review;
@@ -36,6 +38,7 @@ public class CompanyDto {
         this.phone = phone;
     }
     public CompanyDto(Company company){
+        this.idCompany = company.getIdCompany();
         this.nameCompany = company.getNameCompany();
         this.review = company.getReview();
         this.urlLogo = company.getUrlIcon();
@@ -139,9 +142,18 @@ public class CompanyDto {
         this.phone = phone;
     }
 
+    public int getIdCompany() {
+        return idCompany;
+    }
+
+    public void setIdCompany(int idCompany) {
+        this.idCompany = idCompany;
+    }
+
     @Override
     public String toString() {
         return "CompanyDto{" +
+                "idCompany=" + idCompany +
                 "nameCompany='" + nameCompany + '\'' +
                 ", sectors=" + sectors +
                 ", review='" + review + '\'' +
@@ -156,6 +168,5 @@ public class CompanyDto {
                 ", phone='" + phone + '\'' +
                 '}';
     }
-    //Constructor para convertir de dto a entity
 
 }

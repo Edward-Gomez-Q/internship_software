@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
+import 'package:intership_frontend/bloc/cubit/list_internship_cubit.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
+import 'package:intership_frontend/bloc/states/list_internship_state.dart';
 import 'package:intership_frontend/screens/company/principal/wraper_aplicants.dart';
 
 import '../aplicants_intership.dart';
@@ -14,6 +17,7 @@ class WraperViewIntership extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return ListView.builder(
       itemCount: intershipState.length,
       itemBuilder: (context, index) {

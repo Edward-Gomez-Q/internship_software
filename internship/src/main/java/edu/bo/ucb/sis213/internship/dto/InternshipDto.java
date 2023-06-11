@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InternshipDto {
+    private int idInternship;
     private String title;
     private String department;
     private Timestamp deadline;
@@ -25,7 +26,8 @@ public class InternshipDto {
 
     }
     //Constructor con parametros
-    public InternshipDto(String title, String department, Timestamp deadline, String days, int duration, Time startDate, Time endDate, String description, String urlPDF, String urlWORD, List<String> careers, String knowledge) {
+    public InternshipDto(int idInternship,String title, String department, Timestamp deadline, String days, int duration, Time startDate, Time endDate, String description, String urlPDF, String urlWORD, List<String> careers, String knowledge) {
+        this.idInternship = idInternship;
         this.title = title;
         this.department = department;
         this.deadline = deadline;
@@ -41,6 +43,7 @@ public class InternshipDto {
     }
     //Constructor
     public InternshipDto(Internship internship){
+        this.idInternship = internship.getIdInternship();
         this.title = internship.getTitle();
         this.department = internship.getCity();
         this.deadline = internship.getDeadline();
@@ -153,9 +156,18 @@ public class InternshipDto {
         this.knowledge = knowledge;
     }
 
+    public int getIdInternship() {
+        return idInternship;
+    }
+
+    public void setIdInternship(int idInternship) {
+        this.idInternship = idInternship;
+    }
+
     @Override
     public String toString() {
         return "InternshipDto{" +
+                "idInternship=" + idInternship +
                 "title='" + title + '\'' +
                 ", department='" + department + '\'' +
                 ", deadline=" + deadline +
