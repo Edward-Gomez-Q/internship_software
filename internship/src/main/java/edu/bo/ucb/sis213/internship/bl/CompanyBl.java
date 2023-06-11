@@ -102,5 +102,15 @@ public class CompanyBl {
             return null;
         }
     }
+    //Obtener status de la compania
+    public Boolean findStatusCompany(int id){
+        try {
+            Company company = companyRepository.findById(id);
+            return company.getStatus();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
 
 }

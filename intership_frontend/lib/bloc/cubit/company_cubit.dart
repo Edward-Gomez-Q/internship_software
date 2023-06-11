@@ -72,4 +72,9 @@ class CompanyCubit extends Cubit<CompanyState> {
       return response;
     }
   }
+  //Saber si la compañia ya esta registrada
+  Future<bool> isRegistered(String token, int id) async {
+    bool response = await CompanyServices.isCompanyAccepted(id, token);
+    return response;
+  }
 }

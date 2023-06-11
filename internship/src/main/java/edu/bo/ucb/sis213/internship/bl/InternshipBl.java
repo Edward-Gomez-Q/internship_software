@@ -105,6 +105,18 @@ public class InternshipBl {
         }
         return result;
     }
+    //Obtener todas las pasantías por compañia y status
+    public List<InternshipDto> findAllInternshipsByCompanyAndStatus(int idCompany, boolean status){
+        List<InternshipDto> result=new ArrayList<>();
+        Company company = companyRepository.findById(idCompany);
+        List<Internship> internships = internshipRepository.findAllByStatusAndCompanyIdCompany(status,company);
+        //Convertir la lista de internships a una lista de internshipsDto
+        for (int i = 0; i < internships.size(); i++) {
+            InternshipDto internshipDto = new InternshipDto(internships.get(i));
+            result.add(internshipDto);
+        }
+        return result;
+    }
     //Obtener una pasantía por id
     public InternshipDto findInternshipById(int id){
         Internship internship = internshipRepository.findById(id);
@@ -130,6 +142,39 @@ public class InternshipBl {
             result.add(internshipDto);
         }
         return result;
+    }
+    //Actualizar una pasantía
+    public InternshipDto updateInternship(InternshipDto internshipDto, int id){
+        Internship internship = internshipRepository.findById(id);
+        internship.setTitle(internshipDto.getTitle());
+        internship.setCity(internshipDto.getDepartment());
+        internship.setDeadline(internshipDto.getDeadline());
+        internship.setDays(internshipDto.getDays());
+        internship.setDuration(internshipDto.getDuration());
+        internship.setStartTimeInternship(internshipDto.getStartDate());
+        internship.setEndTimeInternship(internshipDto.getEndDate());
+        internship.setDescription(internshipDto.getDescription());
+        internship.setUlrDescription(internshipDto.getUrlPDF());
+        internship.setUrlSyllable(internshipDto.getUrlWORD());
+        internship.setKnowledge(internshipDto.getKnowledge());
+        internship.setAudDate(new Date());
+        internship.setAndUser("SYSTEM");
+        internship.setAudHost("localhost");
+        internshipRepository.save(internship);
+        //Actualizar las carreras que se relacionan con el internship
+        List<String> careers = internshipDto.getCareers();
+        List<CarrerInternship> carrerInternships = carrerInternshipRepository.findAllByInternshipIdInternship(internship);
+        for (int i = 0; i < carrerInternships.size(); i++) {
+            carrerInternshipRepository.delete(carrerInternships.get(i));
+        }
+        for (int i = 0; i < internshipDto.getCareers().size(); i++) {
+            Career career = careerRepository.findByCareerName(careers.get(i));
+            CarrerInternship carrerInternship = new CarrerInternship();
+            carrerInternship.setCareerIdCarrer(career);
+            carrerInternship.setInternshipIdInternship(internship);
+            carrerInternshipRepository.save(carrerInternship);
+        }
+        return new InternshipDto(internship);
     }
 
 }

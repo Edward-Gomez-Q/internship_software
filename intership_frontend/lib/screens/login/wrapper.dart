@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/auth_cubit.dart';
+import 'package:intership_frontend/bloc/cubit/company_cubit.dart';
 import 'package:intership_frontend/bloc/cubit/token_cubit.dart';
 import 'package:intership_frontend/bloc/states/token_state.dart';
 import 'package:intership_frontend/screens/admin/admin_company.dart';
@@ -10,6 +11,7 @@ import 'package:intership_frontend/screens/registration/registration_principal.d
 import 'package:intership_frontend/screens/student/student_intership.dart';
 import '../../bloc/cubit/list_internship_cubit.dart';
 import '../../bloc/states/auth_state.dart';
+import '../company/message.dart';
 import 'input_field.dart';
 
 class Wrapper extends StatelessWidget {
@@ -68,13 +70,23 @@ class Wrapper extends StatelessWidget {
                                 return HomeStudent();
                               }));
                         } else if (value.type == 2) {
+                          //Saber si fue aprobado
                           BlocProvider.of<TokenCubit>(context).login(value);
-                          //Login Empresa
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                                return HomeCompany();
-                              }));
-                        } else {
+                          Future<bool> aceppted = BlocProvider.of<CompanyCubit>(context).isRegistered(tokenState.authToken, tokenState.id);
+                          aceppted.then((value) {
+                            if(value){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return HomeCompany();
+                                  }));
+                            }else{
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Message()));
+                            }
+                          });
+                        } else if (value.type == 3){
                           BlocProvider.of<TokenCubit>(context).login(value);
                           //Login Administrador
                           Navigator.push(context,

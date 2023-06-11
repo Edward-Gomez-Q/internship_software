@@ -72,7 +72,7 @@ public class CompanyApi {
             responseDto.setErrorMessage("Invalid token");
             return responseDto;
         }
-        List<InternshipDto> internshipResponse = internshipBl.findAllInternshipsByCompany(id);
+        List<InternshipDto> internshipResponse = internshipBl.findAllInternshipsByCompanyAndStatus(id,true);
         if(internshipResponse==null){
             responseDto.setCode("400");
             responseDto.setErrorMessage("No se pudo obtener la empresa");
@@ -105,6 +105,51 @@ public class CompanyApi {
         responseDto.setCode("200");
         responseDto.setErrorMessage("");
         responseDto.setResponse(internshipResponse);
+        return responseDto;
+    }
+    //Api para actualizar una pasantia
+    @PutMapping("/api/v1/company/{id}/internship/{idInternship}")
+    public ResponseDto<InternshipDto> updateInternship(@RequestHeader("Authorization") String token, @PathVariable Integer id, @PathVariable Integer idInternship, @RequestBody InternshipDto internshipDto){
+        System.out.println("Internship: "+internshipDto.toString());
+        ResponseDto<InternshipDto> responseDto = new ResponseDto<>();
+        if (!authBl.validateToken(token)) {
+            responseDto.setCode("200");
+            responseDto.setResponse(null);
+            responseDto.setErrorMessage("Invalid token");
+            return responseDto;
+        }
+        InternshipDto internshipResponse = internshipBl.updateInternship(internshipDto,id);
+        if(internshipResponse==null){
+            responseDto.setCode("400");
+            responseDto.setErrorMessage("No se pudo actualizar la pasantia");
+            responseDto.setResponse(null);
+            return responseDto;
+        }
+        responseDto.setCode("200");
+        responseDto.setErrorMessage("");
+        responseDto.setResponse(internshipResponse);
+        return responseDto;
+    }
+    //Api para saber si una compañia fue aceptada
+    @GetMapping("/api/v1/company/{id}/status")
+    public ResponseDto<Boolean> getStatus(@RequestHeader("Authorization") String token, @PathVariable Integer id){
+        ResponseDto<Boolean> responseDto = new ResponseDto<>();
+        if (!authBl.validateToken(token)) {
+            responseDto.setCode("200");
+            responseDto.setResponse(null);
+            responseDto.setErrorMessage("Invalid token");
+            return responseDto;
+        }
+        Boolean status = companyBl.findStatusCompany(id);
+        if(status==null){
+            responseDto.setCode("400");
+            responseDto.setErrorMessage("No se pudo obtener el estado de la empresa");
+            responseDto.setResponse(null);
+            return responseDto;
+        }
+        responseDto.setCode("200");
+        responseDto.setErrorMessage("");
+        responseDto.setResponse(status);
         return responseDto;
     }
 

@@ -14,4 +14,7 @@ public interface CareerRepository extends JpaRepository<Career,Integer> {
     //Query para obtener carreras por nombre
     @Query(value = "SELECT * FROM career WHERE career_name = ?1",nativeQuery = true)
     public Career findByCareerName(String careerName);
+    //Query para obtener carreras por id
+
+
 }

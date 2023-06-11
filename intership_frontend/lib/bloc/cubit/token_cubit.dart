@@ -13,4 +13,7 @@ class TokenCubit extends Cubit<TokenState> {
   void login(TokenState token) async {
     emit(token);
   }
+  //Logout
+
+
 }

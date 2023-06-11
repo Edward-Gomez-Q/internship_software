@@ -48,4 +48,31 @@ class CompanyServices {
       return 'Error 404';
     }
   }
+  //Saber si una compania fue aceptada
+  static Future<bool> isCompanyAccepted(int id,String token) async {
+    var url = Uri.parse('$baseUrl/company/$id/status');
+    http.Response response = await http.get(
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer $token'
+
+      },
+    );
+    print('Response Compañia Aceptada: ${response.body}');
+    if (response.statusCode == 200) {
+      Map responseMap = json.decode(response.body);
+      if (responseMap["code"] == "200") {
+        if(responseMap["response"])
+          {
+            return true;
+          }
+        return false;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 }
