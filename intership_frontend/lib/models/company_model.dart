@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
-class CompanyModel extends Equatable{
+class CompanyModel extends Equatable {
   final int idCompany;
   final String nameCompany;
   final List<String> sectors;
@@ -29,6 +31,41 @@ class CompanyModel extends Equatable{
     this.password = '',
     this.phone = '',
   });
+  factory CompanyModel.fromJson(Map<String, dynamic> json) {
+    return CompanyModel(
+      idCompany: json['idCompany'],
+      nameCompany: json['nameCompany'],
+      sectors: json['sectors'].cast<String>(),
+      review: json['review'],
+      urlLogo: json['urlLogo'],
+      webSide: json['webSide'],
+      nit: json['nit'],
+      Names: json['Names'],
+      firstLastName: json['firstLastName'],
+      secondLastName: json['secondLastName'],
+      email: json['email'],
+      password: json['password'],
+      phone: json['phone'],
+    );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'idCompany': idCompany,
+      'nameCompany': nameCompany,
+      'sectors': sectors,
+      'review': review,
+      'urlLogo': urlLogo,
+      'webSide': webSide,
+      'nit': nit,
+      'Names': Names,
+      'firstLastName': firstLastName,
+      'secondLastName': secondLastName,
+      'email': email,
+      'password': password,
+      'phone': phone,
+    };
+  }
+
   CompanyModel copyWith({
     int? idCompany,
     String? nameCompany,
@@ -60,6 +97,7 @@ class CompanyModel extends Equatable{
       phone: phone ?? this.phone,
     );
   }
+
   Map<String, dynamic> toMap() {
     return {
       'idCompany': idCompany,
@@ -81,18 +119,18 @@ class CompanyModel extends Equatable{
   @override
   // TODO: implement props
   List<Object?> get props => [
-    idCompany,
-    nameCompany,
-    sectors,
-    review,
-    urlLogo,
-    webSide,
-    nit,
-    Names,
-    firstLastName,
-    secondLastName,
-    email,
-    password,
-    phone,
-  ];
+        idCompany,
+        nameCompany,
+        sectors,
+        review,
+        urlLogo,
+        webSide,
+        nit,
+        Names,
+        firstLastName,
+        secondLastName,
+        email,
+        password,
+        phone,
+      ];
 }

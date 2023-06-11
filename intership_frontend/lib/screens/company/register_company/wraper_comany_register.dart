@@ -69,7 +69,7 @@ class WrapperRegisterCompany extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(
+                  /*SizedBox(
                     height: 20,
                   ),
                   Row(children: <Widget>[
@@ -107,7 +107,7 @@ class WrapperRegisterCompany extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ]),
+                  ]),*/
                   SizedBox(
                     height: 20,
                   ),
@@ -157,7 +157,7 @@ class WrapperRegisterCompany extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeCompany()),
+                                builder: (context) => Registration()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

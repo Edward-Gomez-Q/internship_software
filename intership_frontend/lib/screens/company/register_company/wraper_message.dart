@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intership_frontend/screens/company/intership_company.dart';
+import 'package:intership_frontend/screens/login/login_principal.dart';
 
 class WrapperMessage extends StatelessWidget {
   final String message;
@@ -27,7 +28,7 @@ class WrapperMessage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return HomeCompany();
+                  return LoginPrincipal();
                 }));
               },
               child: Text("Volver"),

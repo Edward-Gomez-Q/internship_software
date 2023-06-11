@@ -48,5 +48,4 @@ class CompanyServices {
       return 'Error 404';
     }
   }
-
 }

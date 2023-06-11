@@ -140,7 +140,7 @@ class WraperCompanyRegister2 extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "Contraseña",
                       hintStyle: TextStyle(color: Colors.grey),
-                      icon: Icon(Icons.phone),
+                      icon: Icon(Icons.lock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -165,7 +165,7 @@ class WraperCompanyRegister2 extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "Confirmar contraseña",
                       hintStyle: TextStyle(color: Colors.grey),
-                      icon: Icon(Icons.phone),
+                      icon: Icon(Icons.lock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

@@ -16,7 +16,7 @@ class Aplicants extends StatelessWidget {
         appBar: MyAppBar(title: "Postulantes"),
         body: Column(
           children: [
-            Padding(
+            /*Padding(
               padding: EdgeInsets.only(top: 40),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
@@ -25,7 +25,7 @@ class Aplicants extends StatelessWidget {
                   onSearch: handleSearch,
                 ),
               ),
-            ),
+            ),*/
             SizedBox(
               height: 20,
             ),

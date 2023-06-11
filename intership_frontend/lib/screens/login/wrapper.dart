@@ -24,7 +24,6 @@ class Wrapper extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-
                   const SizedBox(
                     height: 40,
                   ),
@@ -35,27 +34,28 @@ class Wrapper extends StatelessWidget {
                     ),
                     child: InputField(),
                   ),
-                const SizedBox(
-                  height: 40,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return Registration();
-                    }));
-                  },
-                  child: Text(
-                    "Regístrate",
-                    style: TextStyle(color: Colors.grey),
+                  const SizedBox(
+                    height: 40,
                   ),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Registration();
+                      }));
+                    },
+                    child: Text(
+                      "Regístrate",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
                   ElevatedButton(
                     onPressed: () async {
                       Future<TokenState> token =
-                      BlocProvider.of<AuthCubit>(context).login();
+                          BlocProvider.of<AuthCubit>(context).login();
                       token.then((value) {
                         if (value.type == -1) {
                           //Login Fallido
