@@ -42,6 +42,28 @@ public class UseiApi {
         responseDto.setResponse(internshipDtoList);
         return responseDto;
     }
+    @GetMapping("/api/v1/usei/{id}/company/approve")
+    public ResponseDto<List<CompanyDto>> getCompany (@RequestHeader("Authorization") String token, @PathVariable Integer id){
+        ResponseDto<List<CompanyDto>> responseDto = new ResponseDto<>();
+        if (!authBl.validateToken(token)) {
+            responseDto.setCode("200");
+            responseDto.setResponse(null);
+            responseDto.setErrorMessage("Invalid token");
+            return responseDto;
+        }
+        //Obtener todas las companias que quieran ser aprobadas
+        List<CompanyDto> internshipDtoList = useiBl.findAllCompanyApprove();
+        if(internshipDtoList==null){
+            responseDto.setCode("400");
+            responseDto.setErrorMessage("No se pudo obtener la lista");
+            responseDto.setResponse(null);
+            return responseDto;
+        }
+        responseDto.setCode("200");
+        responseDto.setErrorMessage("");
+        responseDto.setResponse(internshipDtoList);
+        return responseDto;
+    }
     //Api para aprobar una pasantía
     @PutMapping("/api/v1/usei/{id}/internship/{idInternship}")
     public ResponseDto<InternshipDto> approveInternship(@RequestHeader("Authorization") String token, @PathVariable Integer id, @PathVariable Integer idInternship){
@@ -87,28 +109,7 @@ public class UseiApi {
         return responseDto;
     }
     //Api para obtener todas las companias que quieran ser aprobadas
-    @GetMapping("/api/v1/usei/{id}/company/approve")
-    public ResponseDto<List<CompanyDto>> getCompany (@RequestHeader("Authorization") String token, @PathVariable Integer id){
-        ResponseDto<List<CompanyDto>> responseDto = new ResponseDto<>();
-        if (!authBl.validateToken(token)) {
-            responseDto.setCode("200");
-            responseDto.setResponse(null);
-            responseDto.setErrorMessage("Invalid token");
-            return responseDto;
-        }
-        //Obtener todas las companias que quieran ser aprobadas
-        List<CompanyDto> internshipDtoList = useiBl.findAllCompanyApprove();
-        if(internshipDtoList==null){
-            responseDto.setCode("400");
-            responseDto.setErrorMessage("No se pudo obtener la lista");
-            responseDto.setResponse(null);
-            return responseDto;
-        }
-        responseDto.setCode("200");
-        responseDto.setErrorMessage("");
-        responseDto.setResponse(internshipDtoList);
-        return responseDto;
-    }
+
     //Api para aprobar una compania
     @PutMapping("/api/v1/usei/{id}/company/{idCompany}")
     public ResponseDto<CompanyDto> approveCompany(@RequestHeader("Authorization") String token, @PathVariable Integer id, @PathVariable Integer idCompany){
@@ -141,6 +142,7 @@ public class UseiApi {
             responseDto.setErrorMessage("Invalid token");
             return responseDto;
         }
+        System.out.println("idCompany: "+idCompany);
         CompanyDto companyResponse = useiBl.rejectCompany(idCompany);
         if(companyResponse==null){
             responseDto.setCode("400");
@@ -153,4 +155,5 @@ public class UseiApi {
         responseDto.setResponse(companyResponse);
         return responseDto;
     }
+
 }

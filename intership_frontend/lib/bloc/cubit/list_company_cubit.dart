@@ -15,6 +15,7 @@ class ListCompanyCubit extends Cubit<ListCompanyState> {
     for (var intership in listCompanyState) {
       intershipState.add(
         CompanyState(
+          idCompany: intership.idCompany,
           nombreEmpresa: intership.nameCompany,
           correoElectronicoContacto: intership.email,
           nit: intership.nit,

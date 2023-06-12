@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership_frontend/bloc/cubit/student_cubit.dart';
 import 'package:intership_frontend/bloc/states/student_state.dart';
 import 'package:intership_frontend/services/globals.dart';
+import 'package:intership_frontend/services/university_services.dart';
 
 class FormRegister extends StatelessWidget {
   final int startYear;
@@ -234,12 +235,9 @@ class FormRegister extends StatelessWidget {
                       }
                     },
                     onChanged: (String? value) {
-                      BlocProvider.of<StudentCubit>(context)
-                          .updateSede(value ?? '');
-                      BlocProvider.of<StudentCubit>(context)
-                          .getListaCarreras(value ?? '');
-                      print("Lista de carreras: " +
-                          state.listaCarreras.toString());
+                      BlocProvider.of<StudentCubit>(context).updateSede(value ?? '');
+                      BlocProvider.of<StudentCubit>(context).getListaCarreras(value ?? '');
+                      print("Lista de carreras: " +  state.listaCarreras.toString());
                     },
                   ),
                 ),

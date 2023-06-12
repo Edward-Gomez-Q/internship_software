@@ -4,6 +4,8 @@ import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/models/intership_model.dart';
 import 'package:intership_frontend/services/company_services.dart';
 
+import '../../services/admin_services.dart';
+
 class IntershipCubit extends Cubit<IntershipState> {
   IntershipCubit() : super(IntershipState());
 
@@ -65,6 +67,24 @@ class IntershipCubit extends Cubit<IntershipState> {
     String response =
         await CompanyServices.addIntership(token, id, intership);
     if (response == 'Intership added') {
+      return 'Ok';
+    } else {
+      return response;
+    }
+  }
+  //Aceptar pasantía
+  Future<String> acceptIntership(String token, int id,int idCompany) async {
+    String response = await AdminServices.addInternship(token, id, idCompany);
+    if (response == 'Intership accepted') {
+      return 'Ok';
+    } else {
+      return response;
+    }
+  }
+  //Rechazar pasantía
+  Future<String> rejectIntership(String token, int id,int idCompany) async {
+    String response = await AdminServices.deleteInternship(token, id, idCompany);
+    if (response == 'Intership rejected') {
       return 'Ok';
     } else {
       return response;

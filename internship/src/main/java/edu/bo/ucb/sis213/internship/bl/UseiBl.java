@@ -62,7 +62,10 @@ public class UseiBl {
     }
     //Aprobar una compañía
     public CompanyDto approveCompany(int idCompany){
-        ApproveCompany approveCompany = approveCompanyRepository.findByCompanyIdCompany(idCompany);
+        System.out.println(idCompany);
+        //Aprobar la compañía
+        Company company1 = companyRepository.findById(idCompany);
+        ApproveCompany approveCompany = approveCompanyRepository.findByCompanyIdCompany(company1);
         approveCompany.setAprprove(true);
         approveCompanyRepository.save(approveCompany);
         Company company = companyRepository.findById(idCompany);
@@ -77,16 +80,20 @@ public class UseiBl {
         internship.setStatus(false);
         internshipRepository.save(internship);
         ApproveInternship approveInternship = approveInternshipRepository.findByInternshipIdInternship(internship);
-        approveInternshipRepository.delete(approveInternship);
+        approveInternship.setAprprove(true);
+        approveInternshipRepository.save(approveInternship);
         InternshipDto internshipDto = new InternshipDto(internship);
         return internshipDto;
     }
     //Recharzar una compañía
     public CompanyDto rejectCompany(int idCompany){
-        ApproveCompany approveCompany = approveCompanyRepository.findByCompanyIdCompany(idCompany);
-        approveCompanyRepository.delete(approveCompany);
+        Company company1 = companyRepository.findById(idCompany);
+        ApproveCompany approveCompany = approveCompanyRepository.findByCompanyIdCompany(company1);
+        approveCompany.setAprprove(true);
+        approveCompanyRepository.save(approveCompany);
         Company company = companyRepository.findById(idCompany);
-        companyRepository.delete(company);
+        company.setStatus(false);
+        companyRepository.save(company);
         CompanyDto companyDto = new CompanyDto(approveCompany.getCompanyIdCompany());
         return companyDto;
     }

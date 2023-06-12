@@ -85,4 +85,14 @@ class CompanyCubit extends Cubit<CompanyState> {
     bool response = await AdminServices.approveCompany(token, id, idCompany);
     return response;
   }
+  //Aceptar compañia
+  Future<String> approveCompany(String token, int id, int idCompany) async {
+    String response = await AdminServices.addCompany(token, id, idCompany);
+    return response;
+  }
+  //Rechazar compañia
+  Future<String> rejectCompany(String token, int id, int idCompany) async {
+    String response = await AdminServices.deleteCompany(token, id, idCompany);
+    return response;
+  }
 }

@@ -22,6 +22,7 @@ class AdminIntership extends StatelessWidget {
           body: Container(
             child: WraperAdminIntership(
               interships: state.internships,
+              tokenState: tokenState,
             ),
           ),
           bottomNavigationBar: BottomBarAdmin(),

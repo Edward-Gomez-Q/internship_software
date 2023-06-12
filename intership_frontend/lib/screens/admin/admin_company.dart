@@ -20,7 +20,7 @@ class AdminCompany extends StatelessWidget {
         return Scaffold(
           appBar: MyAppBar(title: 'Aprobación Empresas'),
           body: Container(
-            child: WraperAdminCompany(company: state.companies,),
+            child: WraperAdminCompany(company: state.companies,tokenState: tokenState),
           ),
           bottomNavigationBar: BottomBarAdmin(),
         );

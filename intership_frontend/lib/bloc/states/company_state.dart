@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 class CompanyState extends Equatable {
+  final int idCompany;
   final String nombreEmpresa;
   final List<String> listaSectores;
   final String resena;
@@ -17,6 +18,7 @@ class CompanyState extends Equatable {
   final String confirmarContrasena;
 
   CompanyState({
+    this.idCompany = 0,
     this.nombreEmpresa = '',
     this.nombresContacto = '',
     this.primerApellidoContacto = '',
@@ -33,6 +35,7 @@ class CompanyState extends Equatable {
   }) : this.logo = logo ?? Image.asset('assets/images/...');
 
   CompanyState copyWith({
+    int? idCompany,
     String? nombreEmpresa,
     String? nombresContacto,
     String? primerApellidoContacto,
@@ -49,6 +52,7 @@ class CompanyState extends Equatable {
     List<String>? listaSectores,
   }) {
     return CompanyState(
+      idCompany: idCompany ?? this.idCompany,
       nombreEmpresa: nombreEmpresa ?? this.nombreEmpresa,
       nombresContacto: nombresContacto ?? this.nombresContacto,
       primerApellidoContacto:
@@ -70,6 +74,7 @@ class CompanyState extends Equatable {
 
   @override
   List<Object> get props => [
+        idCompany,
         nombreEmpresa,
         nombresContacto,
         primerApellidoContacto,

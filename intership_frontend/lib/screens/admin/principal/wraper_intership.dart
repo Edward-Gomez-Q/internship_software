@@ -1,11 +1,17 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_frontend/bloc/cubit/intership_cubit.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
+
+import '../../../bloc/cubit/list_internship_cubit.dart';
+import '../../../bloc/states/token_state.dart';
 
 class WraperAdminIntership extends StatelessWidget {
   final List<IntershipState> interships;
-  WraperAdminIntership({Key? key, required this.interships}) : super(key: key);
+  final TokenState tokenState;
+  WraperAdminIntership({Key? key, required this.interships, required this.tokenState}) : super(key: key);
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: interships.length,
@@ -71,7 +77,11 @@ class WraperAdminIntership extends StatelessWidget {
                       child: Container(
                         width: 130, // Ancho del segundo botón
                         child: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            BlocProvider.of<IntershipCubit>(context).acceptIntership(tokenState.authToken, tokenState.id, interships[index].idInternship);
+                            BlocProvider.of<ListInternshipCubit>(context).clearList();
+                            BlocProvider.of<ListInternshipCubit>(context).getAllInternshipsWaiting(tokenState.authToken, tokenState.id);
+                          },
                           icon: Icon(Icons.check),
                           label: Text('Aceptar'),
                           style: ElevatedButton.styleFrom(
@@ -87,7 +97,11 @@ class WraperAdminIntership extends StatelessWidget {
                       child: Container(
                         width: 130, // Ancho del tercer botón
                         child: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            BlocProvider.of<IntershipCubit>(context).rejectIntership(tokenState.authToken, tokenState.id, interships[index].idInternship);
+                            BlocProvider.of<ListInternshipCubit>(context).clearList();
+                            BlocProvider.of<ListInternshipCubit>(context).getAllInternshipsWaiting(tokenState.authToken, tokenState.id);
+                          },
                           icon: Icon(Icons.close),
                           label: Text('Rechazar'),
                           style: ElevatedButton.styleFrom(

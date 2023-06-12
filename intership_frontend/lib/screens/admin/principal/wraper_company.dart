@@ -1,12 +1,18 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_frontend/bloc/cubit/company_cubit.dart';
 import 'package:intership_frontend/bloc/states/company_state.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
+import 'package:intership_frontend/bloc/states/token_state.dart';
+
+import '../../../bloc/cubit/list_company_cubit.dart';
 
 class WraperAdminCompany extends StatelessWidget {
   final List<CompanyState> company;
-  WraperAdminCompany({Key? key, required this.company}) : super(key: key);
+  final TokenState tokenState;
+  WraperAdminCompany({Key? key, required this.company, required this.tokenState}) : super(key: key);
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: company.length,
@@ -73,7 +79,13 @@ class WraperAdminCompany extends StatelessWidget {
                     Container(
                       width: 130, // Ancho del segundo botón
                       child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(company[index].idCompany);
+                          BlocProvider.of<CompanyCubit>(context).approveCompany(tokenState.authToken, tokenState.id, company[index].idCompany);
+                          BlocProvider.of<ListCompanyCubit>(context).clear();
+                          BlocProvider.of<ListCompanyCubit>(context).getAllCompanyWaiting(tokenState.authToken, tokenState.id);
+
+                        },
                         icon: Icon(Icons.check),
                         label: Text('Aceptar'),
                         style: ElevatedButton.styleFrom(
@@ -87,7 +99,10 @@ class WraperAdminCompany extends StatelessWidget {
                     Container(
                       width: 130, // Ancho del tercer botón
                       child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          BlocProvider.of<ListCompanyCubit>(context).clear();
+                          BlocProvider.of<ListCompanyCubit>(context).getAllCompanyWaiting(tokenState.authToken, tokenState.id);
+                        },
                         icon: Icon(Icons.close),
                         label: Text('Rechazar'),
                         style: ElevatedButton.styleFrom(
