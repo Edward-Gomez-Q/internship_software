@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intership_frontend/bloc/states/intership_state.dart';
 import 'package:intership_frontend/models/intership_model.dart';
 import 'package:intership_frontend/services/company_services.dart';
+import 'package:intership_frontend/services/intership_services.dart';
 
 import '../../services/admin_services.dart';
 
@@ -64,8 +65,7 @@ class IntershipCubit extends Cubit<IntershipState> {
   // registerIntership
   Future<String> registerIntership(
       String token, int id, IntershipModel intership) async {
-    String response =
-        await CompanyServices.addIntership(token, id, intership);
+    String response = await CompanyServices.addIntership(token, id, intership);
     if (response == 'Intership added') {
       return 'Ok';
     } else {
@@ -91,14 +91,14 @@ class IntershipCubit extends Cubit<IntershipState> {
     }
   }
 
-  /*// leerIntership
-  Future<String> getIntership(int id) async {
-    List<IntershipModel> response =
-        await IntershipServices.getIntershipsStatus(id);
-    if (response.isNotEmpty) {
-      return 'ok';
+  Future<String> updateIntrship(
+      String token, int id, int idCompany, IntershipModel intership) async {
+    String response = await IntershipServices.updateIntershipByCompany(
+        intership, token, id, idCompany);
+    if (response == 'Intership updated') {
+      return 'Ok';
     } else {
-      return 'lista vacia';
+      return response;
     }
-  }*/
+  }
 }

@@ -69,13 +69,13 @@ class WraperViewAplicants extends StatelessWidget {
                     width: 10,
                   ),
                   Container(
-                    width: 140, // Ancho del primer botón
+                    width: 130, // Ancho del primer botón
                     child: ElevatedButton.icon(
                       onPressed: () {},
-                      icon: Icon(Icons.download),
-                      label: Text("Descargar CV"),
+                      icon: Icon(Icons.close),
+                      label: Text("Rechazar"),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.blue.shade900,
+                        primary: Colors.red.shade900,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
