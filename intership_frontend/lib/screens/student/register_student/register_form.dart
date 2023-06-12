@@ -235,9 +235,12 @@ class FormRegister extends StatelessWidget {
                       }
                     },
                     onChanged: (String? value) {
-                      BlocProvider.of<StudentCubit>(context).updateSede(value ?? '');
-                      BlocProvider.of<StudentCubit>(context).getListaCarreras(value ?? '');
-                      print("Lista de carreras: " +  state.listaCarreras.toString());
+                      BlocProvider.of<StudentCubit>(context)
+                          .updateSede(value ?? '');
+                      BlocProvider.of<StudentCubit>(context)
+                          .getListaCarreras(value ?? '');
+                      print("Lista de carreras: " +
+                          state.listaCarreras.toString());
                     },
                   ),
                 ),
@@ -245,7 +248,7 @@ class FormRegister extends StatelessWidget {
                   width: 10,
                 ),
                 DropdownButtonFormField(
-                  items: listaDeCarreras.map((String value) {
+                  items: ucbCareers.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),

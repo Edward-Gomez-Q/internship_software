@@ -44,7 +44,7 @@ class WraperCareers extends StatelessWidget {
                 ),
                 Card(
                   child: DropdownButtonFormField(
-                    items: listaDeCarreras.map((String value) {
+                    items: ucbCareers.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -81,9 +81,6 @@ class WraperCareers extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     )),*/
-                SizedBox(
-                  height: 20,
-                ),
                 /*Container(
                   child: ListView.builder(
                     itemCount: carreras.length,

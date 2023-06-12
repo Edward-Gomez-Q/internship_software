@@ -23,7 +23,6 @@ const List<String> ucbCareers = [
   'Ingeniería de Software',
   'Ingeniería Bioquimica y de Procesos',
   'Ingeniería de Energía',
-  'Ingeniería en Internet de las Cosas',
   'Ingeniería de Agronegocios',
   'Ingeniería Quimica',
   'Ingeniería Civil',
@@ -33,7 +32,7 @@ const List<String> ucbCareers = [
   'Administración de Empresas',
   'Contaduría Pública',
   'Economía',
-  'Finanzas'
+  'Diseño grafico'
 ];
 
 const List<String> facultad = [
