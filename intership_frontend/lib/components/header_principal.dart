@@ -25,7 +25,19 @@ class HeaderPrincipal extends StatelessWidget {
           SizedBox(
             height: 80,
           ),
-          header,
+          Row(
+            children: [
+              Expanded(
+                  child: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )),
+              header,
+            ],
+          ),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -35,7 +47,7 @@ class HeaderPrincipal extends StatelessWidget {
                       topRight: Radius.circular(60))),
               child: content,
             ),
-          )
+          ),
         ],
       ),
     );

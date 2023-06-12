@@ -21,14 +21,13 @@ class WraperCareers extends StatelessWidget {
               children: <Widget>[
                 Card(
                   child: DropdownButtonFormField<String>(
-                    items: facultad.map((String value) {
+                    items: ucbCampuses.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
                     }).toList(),
-                    hint:
-                        Text("Facultad", style: TextStyle(color: Colors.grey)),
+                    hint: Text("Sede", style: TextStyle(color: Colors.grey)),
                     icon: Icon(Icons.arrow_drop_down),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
