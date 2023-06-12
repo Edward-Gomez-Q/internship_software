@@ -363,6 +363,7 @@ class FormRegister extends StatelessWidget {
                     //TODO: Validar que los campos no esten vacios
                     if (state.areAllFieldsFilled(state)) {
                       BlocProvider.of<StudentCubit>(context).addStudent(state);
+                      Navigator.pop(context);
                       print(state.toString());
                     } else {
                       print("No todos los campos estan llenos");
