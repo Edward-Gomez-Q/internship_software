@@ -216,6 +216,7 @@ class WraperPostIntership2 extends StatelessWidget {
                                     BlocProvider.of<IntershipCubit>(context)
                                         .registerIntership(tokenState.authToken,
                                             tokenState.id, intership);
+                                    Navigator.of(context).pop();
                                   },
                                 ),
                               ],

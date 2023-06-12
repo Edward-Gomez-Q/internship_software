@@ -95,7 +95,7 @@ class WraperPostIntership extends StatelessWidget {
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Duración (Horas)",
+                    hintText: "Duración (Dias)",
                     icon: Icon(Icons.today),
                     hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
